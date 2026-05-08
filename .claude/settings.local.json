@@ -8,7 +8,13 @@
       "Bash(./scripts/start_prod.sh:*)",
       "Bash(./scripts/start-prod.sh:*)",
       "Bash(ss:*)",
-      "Bash(docker system prune:*)"
+      "Bash(docker system prune:*)",
+      "Bash(open *)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 *)",
+      "Bash(node /tmp/pw/cap.mjs 1 /tmp/agent-shots/p1-product-matrix-after.png)",
+      "Bash(node /tmp/pw/cap.mjs 2 /tmp/agent-shots/p3-chatbi-positioning-before.png)",
+      "Bash(node /tmp/pw/cap.mjs 2 /tmp/agent-shots/p3-chatbi-positioning-after.png)"
     ],
     "deny": []
   }

@@ -1,0 +1,4888 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Agent 销售材料 Deck</title>
+    <style>
+      :root {
+        --bg: #07080d;
+        --bg-strong: #0d1018;
+        --bg-elevated: #11151f;
+        --panel: rgba(255, 255, 255, 0.035);
+        --panel-strong: rgba(255, 255, 255, 0.065);
+        --line: rgba(255, 255, 255, 0.07);
+        --line-strong: rgba(255, 255, 255, 0.16);
+        --text: #ecedf0;
+        --muted: rgba(236, 237, 240, 0.66);
+        --subtle: rgba(236, 237, 240, 0.42);
+        --accent: #8b6dff;
+        --accent-strong: #a48bff;
+        --accent-soft: rgba(139, 109, 255, 0.14);
+        --accent-line: rgba(139, 109, 255, 0.38);
+        --accent-2: #4ad6ff;
+        --accent-3: #ff7ab6;
+        --good: #3dd598;
+        --gradient-accent: linear-gradient(135deg, #8b6dff 0%, #4ad6ff 100%);
+        --gradient-accent-soft: linear-gradient(135deg, rgba(139, 109, 255, 0.18) 0%, rgba(74, 214, 255, 0.12) 100%);
+        --gradient-text: linear-gradient(135deg, #ffffff 0%, #d8d2ff 60%, #b8eaff 100%);
+        --gradient-kicker: linear-gradient(90deg, #a48bff 0%, #4ad6ff 100%);
+        --shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+        --shadow-glow: 0 0 60px rgba(139, 109, 255, 0.18);
+        --radius-xl: 18px;
+        --radius-lg: 12px;
+        --radius-md: 8px;
+        --font-display: "Avenir Next", "PingFang SC", "Hiragino Sans GB",
+          "Microsoft YaHei", sans-serif;
+        --font-body: "Source Han Sans SC", "PingFang SC", "Noto Sans CJK SC",
+          "Microsoft YaHei", sans-serif;
+        --font-serif: "Helvetica Neue", "PingFang SC", "Microsoft YaHei",
+          sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        overflow: hidden;
+        background:
+          radial-gradient(1200px 600px at 85% -10%, rgba(139, 109, 255, 0.18), transparent 60%),
+          radial-gradient(900px 500px at -10% 110%, rgba(74, 214, 255, 0.10), transparent 60%),
+          radial-gradient(600px 400px at 50% 50%, rgba(255, 122, 182, 0.04), transparent 70%),
+          var(--bg);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+        z-index: 0;
+        mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, transparent 80%);
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .app-shell {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 260px minmax(0, 1fr);
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+      }
+
+      .sidebar {
+        position: relative;
+        padding: 24px 18px 20px;
+        border-right: 1px solid var(--line);
+        background:
+          linear-gradient(180deg, rgba(139, 109, 255, 0.04) 0%, transparent 40%),
+          rgba(13, 16, 24, 0.85);
+        backdrop-filter: blur(12px);
+        overflow-y: auto;
+      }
+
+      .brand {
+        position: relative;
+        margin-bottom: 24px;
+        padding: 18px;
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(135deg, rgba(139, 109, 255, 0.12) 0%, rgba(74, 214, 255, 0.04) 100%),
+          var(--panel-strong);
+        border: 1px solid var(--accent-line);
+        overflow: hidden;
+      }
+
+      .brand::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--gradient-accent);
+        opacity: 0.6;
+      }
+
+      .brand small,
+      .meta-line,
+      .slide-kicker,
+      .mini-kicker {
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      .brand small {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: var(--gradient-kicker);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .brand strong {
+        display: block;
+        font-size: 26px;
+        font-family: var(--font-display);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+        background: var(--gradient-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .brand span {
+        display: block;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .deck-nav {
+        display: grid;
+        gap: 14px;
+      }
+
+      .nav-section {
+        display: grid;
+        gap: 4px;
+      }
+
+      .nav-section-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 0 8px 4px;
+        color: var(--subtle);
+        font-size: 10px;
+        line-height: 1.2;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: color 200ms ease;
+      }
+
+      .nav-section.is-active .nav-section-heading {
+        color: var(--accent-strong);
+      }
+
+      .nav-section-count {
+        color: rgba(236, 237, 240, 0.34);
+        font-family: var(--font-display);
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      .nav-button {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 24px minmax(0, 1fr);
+        gap: 10px;
+        align-items: center;
+        padding: 8px 10px;
+        border: 1px solid transparent;
+        border-radius: var(--radius-md);
+        background: transparent;
+        color: var(--muted);
+        text-align: left;
+        cursor: pointer;
+        transition: background 200ms ease, color 200ms ease,
+          border-color 200ms ease, transform 200ms ease;
+      }
+
+      .nav-button:hover {
+        background: rgba(255, 255, 255, 0.035);
+        color: var(--text);
+        transform: translateX(2px);
+      }
+
+      .nav-button.is-active {
+        background: linear-gradient(135deg, rgba(139, 109, 255, 0.18) 0%, rgba(74, 214, 255, 0.06) 100%);
+        color: #fff;
+        border-color: var(--accent-line);
+        box-shadow: 0 0 16px rgba(139, 109, 255, 0.15);
+      }
+
+      .nav-index {
+        width: 24px;
+        height: 24px;
+        display: grid;
+        place-items: center;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.045);
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--subtle);
+        font-family: var(--font-display);
+        transition: background 200ms ease, color 200ms ease;
+      }
+
+      .nav-button.is-active .nav-index {
+        background: var(--gradient-accent);
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(139, 109, 255, 0.45);
+      }
+
+      .nav-title {
+        font-size: 12.5px;
+        line-height: 1.4;
+      }
+
+      .meta {
+        margin-top: 20px;
+        padding: 14px;
+        border-radius: var(--radius-md);
+        background: var(--panel);
+        border: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.65;
+      }
+
+      .meta-line {
+        display: inline-block;
+        margin-bottom: 4px;
+        font-size: 10px;
+      }
+
+      .main {
+        position: relative;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        min-width: 0;
+        min-height: 0;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 18px 30px 0;
+      }
+
+      .progress-wrap {
+        flex: 1;
+      }
+
+      .progress-line {
+        position: relative;
+        height: 3px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .progress-fill {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 0;
+        border-radius: inherit;
+        background: var(--gradient-accent);
+        box-shadow: 0 0 12px rgba(139, 109, 255, 0.6);
+        transition: width 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .controls {
+        display: flex;
+        gap: 8px;
+      }
+
+      .control-button {
+        min-width: 88px;
+        padding: 9px 14px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--panel);
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        backdrop-filter: blur(6px);
+        transition: background 200ms ease, border-color 200ms ease,
+          color 200ms ease, transform 160ms ease;
+      }
+
+      .control-button:hover {
+        background: var(--panel-strong);
+        border-color: var(--accent-line);
+        color: #fff;
+        transform: translateY(-1px);
+      }
+
+      .control-button:active {
+        transform: translateY(0);
+      }
+
+      .stage {
+        position: relative;
+        display: grid;
+        place-items: start center;
+        padding: 18px 30px 20px;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .slide-frame {
+        position: relative;
+        width: min(100%, 1200px, calc((100vh - 142px) * 16 / 9));
+        width: min(100%, 1200px, calc((100dvh - 142px) * 16 / 9));
+        aspect-ratio: 16 / 9;
+        border-radius: var(--radius-xl);
+        background:
+          radial-gradient(800px 400px at 100% 0%, rgba(139, 109, 255, 0.08), transparent 60%),
+          radial-gradient(600px 400px at 0% 100%, rgba(74, 214, 255, 0.05), transparent 60%),
+          var(--bg-strong);
+        border: 1px solid var(--line-strong);
+        box-shadow: var(--shadow), var(--shadow-glow);
+        overflow: hidden;
+      }
+
+      .slide-frame::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: 2px;
+        background: var(--gradient-accent);
+        box-shadow: 0 0 20px rgba(139, 109, 255, 0.6), 0 0 40px rgba(74, 214, 255, 0.3);
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .slide-frame::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 30%);
+        z-index: 1;
+      }
+
+      .slides {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        padding: 32px 40px 28px;
+        display: none;
+        flex-direction: column;
+        gap: 14px;
+        z-index: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      @keyframes slideFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .slide.is-active {
+        display: flex;
+        animation: slideFadeIn 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .slide-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: var(--gradient-kicker);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        align-self: flex-start;
+      }
+
+      .slide-kicker::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--gradient-accent);
+        opacity: 0.7;
+      }
+
+      .slide-title-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .slide-title-row h1,
+      .slide-title-row h2 {
+        margin: 0;
+        font-family: var(--font-serif);
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        background: var(--gradient-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: #fff;
+      }
+
+      .slide-title-row h1 {
+        font-size: 42px;
+      }
+
+      .slide-title-row h2 {
+        font-size: 32px;
+        line-height: 1.12;
+      }
+
+      .slide-subtitle {
+        max-width: 860px;
+        margin-top: 8px;
+        font-size: 15px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* ===== 章节内容页通用样式 ===== */
+      .slide.is-section {
+        padding: 36px 44px 30px;
+        gap: 16px;
+      }
+
+      .slide.is-section .slide-title-row {
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .tag-row,
+      .stat-row,
+      .deliverable-grid,
+      .card-grid,
+      .compare-grid,
+      .split-grid,
+      .mini-grid,
+      .qa-grid,
+      .flow-grid,
+      .startup-grid,
+      .fit-grid {
+        display: grid;
+        gap: 12px;
+        min-height: 0;
+      }
+
+      .tag-row {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .tag,
+      .card,
+      .compare-card,
+      .metric-card,
+      .mini-card,
+      .qa-card,
+      .flow-card,
+      .note-card,
+      .fit-card {
+        position: relative;
+        padding: 14px 16px;
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0) 100%),
+          var(--panel);
+        border: 1px solid var(--line);
+        backdrop-filter: blur(6px);
+        transition: border-color 220ms ease, background 220ms ease,
+          transform 220ms ease, box-shadow 220ms ease;
+      }
+
+      .tag:hover,
+      .card:hover,
+      .compare-card:hover,
+      .mini-card:hover,
+      .qa-card:hover,
+      .flow-card:hover,
+      .fit-card:hover {
+        border-color: var(--accent-line);
+        transform: translateY(-2px);
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35),
+          0 0 0 1px rgba(139, 109, 255, 0.15) inset;
+      }
+
+      .tag {
+        min-height: 118px;
+      }
+
+      .tag strong,
+      .compare-card strong,
+      .mini-card strong,
+      .qa-card strong,
+      .flow-card strong,
+      .fit-card strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14.5px;
+        line-height: 1.3;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .tag span,
+      .card p,
+      .compare-card p,
+      .mini-card p,
+      .qa-card p,
+      .flow-card p,
+      .fit-card p,
+      .metric-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12.5px;
+        line-height: 1.5;
+      }
+
+      .hero-layout {
+        margin-top: 4px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) 360px;
+        gap: 20px;
+        align-items: stretch;
+        flex: 1;
+      }
+
+      .hero-side {
+        display: grid;
+        gap: 16px;
+      }
+
+      .quote-card {
+        position: relative;
+        padding: 18px 20px 16px 26px;
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(135deg, rgba(139, 109, 255, 0.10) 0%, rgba(74, 214, 255, 0.04) 100%),
+          var(--panel-strong);
+        color: var(--text);
+        border: 1px solid var(--accent-line);
+        min-height: 100%;
+        overflow: hidden;
+      }
+
+      .quote-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: var(--gradient-accent);
+        box-shadow: 0 0 20px rgba(139, 109, 255, 0.6);
+      }
+
+      .quote-card::after {
+        content: "\201C";
+        position: absolute;
+        top: -10px;
+        right: 18px;
+        font-family: var(--font-serif);
+        font-size: 88px;
+        line-height: 1;
+        color: rgba(139, 109, 255, 0.18);
+        pointer-events: none;
+      }
+
+      .quote-card p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.4;
+        font-family: var(--font-serif);
+        color: #fff;
+        font-weight: 500;
+        position: relative;
+      }
+
+      .quote-card span {
+        display: block;
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.55;
+        position: relative;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        flex: 1;
+      }
+
+      .card {
+        min-height: 0;
+      }
+
+      .card h3,
+      .compare-card h3,
+      .metric-card h3,
+      .panel-title,
+      .section-title {
+        margin: 0 0 10px;
+        font-family: var(--font-display);
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .card h3,
+      .compare-card h3 {
+        font-size: 14.5px;
+      }
+
+      .card ul,
+      .compare-card ul,
+      .metric-card ul,
+      .note-card ul {
+        margin: 8px 0 0;
+        padding-left: 16px;
+        color: rgba(236, 237, 240, 0.85);
+        font-size: 12.5px;
+      }
+
+      .card li,
+      .compare-card li,
+      .metric-card li,
+      .note-card li {
+        margin-bottom: 4px;
+        line-height: 1.5;
+      }
+
+      .card li::marker,
+      .compare-card li::marker,
+      .metric-card li::marker,
+      .note-card li::marker {
+        color: var(--subtle);
+      }
+
+      .fit-grid {
+        grid-template-columns: 1.15fr 0.95fr;
+        flex: 1;
+      }
+
+      .fit-card {
+        min-height: 100%;
+      }
+
+      .fit-list {
+        display: grid;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .fit-item {
+        position: relative;
+        padding: 10px 14px 10px 18px;
+        border-radius: var(--radius-md);
+        background: var(--panel-strong);
+        border: 1px solid var(--line);
+        overflow: hidden;
+        transition: border-color 220ms ease, background 220ms ease;
+      }
+
+      .fit-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        border-radius: 2px;
+        background: var(--gradient-accent);
+      }
+
+      .fit-item:hover {
+        border-color: var(--accent-line);
+        background: linear-gradient(135deg, rgba(139, 109, 255, 0.06) 0%, rgba(74, 214, 255, 0.02) 100%), var(--panel-strong);
+      }
+
+      .fit-item strong {
+        margin-bottom: 3px;
+        font-size: 13.5px;
+        color: #fff;
+        display: block;
+      }
+
+      .fit-item p {
+        font-size: 12px;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .compare-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        flex: 1;
+      }
+
+      .compare-card {
+        min-height: 100%;
+      }
+
+      .compare-card.is-featured {
+        background:
+          linear-gradient(180deg, rgba(139, 109, 255, 0.18) 0%, rgba(74, 214, 255, 0.06) 100%),
+          var(--bg-elevated);
+        border-color: var(--accent-line);
+        box-shadow: 0 0 0 1px rgba(139, 109, 255, 0.18),
+          0 18px 40px rgba(139, 109, 255, 0.18);
+      }
+
+      .compare-card.is-featured::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        padding: 1px;
+        background: var(--gradient-accent);
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0.6;
+        pointer-events: none;
+      }
+
+      /* ===== 章节定位页（Positioning）：3 视角 compare-card ===== */
+      .chatbi-positioning-slide {
+        gap: 14px;
+        padding: 32px 44px 26px;
+      }
+
+      .chatbi-positioning-slide .slide-title-row {
+        align-items: flex-end;
+        padding: 2px 0 12px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .chatbi-positioning-slide .slide-title-row h2 {
+        font-size: 32px;
+        line-height: 1.08;
+      }
+
+      .chatbi-positioning-slide .slide-subtitle {
+        max-width: 920px;
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .chatbi-positioning-slide .slide-title-row > .compare-badge {
+        flex: 0 0 auto;
+        margin-bottom: 4px;
+      }
+
+      .chatbi-value-grid {
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      .chatbi-value-grid .compare-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        padding: 16px 20px 14px;
+        overflow: hidden;
+      }
+
+      .chatbi-value-grid .compare-card::after {
+        content: "";
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        top: 0;
+        height: 2px;
+        border-radius: 0 0 2px 2px;
+        background: var(--gradient-accent);
+        opacity: 0.62;
+      }
+
+      .chatbi-value-grid .compare-card.is-featured {
+        transform: translateY(-3px);
+      }
+
+      .chatbi-value-grid .compare-card.is-featured::after {
+        opacity: 1;
+        height: 3px;
+      }
+
+      .chatbi-value-grid .compare-badge {
+        align-self: flex-start;
+        margin-bottom: 10px;
+      }
+
+      .chatbi-value-grid .compare-card strong {
+        margin-bottom: 10px;
+        font-size: 19px;
+        line-height: 1.22;
+      }
+
+      .chatbi-value-grid .compare-card p {
+        font-size: 12.5px;
+        line-height: 1.55;
+      }
+
+      .chatbi-value-grid .compare-card ul {
+        margin-top: auto;
+        padding-top: 10px;
+        border-top: 1px solid var(--line);
+        font-size: 12px;
+      }
+
+      .chatbi-value-grid .compare-card li {
+        margin-bottom: 4px;
+        line-height: 1.45;
+      }
+
+      .chatbi-market-slide {
+        gap: 14px;
+        padding: 32px 44px 26px;
+      }
+
+      .chatbi-market-slide .slide-title-row {
+        padding: 2px 0 12px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .chatbi-market-slide .slide-title-row h2 {
+        font-size: 32px;
+        line-height: 1.12;
+      }
+
+      .chatbi-market-slide .slide-subtitle {
+        max-width: 920px;
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .chatbi-market-grid {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr) minmax(0, 0.95fr);
+        gap: 16px;
+        align-items: stretch;
+        flex: 0 1 auto;
+        min-height: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
+      .chatbi-market-grid .compare-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        padding: 22px 22px 22px;
+        overflow: hidden;
+      }
+
+      .chatbi-market-grid .compare-card.is-featured {
+        transform: translateY(-4px);
+      }
+
+      .chatbi-market-grid .compare-card.is-featured::after {
+        height: 3px;
+      }
+
+      .chatbi-market-grid .compare-card .compare-badge {
+        align-self: flex-start;
+        margin-bottom: 14px;
+      }
+
+      .chatbi-market-grid .compare-card strong {
+        margin-bottom: 10px;
+        font-size: 20px;
+        line-height: 1.22;
+      }
+
+      .chatbi-market-grid .compare-card p {
+        font-size: 13.5px;
+        line-height: 1.7;
+      }
+
+      .chatbi-market-grid .compare-card ul {
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+      }
+
+      .chatbi-market-grid .compare-card li {
+        margin-bottom: 7px;
+        line-height: 1.6;
+      }
+
+      .chatbi-market-grid .compare-card::after {
+        content: "";
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        top: 0;
+        height: 2px;
+        border-radius: 0 0 2px 2px;
+        background: rgba(236, 237, 240, 0.22);
+      }
+
+      .chatbi-market-grid .compare-card.is-featured::after {
+        background: var(--gradient-accent);
+      }
+
+      .chatbi-market-grid .compare-card strong {
+        margin-bottom: 12px;
+        font-size: 20px;
+        line-height: 1.24;
+      }
+
+      .chatbi-market-grid .compare-card p {
+        font-size: 13px;
+        line-height: 1.56;
+      }
+
+      .chatbi-market-grid .compare-card ul {
+        margin-top: auto;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+        font-size: 12.8px;
+      }
+
+      .chatbi-market-grid .compare-card li {
+        margin-bottom: 5px;
+        line-height: 1.48;
+      }
+
+      .chatbi-differentiation-slide {
+        gap: 14px;
+      }
+
+      .chatbi-differentiation-slide .slide-title-row {
+        padding-bottom: 12px;
+      }
+
+      .chatbi-differentiation-slide .slide-title-row h2 {
+        font-size: 34px;
+      }
+
+      .chatbi-differentiation-grid {
+        grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.08fr) minmax(0, 0.96fr);
+        gap: 16px;
+        align-items: stretch;
+        flex: 0 1 auto;
+        min-height: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
+      .chatbi-differentiation-grid .compare-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        padding: 22px 22px 20px;
+        overflow: hidden;
+      }
+
+      .chatbi-differentiation-grid .compare-card::after {
+        content: "";
+        position: absolute;
+        left: 22px;
+        right: 22px;
+        top: 0;
+        height: 2px;
+        border-radius: 0 0 2px 2px;
+        background: rgba(236, 237, 240, 0.24);
+      }
+
+      .chatbi-differentiation-grid .compare-card.is-featured {
+        transform: translateY(-4px);
+      }
+
+      .chatbi-differentiation-grid .compare-card.is-featured::after {
+        height: 3px;
+        background: var(--gradient-accent);
+      }
+
+      .chatbi-differentiation-grid .compare-badge {
+        align-self: flex-start;
+        margin-bottom: 14px;
+      }
+
+      .chatbi-differentiation-grid .compare-card strong {
+        margin-bottom: 12px;
+        font-size: 20px;
+        line-height: 1.24;
+      }
+
+      .chatbi-differentiation-grid .compare-card p {
+        font-size: 13px;
+        line-height: 1.56;
+      }
+
+      .chatbi-differentiation-grid .compare-card ul {
+        margin-top: auto;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+        font-size: 12.8px;
+      }
+
+      .chatbi-differentiation-grid .compare-card li {
+        margin-bottom: 5px;
+        line-height: 1.48;
+      }
+
+      .dataagent-framing-slide {
+        gap: 14px;
+      }
+
+      .dataagent-framing-slide .slide-title-row {
+        align-items: flex-end;
+        padding-bottom: 12px;
+      }
+
+      .dataagent-framing-slide .slide-title-row h2 {
+        font-size: 33px;
+        line-height: 1.1;
+      }
+
+      .dataagent-framing-slide .slide-subtitle {
+        max-width: 920px;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .dataagent-framing-grid {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.14fr) minmax(0, 0.95fr);
+        gap: 16px;
+        align-items: stretch;
+        flex: 0 1 auto;
+        min-height: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
+      .dataagent-framing-grid .compare-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        padding: 22px 22px 20px;
+        overflow: hidden;
+      }
+
+      .dataagent-framing-grid .compare-card::after {
+        content: "";
+        position: absolute;
+        left: 22px;
+        right: 22px;
+        top: 0;
+        height: 2px;
+        border-radius: 0 0 2px 2px;
+        background: rgba(236, 237, 240, 0.24);
+      }
+
+      .dataagent-framing-grid .compare-card.is-featured {
+        transform: translateY(-4px);
+      }
+
+      .dataagent-framing-grid .compare-card.is-featured::after {
+        height: 3px;
+        background: var(--gradient-accent);
+      }
+
+      .dataagent-framing-grid .compare-card.is-featured .compare-badge {
+        align-self: flex-start;
+        margin-bottom: 16px;
+      }
+
+      .dataagent-framing-grid .compare-card strong {
+        margin-bottom: 12px;
+        font-size: 19px;
+        line-height: 1.24;
+      }
+
+      .dataagent-framing-grid .compare-card p {
+        font-size: 13px;
+        line-height: 1.56;
+      }
+
+      .dataagent-framing-grid .compare-card ul {
+        margin-top: auto;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+        font-size: 12.8px;
+      }
+
+      .dataagent-framing-grid .compare-card li {
+        margin-bottom: 5px;
+        line-height: 1.48;
+      }
+
+      .compare-badge,
+      .accent-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 11px;
+        border-radius: 999px;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        text-transform: none;
+        font-weight: 600;
+      }
+
+      .compare-badge {
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        border: 1px solid var(--accent-line);
+        box-shadow: 0 0 16px rgba(139, 109, 255, 0.25);
+      }
+
+      .accent-badge {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        border: 1px solid var(--line-strong);
+      }
+
+      .split-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: stretch;
+        flex: 1;
+      }
+
+      .pipeline {
+        position: relative;
+        padding: 14px 16px;
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0) 100%),
+          var(--panel);
+        border: 1px solid var(--line);
+      }
+
+      .pipeline-rail {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .pipeline-step {
+        display: grid;
+        grid-template-columns: 30px minmax(0, 1fr);
+        gap: 10px;
+        align-items: start;
+        padding: 11px 14px;
+        border-radius: var(--radius-md);
+        background: var(--bg-elevated);
+        border: 1px solid var(--line);
+        transition: border-color 220ms ease, transform 220ms ease;
+      }
+
+      .pipeline-step:hover {
+        border-color: var(--accent-line);
+        transform: translateX(2px);
+      }
+
+      .pipeline-index {
+        width: 26px;
+        height: 26px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: var(--gradient-accent);
+        color: #fff;
+        font-weight: 700;
+        font-size: 11.5px;
+        font-family: var(--font-display);
+        box-shadow: 0 4px 16px rgba(139, 109, 255, 0.4),
+          0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+      }
+
+      .pipeline-step strong {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 13.5px;
+        color: #fff;
+      }
+
+      .pipeline-step p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12.5px;
+        line-height: 1.45;
+      }
+
+      .delivery-agent-slide .delivery-agent-board {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+        gap: 12px;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .delivery-agent-slide .pipeline-rail,
+      .delivery-agent-slide .delivery-agent-value-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        min-height: 0;
+      }
+
+      .delivery-agent-slide .pipeline-step {
+        grid-template-columns: 28px minmax(0, 1fr);
+        padding: 10px 12px;
+      }
+
+      .delivery-agent-slide .card {
+        padding: 14px;
+      }
+
+      .delivery-agent-slide .card p {
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .mini-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .mini-kicker {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 11px;
+        color: var(--subtle);
+        font-weight: 500;
+      }
+
+      .metric-card strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 22px;
+        font-family: var(--font-display);
+        font-weight: 700;
+        background: var(--gradient-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .deliverable-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        flex: 1;
+      }
+
+      .deliverable {
+        position: relative;
+        padding: 14px 16px;
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%),
+          var(--panel);
+        border: 1px solid var(--line);
+        transition: border-color 220ms ease, transform 220ms ease,
+          box-shadow 220ms ease, background 220ms ease;
+        overflow: hidden;
+      }
+
+      .deliverable::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gradient-accent);
+        opacity: 0.5;
+        transition: opacity 220ms ease;
+      }
+
+      .deliverable:hover {
+        border-color: var(--accent-line);
+        transform: translateY(-3px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35),
+          0 0 0 1px rgba(139, 109, 255, 0.12) inset;
+      }
+
+      .deliverable:hover::before {
+        opacity: 1;
+      }
+
+      .deliverable strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 15px;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .deliverable p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12.5px;
+        line-height: 1.5;
+      }
+
+      .impact-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .impact-item {
+        position: relative;
+        padding: 11px 14px;
+        border-radius: var(--radius-md);
+        background:
+          linear-gradient(180deg, rgba(139, 109, 255, 0.08) 0%, rgba(255, 255, 255, 0) 60%),
+          var(--panel);
+        border: 1px solid var(--line);
+        font-size: 12.5px;
+        line-height: 1.5;
+        overflow: hidden;
+      }
+
+      .impact-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gradient-accent);
+        box-shadow: 0 0 12px rgba(139, 109, 255, 0.4);
+      }
+
+      .impact-item strong {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .startup-grid {
+        grid-template-columns: 1fr 1fr;
+        flex: 1;
+      }
+
+      .note-card {
+        padding: 14px 16px;
+        border-radius: var(--radius-lg);
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+
+      .flow-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        flex: 1;
+      }
+
+      .flow-card {
+        min-height: 100%;
+      }
+
+      .flow-card .accent-badge {
+        margin-bottom: 10px;
+      }
+
+      .case-layout {
+        display: grid;
+        grid-template-columns: 360px minmax(0, 1fr);
+        gap: 14px;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .case-side {
+        display: grid;
+        gap: 12px;
+        min-height: 0;
+      }
+
+      .case-main {
+        display: grid;
+        gap: 12px;
+        min-height: 0;
+      }
+
+      .evidence-chain {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .evidence-card {
+        padding: 14px 16px;
+        border-radius: var(--radius-lg);
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+
+      .evidence-card strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .evidence-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12.5px;
+        line-height: 1.5;
+      }
+
+      .report-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 320px;
+        gap: 14px;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .report-card {
+        padding: 20px;
+        border-radius: var(--radius-lg);
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+
+      .report-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .report-grid .mini-card {
+        background: var(--bg-strong);
+      }
+
+      .action-strip {
+        display: grid;
+        gap: 10px;
+      }
+
+      .action-item {
+        position: relative;
+        padding: 14px 16px 14px 20px;
+        border-radius: var(--radius-md);
+        background: var(--panel);
+        border: 1px solid var(--line);
+        overflow: hidden;
+        transition: border-color 220ms ease, transform 220ms ease;
+      }
+
+      .action-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        border-radius: 2px;
+        background: var(--gradient-accent);
+      }
+
+      .action-item:hover {
+        border-color: var(--accent-line);
+        transform: translateX(2px);
+      }
+
+      .action-item span {
+        color: var(--muted);
+        font-size: 13.5px;
+        line-height: 1.55;
+      }
+
+      .action-item strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 15px;
+        color: #fff;
+      }
+
+      .qa-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        flex: 1;
+      }
+
+      .qa-card {
+        min-height: 0;
+      }
+
+      .slide > .quote-card {
+        min-height: auto;
+        padding: 12px 18px;
+      }
+
+      .slide > .quote-card p {
+        font-size: 16px;
+        line-height: 1.35;
+      }
+
+      .slide > .compact-quote {
+        padding: 10px 16px;
+      }
+
+      .slide > .compact-quote p {
+        font-size: 14.5px;
+      }
+
+      .slide > .compact-quote span {
+        margin-top: 6px;
+      }
+
+      .qa-card em {
+        display: block;
+        margin-bottom: 10px;
+        font-style: normal;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        background: var(--gradient-kicker);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 13px;
+      }
+
+      .screen-showcase {
+        display: grid;
+        grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+        gap: 16px;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .screen-stack {
+        display: grid;
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        min-height: 0;
+      }
+
+      .screen-card {
+        position: relative;
+        min-height: 0;
+        margin: 0;
+        overflow: hidden;
+        border-radius: var(--radius-lg);
+        background: var(--bg-strong);
+        border: 1px solid var(--line-strong);
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+        transition: transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1),
+          border-color 360ms ease, box-shadow 360ms ease;
+      }
+
+      .screen-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent-line);
+        box-shadow: 0 22px 50px rgba(0, 0, 0, 0.5),
+          0 0 30px rgba(139, 109, 255, 0.15);
+      }
+
+      .screen-card img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top left;
+        transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .screen-card:hover img {
+        transform: scale(1.02);
+      }
+
+      /* PC 端截图卡：保持 4:3，不裁切，能在任意 grid cell 内自适应 */
+      .screen-card--pc {
+        aspect-ratio: 4 / 3;
+        max-height: 100%;
+        max-width: 100%;
+        align-self: center;
+        justify-self: center;
+        min-height: 0;
+      }
+
+      .screen-card--pc img {
+        object-fit: contain;
+        object-position: center;
+        background: var(--bg-strong);
+      }
+
+      /* 手机端截图卡：保持 9:16 竖屏 */
+      .screen-card--mobile {
+        aspect-ratio: 9 / 16;
+        max-height: 100%;
+        max-width: 220px;
+        align-self: center;
+        justify-self: center;
+        min-height: 0;
+        margin-inline: auto;
+      }
+
+      .screen-card--mobile img {
+        object-fit: cover;
+        object-position: top center;
+        background: #fff;
+      }
+
+      .screen-card figcaption {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        padding: 12px 14px;
+        border-radius: var(--radius-md);
+        background:
+          linear-gradient(135deg, rgba(139, 109, 255, 0.20) 0%, rgba(11, 13, 18, 0.90) 60%);
+        color: var(--text);
+        font-size: 12.5px;
+        line-height: 1.5;
+        border: 1px solid var(--accent-line);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .screen-card figcaption strong {
+        display: block;
+        margin-bottom: 2px;
+        font-size: 13px;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 30px 24px;
+      }
+
+      .footer-note {
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+
+      .footer-note strong {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .pager {
+        min-width: 120px;
+        text-align: right;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .notes-panel {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        width: min(380px, calc(100vw - 48px));
+        max-height: calc(100vh - 48px);
+        padding: 22px;
+        border-radius: var(--radius-xl);
+        background: var(--bg-strong);
+        color: var(--text);
+        border: 1px solid var(--line-strong);
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+        transform: translateX(calc(100% + 40px));
+        transition: transform 220ms ease;
+        z-index: 20;
+        overflow: auto;
+      }
+
+      body.notes-open .notes-panel {
+        transform: translateX(0);
+      }
+
+      .notes-panel h3 {
+        margin: 0 0 10px;
+        font-family: var(--font-display);
+        font-size: 20px;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .notes-panel p,
+      .notes-panel li {
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 13.5px;
+      }
+
+      .notes-panel ul {
+        padding-left: 18px;
+      }
+
+      .overview .stage {
+        align-items: start;
+        overflow: auto;
+      }
+
+      .overview .slide-frame {
+        height: auto;
+        aspect-ratio: auto;
+        padding: 22px;
+      }
+
+      .overview .slides {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .overview .slide {
+        position: relative;
+        display: flex;
+        min-height: 420px;
+        border-radius: var(--radius-lg);
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+
+      .overview .slide.is-active {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px var(--accent);
+      }
+
+      /* ===== Cover hero layout (Product Matrix · slide 2) ===== */
+      .slide.is-cover {
+        padding: 48px 56px 40px;
+        gap: 22px;
+      }
+
+      .slide.is-cover .slide-title-row {
+        align-items: flex-end;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .slide-title-row h1.cover-headline {
+        font-size: 44px;
+        letter-spacing: -0.025em;
+        line-height: 1.08;
+      }
+
+      .slide.is-cover h1.cover-headline {
+        font-size: 56px;
+        line-height: 1.06;
+      }
+
+      .slide.is-cover .slide-subtitle {
+        font-size: 16px;
+        margin-top: 10px;
+        line-height: 1.65;
+      }
+
+      .cover-stack {
+        flex: 1;
+        display: grid;
+        grid-template-rows: minmax(0, 1fr) auto;
+        gap: 14px;
+        margin-top: 4px;
+        min-height: 0;
+      }
+
+      .slide.is-cover .cover-stack {
+        gap: 22px;
+      }
+
+      .agent-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        gap: 12px;
+        align-items: stretch;
+        min-height: 0;
+      }
+
+      .slide.is-cover .agent-row {
+        gap: 18px;
+      }
+
+      .agent-block {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 18px 20px 16px;
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 60%),
+          var(--panel-strong);
+        border: 1px solid var(--line-strong);
+        overflow: hidden;
+        backdrop-filter: blur(8px);
+        transition: transform 280ms ease, border-color 280ms ease,
+          box-shadow 280ms ease;
+      }
+
+      .slide.is-cover .agent-block {
+        gap: 14px;
+        padding: 28px 28px 24px;
+      }
+
+      .agent-block::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        pointer-events: none;
+      }
+
+      .agent-block::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        opacity: 0.5;
+        background: radial-gradient(circle at 100% 0%, rgba(139, 109, 255, 0.12), transparent 50%);
+      }
+
+      .agent-block--chatbi::before {
+        background: linear-gradient(90deg, #4ad6ff 0%, #8b6dff 100%);
+        box-shadow: 0 0 18px rgba(74, 214, 255, 0.45);
+      }
+
+      .agent-block--chatbi::after {
+        background: radial-gradient(circle at 100% 0%, rgba(74, 214, 255, 0.14), transparent 55%);
+      }
+
+      .agent-block--dataagent::before {
+        background: linear-gradient(90deg, #8b6dff 0%, #ff7ab6 100%);
+        box-shadow: 0 0 18px rgba(255, 122, 182, 0.4);
+      }
+
+      .agent-block--dataagent::after {
+        background: radial-gradient(circle at 100% 0%, rgba(255, 122, 182, 0.12), transparent 55%);
+      }
+
+      .agent-block:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent-line);
+        box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(139, 109, 255, 0.18) inset;
+      }
+
+      .agent-block-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 11px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        align-self: flex-start;
+        background: var(--accent-soft);
+        border: 1px solid var(--accent-line);
+        color: var(--accent-strong);
+        position: relative;
+        z-index: 1;
+      }
+
+      .agent-block--chatbi .agent-block-tag {
+        background: rgba(74, 214, 255, 0.10);
+        border-color: rgba(74, 214, 255, 0.35);
+        color: #8be4ff;
+      }
+
+      .agent-block--dataagent .agent-block-tag {
+        background: rgba(255, 122, 182, 0.10);
+        border-color: rgba(255, 122, 182, 0.32);
+        color: #ffa6cd;
+      }
+
+      .agent-block-title {
+        margin: 0;
+        font-size: 26px;
+        font-family: var(--font-serif);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        background: var(--gradient-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+        z-index: 1;
+      }
+
+      .slide.is-cover .agent-block-title {
+        font-size: 32px;
+      }
+
+      .agent-block-desc {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+        position: relative;
+        z-index: 1;
+      }
+
+      .slide.is-cover .agent-block-desc {
+        font-size: 14.5px;
+        line-height: 1.65;
+      }
+
+      .agent-block-stats {
+        margin-top: auto;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        padding-top: 10px;
+        border-top: 1px solid var(--line);
+        position: relative;
+        z-index: 1;
+      }
+
+      .slide.is-cover .agent-block-stats {
+        gap: 12px;
+        padding-top: 14px;
+      }
+
+      .agent-block-stats > div {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .agent-block-stats strong {
+        font-size: 14.5px;
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.01em;
+      }
+
+      .slide.is-cover .agent-block-stats strong {
+        font-size: 18px;
+      }
+
+      .agent-block-stats span {
+        font-size: 11px;
+        color: var(--subtle);
+        letter-spacing: 0.02em;
+      }
+
+      .slide.is-cover .agent-block-stats span {
+        font-size: 12px;
+      }
+
+      .agent-connector {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 72px;
+        padding: 0 6px;
+      }
+
+      .agent-connector::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          rgba(74, 214, 255, 0.5) 0%,
+          rgba(139, 109, 255, 0.6) 50%,
+          rgba(255, 122, 182, 0.5) 100%
+        );
+        transform: translateY(-50%);
+      }
+
+      .agent-connector-label {
+        position: relative;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--accent-line);
+        color: var(--accent-strong);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        box-shadow: 0 0 16px rgba(139, 109, 255, 0.25);
+      }
+
+      .foundation-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 18px;
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(135deg, rgba(74, 214, 255, 0.08) 0%, rgba(139, 109, 255, 0.10) 50%, rgba(255, 122, 182, 0.08) 100%),
+          var(--panel-strong);
+        border: 1px solid var(--accent-line);
+        overflow: hidden;
+      }
+
+      .slide.is-cover .foundation-bar {
+        gap: 18px;
+        padding: 16px 24px;
+      }
+
+      .slide.is-cover .foundation-bar-label {
+        font-size: 12px;
+      }
+
+      .slide.is-cover .foundation-bar-content {
+        font-size: 14.5px;
+        line-height: 1.65;
+      }
+
+      .foundation-bar::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          #4ad6ff 0%,
+          #8b6dff 50%,
+          #ff7ab6 100%
+        );
+        opacity: 0.6;
+      }
+
+      .foundation-bar-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: var(--gradient-kicker);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .foundation-bar-divider {
+        width: 1px;
+        align-self: stretch;
+        background: var(--line-strong);
+        flex-shrink: 0;
+      }
+
+      .foundation-bar-content {
+        font-size: 13.5px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .foundation-bar-content strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* ===== Vision page (slide 1) ===== */
+      /* 给 Vision 页加专属 padding / gap，让开场更大气 */
+      .slide.is-vision {
+        padding: 56px 60px 44px;
+        gap: 24px;
+      }
+
+      .vision-hero {
+        position: relative;
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .vision-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        background: var(--gradient-kicker);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .vision-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: var(--gradient-accent);
+        opacity: 0.7;
+        flex: 0 0 auto;
+      }
+
+      .slide-title-row h1.vision-headline {
+        font-size: 60px;
+        letter-spacing: -0.025em;
+        line-height: 1.06;
+        font-weight: 700;
+      }
+
+      .vision-subtitle {
+        max-width: 920px;
+        margin-top: 16px;
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .vision-grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        min-height: 0;
+      }
+
+      .vision-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 28px 26px 24px;
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 60%),
+          var(--panel-strong);
+        border: 1px solid var(--line-strong);
+        overflow: hidden;
+        backdrop-filter: blur(8px);
+        transition: transform 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
+      }
+
+      .vision-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        pointer-events: none;
+      }
+
+      .vision-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        opacity: 0.55;
+      }
+
+      .vision-card--era::before {
+        background: linear-gradient(90deg, #4ad6ff 0%, #8b6dff 100%);
+        box-shadow: 0 0 18px rgba(74, 214, 255, 0.45);
+      }
+
+      .vision-card--era::after {
+        background: radial-gradient(circle at 100% 0%, rgba(74, 214, 255, 0.14), transparent 55%);
+      }
+
+      .vision-card--reach::before {
+        background: linear-gradient(90deg, #8b6dff 0%, #c084ff 100%);
+        box-shadow: 0 0 18px rgba(192, 132, 255, 0.4);
+      }
+
+      .vision-card--reach::after {
+        background: radial-gradient(circle at 100% 0%, rgba(192, 132, 255, 0.12), transparent 55%);
+      }
+
+      .vision-card--asset::before {
+        background: linear-gradient(90deg, #c084ff 0%, #ff7ab6 100%);
+        box-shadow: 0 0 18px rgba(255, 122, 182, 0.4);
+      }
+
+      .vision-card--asset::after {
+        background: radial-gradient(circle at 100% 0%, rgba(255, 122, 182, 0.12), transparent 55%);
+      }
+
+      .vision-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent-line);
+        box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(139, 109, 255, 0.18) inset;
+      }
+
+      .vision-card-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        align-self: flex-start;
+        padding: 5px 11px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        position: relative;
+        z-index: 1;
+      }
+
+      .vision-card--era .vision-card-tag {
+        background: rgba(74, 214, 255, 0.10);
+        border: 1px solid rgba(74, 214, 255, 0.32);
+        color: #8be4ff;
+      }
+
+      .vision-card--reach .vision-card-tag {
+        background: rgba(192, 132, 255, 0.12);
+        border: 1px solid rgba(192, 132, 255, 0.36);
+        color: #d6b3ff;
+      }
+
+      .vision-card--asset .vision-card-tag {
+        background: rgba(255, 122, 182, 0.10);
+        border: 1px solid rgba(255, 122, 182, 0.32);
+        color: #ffa6cd;
+      }
+
+      .vision-card-title {
+        margin: 4px 0 0;
+        font-size: 26px;
+        font-family: var(--font-serif);
+        line-height: 1.18;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        background: var(--gradient-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+        z-index: 1;
+      }
+
+      .vision-card-body {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 14.5px;
+        line-height: 1.7;
+        position: relative;
+        z-index: 1;
+      }
+
+      .vision-card-body strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* ========== Placeholder（截图占位）========== */
+      .placeholder {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 14px 16px;
+        min-height: 120px;
+        border-radius: var(--radius-lg);
+        background:
+          repeating-linear-gradient(
+            135deg,
+            rgba(139, 109, 255, 0.04) 0,
+            rgba(139, 109, 255, 0.04) 12px,
+            transparent 12px,
+            transparent 24px
+          ),
+          var(--panel);
+        border: 1.5px dashed rgba(139, 109, 255, 0.45);
+        color: var(--muted);
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(135deg, rgba(139, 109, 255, 0.06) 0%, rgba(74, 214, 255, 0.03) 100%);
+        pointer-events: none;
+      }
+
+      .placeholder-tag {
+        position: relative;
+        z-index: 1;
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: var(--gradient-kicker);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .placeholder-title {
+        position: relative;
+        z-index: 1;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.3;
+      }
+
+      .placeholder-desc {
+        position: relative;
+        z-index: 1;
+        font-size: 11.5px;
+        line-height: 1.5;
+        max-width: 320px;
+        color: var(--muted);
+      }
+
+      .placeholder-meta {
+        position: relative;
+        z-index: 1;
+        margin-top: 2px;
+        font-size: 10.5px;
+        letter-spacing: 0.04em;
+        color: var(--subtle);
+      }
+
+      .placeholder.is-wide {
+        min-height: 160px;
+      }
+
+      .placeholder.is-tall {
+        min-height: 100%;
+      }
+
+      .placeholder.is-compact {
+        min-height: 80px;
+        padding: 10px 14px;
+        gap: 2px;
+      }
+
+      /* ========== Placeholder 长宽比变体 ========== */
+      /* 用户端交互（手机竖屏 9:16）：仅用于真实用户提问 / 一键确认等手机端交互 */
+      .placeholder.is-mobile {
+        aspect-ratio: 9 / 16;
+        min-height: 0;
+        max-width: 220px;
+        margin-inline: auto;
+        padding: 14px 12px;
+      }
+
+      /* 管理端 / 后端面板（PC 4:3）：智能体配置、trace、子任务、SQL 等管理端截图 */
+      .placeholder.is-pc {
+        aspect-ratio: 4 / 3;
+        min-height: 0;
+        max-height: 100%;
+        max-width: 100%;
+        align-self: center;
+        justify-self: center;
+      }
+
+      .placeholder.is-pc.is-compact {
+        aspect-ratio: auto;
+        min-height: 80px;
+        max-height: 100%;
+        align-self: stretch;
+      }
+
+      .placeholder.is-pc.is-tall {
+        aspect-ratio: auto;
+        max-height: none;
+        align-self: stretch;
+      }
+
+      /* 文档（A4 竖向 ≈ 1:1.41）：结构化分析报告 / PDF 封面 */
+      .placeholder.is-doc {
+        aspect-ratio: 1 / 1.414;
+        min-height: 0;
+        max-width: 200px;
+        margin-inline: auto;
+      }
+
+      /* 双栏布局里的 placeholder：手机竖屏 + PC 横屏并排展示交互 */
+      .placeholder-pair {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+        gap: 14px;
+        align-items: stretch;
+        min-height: 0;
+      }
+
+      .placeholder-pair > .placeholder.is-mobile {
+        max-width: none;
+        height: 100%;
+      }
+
+      /* ========== 系统架构图（三层）========== */
+      .arch-diagram {
+        display: grid;
+        gap: 8px;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .arch-layer {
+        position: relative;
+        padding: 12px 14px;
+        border-radius: var(--radius-lg);
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+
+      .arch-layer.is-emphasis {
+        background:
+          linear-gradient(180deg, rgba(139, 109, 255, 0.14) 0%, rgba(74, 214, 255, 0.05) 100%),
+          var(--bg-elevated);
+        border-color: var(--accent-line);
+        box-shadow: 0 0 0 1px rgba(139, 109, 255, 0.18);
+      }
+
+      .arch-layer-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: var(--gradient-kicker);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .arch-layer-label::before {
+        content: "";
+        width: 18px;
+        height: 1px;
+        background: var(--gradient-accent);
+        opacity: 0.7;
+      }
+
+      .arch-row {
+        display: grid;
+        gap: 10px;
+      }
+
+      .arch-row.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .arch-row.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .arch-row.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .arch-row.cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .arch-row.cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+      .arch-node {
+        position: relative;
+        padding: 9px 12px;
+        border-radius: var(--radius-md);
+        background: var(--bg-strong);
+        border: 1px solid var(--line);
+        transition: border-color 220ms ease, transform 220ms ease;
+      }
+
+      .arch-node:hover {
+        border-color: var(--accent-line);
+        transform: translateY(-2px);
+      }
+
+      .arch-node strong {
+        display: block;
+        margin-bottom: 2px;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.3;
+      }
+
+      .arch-node span {
+        display: block;
+        font-size: 11px;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+
+      .arch-node.is-primary {
+        background:
+          linear-gradient(180deg, rgba(139, 109, 255, 0.18) 0%, rgba(74, 214, 255, 0.04) 100%),
+          var(--bg-elevated);
+        border-color: var(--accent-line);
+      }
+
+      .arch-arrow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 8px;
+        font-size: 14px;
+        line-height: 1;
+        color: var(--accent);
+        opacity: 0.7;
+      }
+
+      /* ========== 水平时间轴 ========== */
+      .timeline {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        padding: 22px 8px 4px;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 30px;
+        left: 32px;
+        right: 32px;
+        height: 2px;
+        background: var(--gradient-accent);
+        opacity: 0.55;
+        border-radius: 2px;
+      }
+
+      .timeline-node {
+        position: relative;
+        padding: 26px 12px 10px;
+      }
+
+      .timeline-node::before {
+        content: "";
+        position: absolute;
+        top: 24px;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--accent-strong);
+        border: 2px solid var(--bg);
+        box-shadow: 0 0 0 2px var(--accent-line), 0 0 18px rgba(139, 109, 255, 0.5);
+        transform: translateX(-50%);
+      }
+
+      .timeline-node .accent-badge {
+        display: inline-block;
+        margin-bottom: 4px;
+      }
+
+      .timeline-node strong {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .timeline-node p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      .timeline-milestones {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .timeline-milestone {
+        position: relative;
+        padding: 10px 12px;
+        border-radius: var(--radius-md);
+        background: var(--panel-strong);
+        border: 1px solid var(--line);
+        font-size: 12px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      .timeline-milestone strong {
+        display: block;
+        margin-bottom: 2px;
+        font-size: 12.5px;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      /* ========== 客户证据卡（合并 logo + KPI）========== */
+      .customer-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .customer-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 12px 14px;
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0) 100%),
+          var(--panel);
+        border: 1px solid var(--line);
+        overflow: hidden;
+        transition: border-color 220ms ease, transform 220ms ease;
+      }
+
+      .customer-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gradient-accent);
+        opacity: 0.5;
+      }
+
+      .customer-card:hover {
+        border-color: var(--accent-line);
+        transform: translateY(-2px);
+      }
+
+      .customer-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 6px;
+        min-height: 56px;
+        border-radius: var(--radius-md);
+        background:
+          repeating-linear-gradient(
+            135deg,
+            rgba(139, 109, 255, 0.04) 0,
+            rgba(139, 109, 255, 0.04) 8px,
+            transparent 8px,
+            transparent 16px
+          ),
+          var(--bg-strong);
+        border: 1px dashed rgba(139, 109, 255, 0.35);
+      }
+
+      .customer-logo strong {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+        line-height: 1.25;
+      }
+
+      .customer-logo span {
+        margin-top: 2px;
+        font-size: 9.5px;
+        letter-spacing: 0.06em;
+        color: var(--subtle);
+        text-transform: uppercase;
+      }
+
+      .customer-stats {
+        margin: 0;
+        font-size: 12.5px;
+        line-height: 1.4;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .customer-meta {
+        margin: 0;
+        font-size: 11.5px;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+
+      /* ========== Logo 矩阵（兼容样式，仍保留供其他页可能使用）========== */
+      .logo-matrix {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .logo-cell {
+        position: relative;
+        padding: 12px 10px;
+        min-height: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        border-radius: var(--radius-md);
+        background: var(--panel);
+        border: 1px solid var(--line);
+        transition: border-color 220ms ease, transform 220ms ease;
+      }
+
+      .logo-cell:hover {
+        border-color: var(--accent-line);
+        transform: translateY(-2px);
+      }
+
+      .logo-cell strong {
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+      }
+
+      .logo-cell span {
+        font-size: 11px;
+        color: var(--subtle);
+        letter-spacing: 0.05em;
+      }
+
+      /* ========== Screen quad（4 图布局）========== */
+      .screen-showcase.is-quad {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+      }
+
+      .screen-showcase.is-quad .screen-card {
+        min-height: 0;
+      }
+
+      /* ========== Page 15 split 布局 ========== */
+      .advantage-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: 18px;
+        flex: 1;
+      }
+
+      .advantage-quadrant {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        align-content: start;
+      }
+
+      @media (max-width: 1200px) {
+        .app-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          display: none;
+        }
+
+        .topbar,
+        .stage,
+        .footer {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        .slide {
+          padding: 28px 28px 24px;
+          overflow: auto;
+        }
+
+        .slide-title-row h1 {
+          font-size: 40px;
+        }
+
+        .slide-title-row h2 {
+          font-size: 30px;
+        }
+
+        .tag-row,
+        .card-grid,
+        .deliverable-grid,
+        .impact-strip,
+        .compare-grid,
+        .split-grid,
+        .startup-grid,
+        .flow-grid,
+        .qa-grid,
+        .evidence-chain,
+        .report-layout,
+        .hero-layout,
+        .fit-grid,
+        .screen-showcase,
+        .case-layout,
+        .agent-row,
+        .vision-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .slide-title-row h1.cover-headline,
+        .slide-title-row h1.vision-headline {
+          font-size: 38px;
+        }
+
+        .agent-connector {
+          min-height: 36px;
+          min-width: 0;
+        }
+
+        .agent-connector::before {
+          top: 0;
+          bottom: 0;
+          left: 50%;
+          right: auto;
+          width: 1px;
+          height: auto;
+          background: linear-gradient(
+            180deg,
+            rgba(74, 214, 255, 0.5) 0%,
+            rgba(139, 109, 255, 0.6) 50%,
+            rgba(255, 122, 182, 0.5) 100%
+          );
+        }
+
+        .foundation-bar {
+          flex-wrap: wrap;
+        }
+
+        .screen-stack {
+          grid-template-rows: auto;
+        }
+
+        .screen-card {
+          min-height: 260px;
+        }
+      }
+
+      @media (max-width: 760px) {
+        body {
+          overflow: auto;
+        }
+
+        .app-shell {
+          min-height: 100vh;
+          min-height: 100dvh;
+          height: auto;
+          overflow: visible;
+        }
+
+        .main {
+          min-height: 100vh;
+          min-height: 100dvh;
+        }
+
+        .topbar {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .controls {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .control-button {
+          min-width: 0;
+        }
+
+        .stage {
+          overflow: visible;
+        }
+
+        .slide-frame {
+          width: 100%;
+          aspect-ratio: auto;
+          min-height: 0;
+          overflow: visible;
+        }
+
+        .slides {
+          height: auto;
+        }
+
+        .slide {
+          position: relative;
+          display: none;
+          min-height: auto;
+        }
+
+        .slide.is-active {
+          display: flex;
+        }
+
+        .slide-title-row {
+          flex-direction: column;
+        }
+
+        .chatbi-positioning-slide .slide-title-row {
+          align-items: flex-start;
+          padding-bottom: 12px;
+        }
+      }
+
+      @media print {
+        body {
+          overflow: visible;
+          background: #fff;
+        }
+
+        .sidebar,
+        .topbar,
+        .footer,
+        .notes-panel {
+          display: none;
+        }
+
+        .app-shell,
+        .main,
+        .stage,
+        .slide-frame,
+        .slides {
+          display: block;
+          height: auto;
+          width: auto;
+          aspect-ratio: auto;
+          box-shadow: none;
+          background: transparent;
+        }
+
+        .slide {
+          position: relative;
+          display: flex;
+          min-height: 100vh;
+          page-break-after: always;
+        }
+
+        .delivery-agent-slide {
+          overflow: visible;
+        }
+
+        .delivery-agent-slide .delivery-agent-board,
+        .delivery-agent-slide .delivery-agent-value-grid {
+          flex: none;
+          overflow: visible;
+        }
+
+        .delivery-agent-slide .pipeline-rail,
+        .delivery-agent-slide .delivery-agent-value-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <small>Web Sales Deck</small>
+          <strong>ChatBI + Data Agent</strong>
+          <span>数据分析场景的两类 Agent / 从自助取数到正式分析交付</span>
+        </div>
+        <nav class="deck-nav" id="deck-nav"></nav>
+        <div class="meta">
+          <span class="meta-line">Source</span><br />
+          整合 ChatBI 产品介绍 + Data Agent 销售材料，作为数据分析场景的两类 Agent 联合呈现。<br />
+          演示：左右方向键翻页，N 打开讲稿，O 总览。
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="topbar">
+          <div class="progress-wrap">
+            <div class="progress-line">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+          </div>
+          <div class="controls">
+            <button class="control-button" type="button" id="prev-button">上一页</button>
+            <button class="control-button" type="button" id="notes-button">Speaker Notes</button>
+            <button class="control-button" type="button" id="overview-button">总览</button>
+            <button class="control-button" type="button" id="print-button">打印/PDF</button>
+            <button class="control-button" type="button" id="next-button">下一页</button>
+          </div>
+        </div>
+
+        <section class="stage">
+          <div class="slide-frame">
+            <div class="slides" id="slides">
+              <section
+                class="slide is-active is-vision"
+                data-title="Vision"
+                data-notes-title="Vision"
+                data-notes="作为整个 deck 的开场。这一页不讲产品，只讲时代和数据分析的价值升级。三个角度：01 时代升级（看板 → Agent），02 能力下沉（给每个岗位配分析助理），03 资产盘活（数据从静态变动态）。打的是 CIO / CDO / 管理层共鸣，先制造共识，再切到 Page 01 讲我们的产品矩阵。讲法上语速慢一点、留白多一点，开场气口要做足。"
+              >
+                <div class="slide-kicker">Vision / AI Native Data Analytics</div>
+                <div class="vision-hero">
+                  <span class="vision-eyebrow">AI 时代的企业数据分析</span>
+                  <h1 class="vision-headline">让数据走出报表与大屏<br />真正流到业务的毛细血管</h1>
+                  <p class="vision-subtitle">
+                    从 BI 报表与可视化大屏，升级到 AI Native 的数据分析能力——让企业沉淀多年的数据资产真正被业务用起来。
+                  </p>
+                </div>
+
+                <div class="vision-grid">
+                  <article class="vision-card vision-card--era">
+                    <span class="vision-card-tag">01 · Era Shift</span>
+                    <h2 class="vision-card-title">从看板时代<br />走向 Agent 时代</h2>
+                    <p class="vision-card-body">
+                      不是再做一块更精美的大屏。报表回答<strong>“是什么”</strong>，AI Native 的分析能力要回答<strong>“为什么、下一步做什么”</strong>——让数据从被动展示，走向主动驱动业务决策。
+                    </p>
+                  </article>
+
+                  <article class="vision-card vision-card--reach">
+                    <span class="vision-card-tag">02 · Capability for Everyone</span>
+                    <h2 class="vision-card-title">为每个岗位<br />配一位专业分析助理</h2>
+                    <p class="vision-card-body">
+                      分析能力不再是 BI 团队和数据科学家的专利。从经营会到区域、再到业务一线，<strong>每个人都能用自己的话提问</strong>，得到可核验的结论，推进可执行的动作。
+                    </p>
+                  </article>
+
+                  <article class="vision-card vision-card--asset">
+                    <span class="vision-card-tag">03 · Asset Activation</span>
+                    <h2 class="vision-card-title">让数据资产<br />从静态走向动态决策力</h2>
+                    <p class="vision-card-body">
+                      多数企业的数据投入只发挥了不到两成的价值。让 AI 把分析能力下沉到业务的<strong>每一个毛细血管</strong>——让数据真正流动起来、被用起来、转化成行动。
+                    </p>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide is-cover"
+                data-title="产品矩阵"
+                data-notes-title="Page 01"
+                data-notes="承接 Vision 之后的衔接页：客户已经认同’数据分析要升级到 AI Native’，这里给出我们的解法——配两类 Agent。一句话：ChatBI 解决问得到、取得准，Data Agent 解决分析得透、推得动；两者共享同一份数据资产与口径，是能力栈的两层，不是替代。建议讲法：直接说’我们怎么做的’，再分别展开。"
+              >
+                <div class="slide-kicker">Page 01 / Product Matrix</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h1 class="cover-headline">数据分析场景的两类 Agent</h1>
+                    <p class="slide-subtitle">
+                      ChatBI 把“问得到、取得准”做扎实，Data Agent 把“分析得透、推得动”做闭环；两者共享同一份数据资产与语义口径，覆盖从自助取数到正式分析交付的完整能力栈。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="cover-stack">
+                  <div class="agent-row">
+                    <article class="agent-block agent-block--chatbi">
+                      <span class="agent-block-tag">Layer 1 · ChatBI</span>
+                      <h2 class="agent-block-title">智能问数</h2>
+                      <p class="agent-block-desc">
+                        业务人员用自然语言问数 / 自动生成可执行 SQL / 图表化结果输出
+                      </p>
+                      <div class="agent-block-stats">
+                        <div><strong>NL → SQL</strong><span>一问一答</span></div>
+                        <div><strong>90%+</strong><span>验收一致性</span></div>
+                        <div><strong>5 件套</strong><span>交付资产</span></div>
+                      </div>
+                    </article>
+
+                    <div class="agent-connector" aria-hidden="true">
+                      <span class="agent-connector-label">共享底座</span>
+                    </div>
+
+                    <article class="agent-block agent-block--dataagent">
+                      <span class="agent-block-tag">Layer 2 · Data Agent</span>
+                      <h2 class="agent-block-title">智能分析交付</h2>
+                      <p class="agent-block-desc">
+                        把经营问题收成证据链 / 结构化报告 / 行动推进方案
+                      </p>
+                      <div class="agent-block-stats">
+                        <div><strong>一题一份</strong><span>正式交付</span></div>
+                        <div><strong>可复算</strong><span>关键 KPI</span></div>
+                        <div><strong>可追问</strong><span>证据链</span></div>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div class="foundation-bar">
+                    <span class="foundation-bar-label">Shared Foundation</span>
+                    <span class="foundation-bar-divider" aria-hidden="true"></span>
+                    <span class="foundation-bar-content">
+                      <strong>词汇表</strong> · <strong>口径定义</strong> · <strong>数据集授权</strong> · <strong>权限边界</strong> · <strong>同义词与黑话沉淀</strong>
+                    </span>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="slide chatbi-positioning-slide"
+                data-title="ChatBI 定位"
+                data-notes-title="Page 02"
+                data-notes="ChatBI 产品的总体定位页。讲法：它不是普通聊天入口，而是解决日常经营问数的 ChatBI Agent，能力类比一位数字 BI 工程师。三个价值视角：1) 用户角度——管理层经常会根据业务变化提出个性化查询和分析需求，传统 BI 报表里没有，只能让 BI 工程师临时查；业务岗位则因为企业没有足够 BI 工程师资源为每个岗位做细致报表，很多判断只能凭经验和直觉。ChatBI Agent 的价值，就像给每个业务岗位配了一位专属数字 BI 工程师。ChatBI 要解决的是这类日常经营问数；2) 组织角度——把日常问数从个人经验变成统一入口、统一口径和可沉淀的数据资产使用方式；3) 人事角度——重复取数交给数字 BI 工程师，BI 团队回到建模、治理和高价值分析。听众如果是 CIO / CDO / HRBP，对应这三个视角会有不同共鸣点：CIO 关心组织角度（数据资产）、CDO 关心组织角度（决策提质）、HRBP 关心人事角度（人效）、业务负责人关心用户角度（每个岗位都能用）。"
+              >
+                <div class="slide-kicker">Page 02 / ChatBI · Positioning</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>ChatBI Agent<br />日常经营问数的数字 BI 工程师</h2>
+                    <p class="slide-subtitle">
+                      它用自然语言承接经营追问、岗位取数和日常复盘，把 BI 工程师的取数、口径理解和结果解释能力，放到业务每天都会发生的问数场景里。
+                    </p>
+                  </div>
+                  <span class="compare-badge">Part 1 · ChatBI</span>
+                </div>
+
+                <div class="compare-grid chatbi-value-grid">
+                  <article class="compare-card">
+                    <span class="compare-badge">用户视角 · For Every Role</span>
+                    <strong>个性化经营问题<br />随时用业务语言问</strong>
+                    <p>管理层面对业务变化，常常要临时追问传统报表里没有的个性化数据；业务岗位缺少足够细致的报表支持，也需要把经验判断变成数据核对。</p>
+                    <ul>
+                      <li><strong>管理层</strong>：临时查询和分析需求，不再都依赖 BI 工程师手工查</li>
+                      <li><strong>业务岗位</strong>：每个岗位都像配了一位专属 ChatBI Agent，日常判断随时有数据支撑</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card is-featured">
+                    <span class="compare-badge">组织视角 · Data Activation</span>
+                    <strong>把日常问数<br />变成组织数据能力</strong>
+                    <p>数据不再停在固定报表和少数分析人员手里；指标、维度、口径通过问答进入经营会、复盘和专项分析，让组织用统一口径持续核对事实。</p>
+                    <ul>
+                      <li><strong>使用方式</strong>：从看固定报表，到围绕问题连续追问</li>
+                      <li><strong>覆盖范围</strong>：从少数人会用，到更多岗位可用</li>
+                      <li><strong>资产沉淀</strong>：业务词汇、指标口径和高频问题持续沉淀</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card">
+                    <span class="compare-badge">人事视角 · Workforce Efficiency</span>
+                    <strong>雇一位数字 BI 工程师<br />接住重复问数</strong>
+                    <p>ChatBI Agent 承接高频、重复、长尾的取数问题；BI 团队回到建模、治理和高价值分析，业务岗位从等待数据中释放出来。</p>
+                    <ul>
+                      <li><strong>BI 团队</strong>：少做重复取数，多做建模和口径治理</li>
+                      <li><strong>业务岗位</strong>：少等数据，复盘和判断更快启动</li>
+                      <li><strong>组织扩容</strong>：不靠增编复制问数能力</li>
+                    </ul>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide chatbi-market-slide"
+                data-title="可落地的ChatBI"
+                data-notes-title="Page 03"
+                data-notes="这一页打共鸣，让客户知道我们不是又一家做 Demo 的。70% 到 90%+ 这条线很关键，是市场上所有 ChatBI 类产品的分水岭。强调差异点：澄清反问、词汇表、复杂口径、回归测试闭环。"
+              >
+                <div class="slide-kicker">Page 03 / ChatBI · Market Reality</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>市场上的 ChatBI 大多止步于 Demo<br />还远到不了“能上岗的数字员工”</h2>
+                    <p class="slide-subtitle">
+                      POC 阶段做到约 70% 相对容易；要从 70% 走到商用 90%+——也就是让数字 BI 工程师真正在企业里上岗、独立承接业务问数——关键在于具备生产级差异能力：澄清反问、词汇表、复杂口径、回归测试闭环。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="compare-grid chatbi-market-grid">
+                  <article class="compare-card">
+                    <strong>常见 ChatBI 产品</strong>
+                    <p>停留在 PPT 方案与 Demo 演示阶段。</p>
+                    <ul>
+                      <li>POC 准确率约 70%</li>
+                      <li>黑话与歧义直接猜</li>
+                      <li>缺少口径治理与问题集</li>
+                      <li>一次性交付，难以持续</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card is-featured">
+                    <span class="compare-badge">Production Ready</span>
+                    <strong>我们的 ChatBI</strong>
+                    <p>面向生产环境的完整落地方法论与交付闭环。</p>
+                    <ul>
+                      <li>验收口径 90%+ 一致性</li>
+                      <li>主动反问澄清，不盲猜</li>
+                      <li>专属词汇表 + 验收问题集</li>
+                      <li>三轮回归测试与调优</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card">
+                    <strong>普通 BI / 报表</strong>
+                    <p>提供固定查询入口和报表分发。</p>
+                    <ul>
+                      <li>需要业务记字段、记报表名</li>
+                      <li>新需求要走需求—开发—上线</li>
+                      <li>取数门槛高，长尾需求难覆盖</li>
+                      <li>不解决口语 / 黑话问题</li>
+                    </ul>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="ChatBI 难点"
+                data-notes-title="Page 04"
+                data-notes="按生产环境真实情况讲。每一条都用客户能立刻代入的例子——‘阳光的订单’、’X 线的销量’、’目标完成率’。痛点本身不要展开太多，对应能力页才是重点。"
+              >
+                <div class="slide-kicker">Page 04 / ChatBI · Pain Points</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>数字 BI 工程师想真正上岗<br />必须扛住这 5 件事</h2>
+                    <p class="slide-subtitle">
+                      生产环境的真实问题，不是模型不够聪明，而是表多、词不准、概念模糊、口径复杂、方法论缺失——这 5 道关，是数字员工能否独立承接业务问数的分水岭。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+                  <article class="card">
+                    <h3>痛点 01｜多表选择难度大</h3>
+                    <p>Demo / POC 通常不超过 3 张表，生产场景至少 10 张，多时可达 50 张；当提问涉及多个相似主题时，模型很难判定该选哪张表。</p>
+                  </article>
+                  <article class="card">
+                    <h3>痛点 02｜口语与行业黑话</h3>
+                    <p>“阳光的订单现在发了多少？”“2025 年 7 月 X 线的销量？”——简称、别名、缩写、口语化表达模型很难直接对齐到字段。</p>
+                  </article>
+                  <article class="card">
+                    <h3>痛点 03｜模糊概念理解</h3>
+                    <p>“上个季度湖滨店的女鞋销售情况？”——“销售情况”可能指销量、销售额、客单价、毛利，需要先澄清。</p>
+                  </article>
+                  <article class="card">
+                    <h3>痛点 04｜复杂指标口径</h3>
+                    <p>“目标完成率”需要跨表取实际值与目标值，按口径过滤后再做聚合与比值计算；生产环境此类指标占比极高。</p>
+                  </article>
+                  <article class="card">
+                    <h3>痛点 05｜方法论缺失</h3>
+                    <p>没有问题集、没有回归基准、没有验收口径，准确率始终说不清——这是把前四道关串起来的元痛点。</p>
+                  </article>
+                </div>
+
+                <div class="impact-strip">
+                  <div class="impact-item"><strong>共同后果 01</strong><br />Demo 漂亮 / 生产掉链子。</div>
+                  <div class="impact-item"><strong>共同后果 02</strong><br />业务不敢用、IT 不敢交付。</div>
+                  <div class="impact-item"><strong>共同后果 03</strong><br />项目反复返工，难以扩展场景。</div>
+                  <div class="impact-item"><strong>共同后果 04</strong><br />准确率始终说不清，AI 不敢规模化。</div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section chatbi-differentiation-slide"
+                data-title="三个不一样"
+                data-notes-title="Page 05"
+                data-notes="销售对位关键页。客户问’你们和别家有什么不一样’时切到这页。三点：交付的是生产可用、专门解决复杂口语+多表、有真实生产证据。"
+              >
+                <div class="slide-kicker">Page 05 / ChatBI · Differentiation</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>我们卖的不是“能演示”<br />而是“生产可用”</h2>
+                    <p class="slide-subtitle">
+                      与同类产品的三个关键不一样，决定了 ChatBI 能不能从 POC 走到商用。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="compare-grid chatbi-differentiation-grid">
+                  <article class="compare-card">
+                    <span class="compare-badge">No.1</span>
+                    <strong>交付的是能上岗的数字员工</strong>
+                    <p>不是 Demo / 不是 PPT / 是能在企业承接业务问数的数字 BI 工程师。</p>
+                    <ul>
+                      <li>专属词汇表与口径说明</li>
+                      <li>验收问题集（N 条覆盖核心场景）</li>
+                      <li>三轮回归测试与调优</li>
+                      <li>上线培训与使用规范</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card is-featured">
+                    <span class="compare-badge">No.2 · Core</span>
+                    <strong>专攻复杂口语 + 多表</strong>
+                    <p>专门解决黑话、歧义、多表与复杂口径四大生产难点。</p>
+                    <ul>
+                      <li>多表路由与选表调优</li>
+                      <li>实体纠错 + 同义词归并</li>
+                      <li>歧义澄清反问（不盲猜）</li>
+                      <li>复杂指标口径工程化</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card">
+                    <span class="compare-badge">No.3</span>
+                    <strong>已在多家企业上岗</strong>
+                    <p>已落地多个私有化案例 / 数字 BI 工程师持续承接生产业务 / 可提供脱敏证据包。</p>
+                    <ul>
+                      <li>顺丰、雅斯特、赛力斯等</li>
+                      <li>规模、问题集覆盖、验收一致性</li>
+                      <li>上线入口与使用方式可参考</li>
+                      <li>验收准确率均达 90%+</li>
+                    </ul>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="五大能力"
+                data-notes-title="Page 06"
+                data-notes="痛点对应能力是 ChatBI 故事最关键的一页。讲法：每个痛点不是靠模型变聪明解决，而是靠工程化模块解决。强调’不靠模型猜，靠工程化’。"
+              >
+                <div class="slide-kicker">Page 06 / ChatBI · Capability Map</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>痛点对应能力一一映射<br />不靠模型猜 / 靠工程化解决</h2>
+                    <p class="slide-subtitle">
+                      每个生产难点都对应一个明确的工程化能力模块，组合起来构成 ChatBI 的生产级核心。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="arch-layer">
+                  <span class="arch-layer-label">NL → SQL 工程化流程（占位示意 · 待补真实图）</span>
+                  <div class="arch-row cols-6">
+                    <div class="arch-node is-primary">
+                      <strong>NL 提问</strong>
+                      <span>业务原话</span>
+                    </div>
+                    <div class="arch-node">
+                      <strong>选表路由</strong>
+                      <span>关键词 / 别名打分</span>
+                    </div>
+                    <div class="arch-node">
+                      <strong>词汇表对齐</strong>
+                      <span>同义归并 / 维度纠错</span>
+                    </div>
+                    <div class="arch-node">
+                      <strong>澄清反问</strong>
+                      <span>多候选 → 一键确认</span>
+                    </div>
+                    <div class="arch-node">
+                      <strong>口径生成</strong>
+                      <span>分子 / 分母 / 过滤</span>
+                    </div>
+                    <div class="arch-node is-primary">
+                      <strong>可解释 SQL</strong>
+                      <span>可追溯 / 可复算</span>
+                    </div>
+                  </div>
+                </div>
+
+                <article class="pipeline">
+                  <h3 class="panel-title">数字 BI 工程师的核心技能 → 痛点对应</h3>
+                  <div class="pipeline-rail" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+                    <div class="pipeline-step">
+                      <div class="pipeline-index">01</div>
+                      <div>
+                        <strong>表选择调优</strong>
+                        <p>关键词 / 别名 / 字段注释做工程化选表，对应多表选择难。</p>
+                      </div>
+                    </div>
+                    <div class="pipeline-step">
+                      <div class="pipeline-index">02</div>
+                      <div>
+                        <strong>词汇表与别名体系</strong>
+                        <p>维度值矫正 / 同义归并 / 候选排序，对应口语黑话。</p>
+                      </div>
+                    </div>
+                    <div class="pipeline-step">
+                      <div class="pipeline-index">03</div>
+                      <div>
+                        <strong>交互式澄清反问</strong>
+                        <p>多候选给候选项一键确认，对应模糊概念 / 歧义。</p>
+                      </div>
+                    </div>
+                    <div class="pipeline-step">
+                      <div class="pipeline-index">04</div>
+                      <div>
+                        <strong>复杂指标口径工程化</strong>
+                        <p>分子 / 分母 / 口径 / 版本配置化，对应复杂指标。</p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <div class="impact-strip">
+                  <div class="impact-item"><strong>05 · 生产级交付闭环</strong><br />词汇表 + 问题集 + 回归测试 + 培训，对应方法论缺失。</div>
+                  <div class="impact-item"><strong>不靠模型猜</strong><br />关键判断靠工程化，模型只做语言理解与表达。</div>
+                  <div class="impact-item"><strong>资产化沉淀</strong><br />每次澄清、每个口径都沉淀为可复用资产。</div>
+                  <div class="impact-item"><strong>命中率上升</strong><br />用得越久，词汇表越厚，准确率越稳。</div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="澄清反问 + 词汇表"
+                data-notes-title="Page 07"
+                data-notes="这页讲’澄清不是麻烦，而是资产化的关键步骤’。一次反问换一次确认，确认结果直接进词汇表，下次别人问同一个词就不再反问。强调：用户用得越久，准确率越稳。"
+              >
+                <div class="slide-kicker">Page 07 / ChatBI · Disambiguation</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>不盲猜 / 让一次反问<br />把“业务语言”沉淀进系统</h2>
+                    <p class="slide-subtitle">
+                      一个词可能对应多个实体或字段时，系统不直接执行取数，而是给候选项让用户一键确认，确认结果沉淀为别名资产。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="split-grid">
+                  <article class="pipeline">
+                    <h3 class="panel-title">澄清反问的执行流程</h3>
+                    <div class="pipeline-rail">
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">01</div>
+                        <div>
+                          <strong>识别歧义</strong>
+                          <p>检测一个词对应多个实体 / 字段或多个候选维度值。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">02</div>
+                        <div>
+                          <strong>给候选项</strong>
+                          <p>按业务关键词、别名、字段注释相关度排序候选项。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">03</div>
+                        <div>
+                          <strong>用户一键确认</strong>
+                          <p>不需要业务记 SQL 与字段，只需在候选里点一下。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">04</div>
+                        <div>
+                          <strong>沉淀为别名资产</strong>
+                          <p>下次别人问同一个词，命中率直接提升。</p>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <figure class="screen-card screen-card--mobile">
+                    <img src="assets/screens/h5/chatbi-overview.png" alt="ChatBI 用户端：区域营收柱状图 + 经营总结" />
+                  </figure>
+                </div>
+
+                <div class="impact-strip">
+                  <div class="impact-item"><strong>单次确认 → 永久沉淀</strong><br />一次澄清解决一类问题。</div>
+                  <div class="impact-item"><strong>资产持续增长</strong><br />别名表越用越厚。</div>
+                  <div class="impact-item"><strong>口径可审计</strong><br />维度 / 指标定义清晰可查。</div>
+                  <div class="impact-item"><strong>命中率上升</strong><br />使用时长换准确率。</div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="复杂指标口径"
+                data-notes-title="Page 08"
+                data-notes="生产环境的高频难题。重点表达：复杂指标不是让模型每次现写 SQL，而是把口径配置化，运行时生成可解释 SQL。口径变更只改配置 + 跑回归。讲解时可以把左侧 4 步框架顺一遍，右侧两张 PC 截图就是这个框架在管理端的真实样子。"
+              >
+                <div class="slide-kicker">Page 08 / ChatBI · Metric Engineering</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>把“目标完成率”这类组合指标做成配置<br />不是每次让模型现写</h2>
+                    <p class="slide-subtitle">
+                      生产环境中大量关键指标是“口径定义 + 多表关联 + 聚合计算”的组合——把它们做成配置，运行时拼装出可解释 SQL。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="split-grid" style="grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: stretch;">
+                  <article class="pipeline">
+                    <h3 class="panel-title">指标口径工程化的 4 个动作</h3>
+                    <div class="pipeline-rail" style="grid-template-columns: 1fr;">
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">01</div>
+                        <div>
+                          <strong>分子 / 分母</strong>
+                          <p>明确指标的两个核心数值，各自来自哪张表、哪个字段。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">02</div>
+                        <div>
+                          <strong>过滤条件 + 时间窗</strong>
+                          <p>口径下样本范围与时间窗固化进配置，可版本化管理。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">03</div>
+                        <div>
+                          <strong>维度粒度</strong>
+                          <p>到店 / 区域 / 集团粒度按需展开，统一聚合规则。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">04</div>
+                        <div>
+                          <strong>运行时生成 SQL</strong>
+                          <p>SQL 由配置自动拼装，可解释 / 可追溯 / 可复算。</p>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <figure class="screen-card screen-card--pc">
+                    <img src="assets/screens/chatbi-memory.png" alt="ChatBI 记忆配置：数据集 + 表选择 + 词汇表 + 查询重写" />
+                  </figure>
+                </div>
+
+                <div class="quote-card compact-quote">
+                  <p>“口径变更只改配置 + 跑回归即可稳定上线 / 不需要重写代码、不需要发版。”</p>
+                  <span>对客户来说，口径治理从一次性工程变成可持续运营资产。</span>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="交付方法论"
+                data-notes-title="Page 09"
+                data-notes="把交付沉淀成 5 件套资产。这一页很重要，因为它把’方法论缺失’这个普遍痛点直接转换成可买的产品化资产。"
+              >
+                <div class="slide-kicker">Page 09 / ChatBI · Delivery Playbook</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>从试点到规模化<br />沉淀为可复制的标准资产包</h2>
+                    <p class="slide-subtitle">
+                      生产化交付不靠经验、不靠人；靠 5 件套标准资产，每个客户都按这套交付。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="deliverable-grid">
+                  <article class="deliverable">
+                    <strong>专属词汇表</strong>
+                    <p>指标、维度、别名、口径、字段映射，持续可迭代。</p>
+                  </article>
+                  <article class="deliverable">
+                    <strong>验收问题集</strong>
+                    <p>覆盖核心场景与关键维度组合，含期望口径与结果校验方式。</p>
+                  </article>
+                  <article class="deliverable">
+                    <strong>回归测试报告</strong>
+                    <p>三轮调优，badcase 分类与修复记录，防止效果反复。</p>
+                  </article>
+                  <article class="deliverable">
+                    <strong>上线培训规范</strong>
+                    <p>提问模板、边界与最佳实践，保证用户用得对。</p>
+                  </article>
+                  <article class="deliverable">
+                    <strong>交付计划</strong>
+                    <p>以验收口径达标为目标，按客户实际节奏调整。</p>
+                  </article>
+                </div>
+
+                <div class="impact-strip">
+                  <div class="impact-item"><strong>验收</strong><br />定义“生产可用”的问题覆盖范围（N 条）。</div>
+                  <div class="impact-item"><strong>调优</strong><br />按 badcase 分类修复（选表 / 实体 / 歧义 / 口径）。</div>
+                  <div class="impact-item"><strong>回归</strong><br />每轮修复后回归测试，防止效果反复。</div>
+                  <div class="impact-item"><strong>沉淀</strong><br />交付完成 ≠ 项目结束，资产持续运营。</div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="交付节奏"
+                data-notes-title="Page 10"
+                data-notes="给客户一个’什么时候能看到结果’的稳定预期。基线跑通 → 三轮闭环 → 上线培训 → 验收。整个节奏 T+0 到 T+106 左右，可按客户实际情况调整。"
+              >
+                <div class="slide-kicker">Page 10 / ChatBI · Delivery Timeline</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>基线跑通 → 三轮闭环测试与调优<br />→ 上线培训 → 验收交付</h2>
+                    <p class="slide-subtitle">
+                      典型节奏 T+0 到 T+106 左右，可按客户实际情况调整；关键里程碑都有对应的验收物。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="timeline">
+                  <div class="timeline-node">
+                    <span class="accent-badge">T+0 ~ T+15</span>
+                    <strong>启动 + 部署</strong>
+                    <p>项目启动会、硬件环境调研、ChatBI 安装部署、基础功能测试。</p>
+                  </div>
+                  <div class="timeline-node">
+                    <span class="accent-badge">T+0 ~ T+28</span>
+                    <strong>需求 + 词汇表</strong>
+                    <p>数据表需求、问题集示例、词汇表草案、用户提问采集与梳理。</p>
+                  </div>
+                  <div class="timeline-node">
+                    <span class="accent-badge">T+28 ~ T+84</span>
+                    <strong>基线 + 三轮调优</strong>
+                    <p>初版调优 → 信息部 → 关键用户 → 种子用户，逐轮收敛。</p>
+                  </div>
+                  <div class="timeline-node">
+                    <span class="accent-badge">T+91 ~ T+106</span>
+                    <strong>上线 + 培训 + 验收</strong>
+                    <p>正式上线、实操调优培训、按验收问题集完成验收交付。</p>
+                  </div>
+                </div>
+
+                <div class="timeline-milestones">
+                  <div class="timeline-milestone"><strong>第一轮 · 信息部</strong>客户内部信息部人员先发现 badcase</div>
+                  <div class="timeline-milestone"><strong>第二轮 · 关键用户</strong>5 人左右关键用户代表测试反馈</div>
+                  <div class="timeline-milestone"><strong>第三轮 · 种子用户</strong>10 人左右种子用户做最后一轮收敛</div>
+                  <div class="timeline-milestone"><strong>验收基准</strong>以双方确认的验收问题集为准，目标 90%+</div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section delivery-agent-slide"
+                data-title="交付 Agent（研发中）"
+                data-notes-title="Page 11 · Roadmap"
+                data-notes="这页放在 ChatBI 交付方法论之后，作为产品研发中的核心能力预告。讲法：今天的 ChatBI 交付已经有词汇表、问题集、回归测试、培训规范和交付节奏；下一步我们希望把这些交付经验产品化成一个交付 Agent。它会根据客户真实业务、数据表、指标口径和历史 badcase，对 ChatBI Agent 做调优、评测和持续迭代。注意措辞：这是最近正在研发的产品能力，不要承诺具体上线时间。"
+              >
+                <div class="slide-kicker">Page 11 / ChatBI · Delivery Agent Roadmap</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>正在研发交付 Agent<br />让 ChatBI 交付从项目经验走向产品能力</h2>
+                    <p class="slide-subtitle">
+                      交付 Agent 会基于客户的真实业务语境、数据结构、指标口径和验收问题集，对 ChatBI Agent 自动辅助调优、评测，并在交付后持续迭代。
+                    </p>
+                  </div>
+                  <span class="compare-badge">Roadmap</span>
+                </div>
+
+                <div class="delivery-agent-board">
+                  <article class="pipeline">
+                    <h3 class="panel-title">交付 Agent 的闭环动作</h3>
+                    <div class="pipeline-rail">
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">01</div>
+                        <div>
+                          <strong>理解客户业务与数据</strong>
+                          <p>读取客户数据表、字段说明、指标口径、业务词汇和典型提问。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">02</div>
+                        <div>
+                          <strong>生成调优建议</strong>
+                          <p>辅助完善词汇表、别名、选表规则、澄清问题和复杂指标配置。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">03</div>
+                        <div>
+                          <strong>自动评测与回归</strong>
+                          <p>围绕验收问题集跑评测，识别 badcase 类型与准确率变化。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">04</div>
+                        <div>
+                          <strong>持续迭代交付</strong>
+                          <p>上线后持续吸收新问题、新口径和用户反馈，让 ChatBI 越用越准。</p>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <div class="delivery-agent-value-grid">
+                    <article class="card">
+                      <h3>把交付专家经验产品化</h3>
+                      <p>过去依赖交付工程师手工梳理的问题集、词汇表、badcase 分类和回归测试，逐步沉淀为可复用的 Agent 能力。</p>
+                    </article>
+                    <article class="card">
+                      <h3>按客户真实场景调优</h3>
+                      <p>不是用通用 Demo 数据训练，而是围绕客户自己的业务黑话、表结构、指标口径和验收问题持续收敛。</p>
+                    </article>
+                    <article class="card">
+                      <h3>评测结果可量化</h3>
+                      <p>每一轮调优都对应验收问题集、准确率变化、badcase 明细和修复记录，便于客户共同验收。</p>
+                    </article>
+                    <article class="card">
+                      <h3>交付后继续运营</h3>
+                      <p>新增业务、口径调整、用户新问法出现后，交付 Agent 可以辅助推动下一轮迭代，不让效果停在上线当天。</p>
+                    </article>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="ChatBI 客户案例"
+                data-notes-title="Page 12"
+                data-notes="给客户实证。5 个生产私有化案例，验收一致性平均 90%+。重点不是 logo 数量，而是规模 / 验收 / 产出物三件事都讲清楚。"
+              >
+                <div class="slide-kicker">Page 12 / ChatBI · Customer Evidence</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>数字 BI 工程师 已在多家企业上岗<br />验收口径平均 90%+ 一致性</h2>
+                    <p class="slide-subtitle">
+                      以下为已完成生产私有化交付的代表性案例——ChatBI 作为数字员工持续承接业务问数，可提供脱敏证据包。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="customer-grid">
+                  <article class="customer-card">
+                    <div class="customer-logo"><strong>顺丰集团</strong><span>Logo Placeholder</span></div>
+                    <p class="customer-stats">4 大场景 · 52 指标 · 43 维度</p>
+                    <p class="customer-meta">验收 90%+ · 词汇表 + 问题集 + 录屏</p>
+                  </article>
+                  <article class="customer-card">
+                    <div class="customer-logo"><strong>雅斯特连锁酒店</strong><span>Logo Placeholder</span></div>
+                    <p class="customer-stats">13 维度 · 88 指标</p>
+                    <p class="customer-meta">14 张表 → 11 主题表 · 验收 80→90→98%</p>
+                  </article>
+                  <article class="customer-card">
+                    <div class="customer-logo"><strong>赛力斯</strong><span>Logo Placeholder</span></div>
+                    <p class="customer-stats">10+ 驾驶舱指标 · 5+ 数据表</p>
+                    <p class="customer-meta">“小赛 AI 助理”统一入口 · 一致性 95%+</p>
+                  </article>
+                  <article class="customer-card">
+                    <div class="customer-logo"><strong>物产中大物流</strong><span>Logo Placeholder</span></div>
+                    <p class="customer-stats">5 维度 · 13 指标 · 10 张数据表</p>
+                    <p class="customer-meta">统一问数入口 · 一致性 90%+</p>
+                  </article>
+                  <article class="customer-card">
+                    <div class="customer-logo"><strong>重庆宗申动力</strong><span>Logo Placeholder</span></div>
+                    <p class="customer-stats">34 维度 · 113 指标</p>
+                    <p class="customer-meta">NL 查询 + 歧义澄清 · 一致性 95%+</p>
+                  </article>
+                </div>
+
+                <div class="impact-strip">
+                  <div class="impact-item"><strong>共同点 01</strong><br />都从 60–80% 通过 3 轮调优收敛到 90%+。</div>
+                  <div class="impact-item"><strong>共同点 02</strong><br />都以词汇表 + 问题集为标准交付物。</div>
+                  <div class="impact-item"><strong>共同点 03</strong><br />都覆盖多表 + 复杂口径生产场景。</div>
+                  <div class="impact-item"><strong>共同点 04</strong><br />都成为企业内部长期上岗的数字员工。</div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="两类 Agent 协同架构"
+                data-notes-title="Page 13"
+                data-notes="承接 Vision 之后的衔接页：客户已经认同’数据分析要升级到 AI Native’，这里给出我们的解法——配两类 Agent。一句话：ChatBI 解决问得到、取得准，Data Agent 解决分析得透、推得动；两者不是替代关系，而是共享同一份数据资产、词汇表、口径定义、权限边界和同义词 / 黑话沉淀。讲法上重点把客户带到中间共享语义层：上层是双 Agent，中层是企业自己的语义资产沉淀，下层是已有的数据平台、SSO 与审计——AI 不绕过治理，而是站在治理之上。"
+                style="gap: 12px;"
+              >
+                <div class="slide-kicker">Page 13 / Two-Agent Architecture</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>两类 Agent 共享同一份语义资产<br />不绕过既有治理与数据平台</h2>
+                    <p class="slide-subtitle">双 Agent 共享中层语义资产，下层接入既有数据源、SSO 与审计——AI 站在治理之上，不绕过治理。</p>
+                  </div>
+                  <span class="compare-badge">System Architecture</span>
+                </div>
+
+                <div class="arch-diagram">
+                  <div class="arch-layer">
+                    <span class="arch-layer-label">Layer 1 · Agent 应用层</span>
+                    <div class="arch-row cols-2">
+                      <div class="arch-node is-primary">
+                        <strong>ChatBI · 智能问数</strong>
+                        <span>NL → SQL · 一问一答 · 图表化输出 · 验收一致性 90%+</span>
+                      </div>
+                      <div class="arch-node is-primary">
+                        <strong>Data Agent · 智能分析交付</strong>
+                        <span>问题 → 证据链 → 结构化报告 → 行动推进方案</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="arch-arrow" aria-hidden="true">↕</div>
+
+                  <div class="arch-layer is-emphasis">
+                    <span class="arch-layer-label">Layer 2 · 共享语义层（企业资产）</span>
+                    <div class="arch-row cols-5">
+                      <div class="arch-node">
+                        <strong>词汇表</strong>
+                        <span>正式名 / 别名 / 黑话同义</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>口径定义</strong>
+                        <span>分子 / 分母 / 过滤 / 时间窗</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>数据集授权</strong>
+                        <span>主题表 / 字段映射 / DDL</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>权限边界</strong>
+                        <span>表级 / 列级 / 行级 / 租户</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>SOP / 经验</strong>
+                        <span>问题模板 / 高频复盘 / 提示</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="arch-arrow" aria-hidden="true">↕</div>
+
+                  <div class="arch-layer">
+                    <span class="arch-layer-label">Layer 3 · 数据与基础设施层（既有体系）</span>
+                    <div class="arch-row cols-4">
+                      <div class="arch-node">
+                        <strong>数据平台 / 数据库</strong>
+                        <span>PG / MySQL / Oracle / CK · 接口型数据源</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>SSO / 组织映射</strong>
+                        <span>对接现有鉴权与权限接口</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>受控执行 / 留痕</strong>
+                        <span>SQL · Python · SchemaGuard · 资源文件</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>可观测 / 审计</strong>
+                        <span>execId · trace · app · tenant · session</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="slide chatbi-positioning-slide"
+                data-title="Data Agent 定位"
+                data-notes-title="Part 2 · Data Agent"
+                data-notes="定位页参考 ChatBI 定位页的讲法：不要把 Data Agent 讲成另一个聊天入口，而是讲成懂企业业务的专业商业分析师。三个价值视角：1) 用户角度——覆盖下一页的四类痛点：分析站不住、推进链路慢、结论难形成共识、报告停在解释。管理层和业务负责人需要的不只是查数，而是把问题讲圆、把证据拉齐、把材料成文、把动作接上；2) 组织角度——沉淀企业优秀的经营经验，把优秀管理者和分析师处理问题的方法变成可复制的问题模板、证据链、报告结构和行动建议；3) 人事角度——专业商业分析师成本很高，很难为每个业务场景都配置，现在可以通过 Data Agent 帮企业在各个业务场景都配备这样的专业商业分析师。"
+              >
+                <div class="slide-kicker">Part 2 / Data Agent · Positioning</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>Data Agent<br />懂你的业务的专业商业分析师</h2>
+                    <p class="slide-subtitle">
+                      它承接目标差距、异常归因、经营复盘和专项优化，把专业商业分析师的问题拆解、证据组织、结论表达和行动建议能力，放到企业每一个关键经营场景里。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="compare-grid chatbi-value-grid">
+                  <article class="compare-card">
+                    <span class="compare-badge">用户视角 · For Business Leaders</span>
+                    <strong>经营问题出现后<br />要能讲清、推得动</strong>
+                    <p>管理层和业务负责人看到目标差距、异常波动、区域或门店问题后，需要的不只是查数，而是让分析站得住、推进更快、结论能形成共识、报告能进入执行。</p>
+                    <ul>
+                      <li><strong>分析站得住</strong>：事实、推测和下钻路径能被追问</li>
+                      <li><strong>动作接得上</strong>：从结论走到责任角色、优先动作和跟进路径</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card is-featured">
+                    <span class="compare-badge">组织视角 · Experience Replication</span>
+                    <strong>沉淀优秀经营经验<br />让经验可以复制</strong>
+                    <p>Data Agent 把优秀管理者和分析师处理经营问题的方法，沉淀成问题模板、证据链、报告结构和行动建议，让好经验不只停留在少数人身上。</p>
+                    <ul>
+                      <li><strong>方法沉淀</strong>：把高频复盘、归因、专项优化固化为标准做法</li>
+                      <li><strong>证据沉淀</strong>：关键 KPI、驱动项和下钻路径持续复用</li>
+                      <li><strong>组织复制</strong>：让区域、门店、品类、渠道都能沿用优秀经验</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card">
+                    <span class="compare-badge">人事视角 · Analyst Capacity</span>
+                    <strong>为每个业务场景<br />配专业商业分析师</strong>
+                    <p>专业商业分析师成本高、数量少，很难覆盖所有业务场景；Data Agent 让企业能用 Agent 的方式，为不同场景配备这样的专业分析能力。</p>
+                    <ul>
+                      <li><strong>成本更可控</strong>：不靠大量招聘复制商业分析师能力</li>
+                      <li><strong>覆盖更广</strong>：目标差距、异常归因、经营复盘都能配置分析助手</li>
+                      <li><strong>响应更快</strong>：业务团队更快拿到能汇报、能核验、能推进的材料</li>
+                    </ul>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="四类挑战"
+                data-notes-title="Page 02"
+                data-notes="先打共鸣，不讲技术。按客户最熟悉的经营会场景来讲：讲不圆、推进慢、过不了会、动作接不上。典型场景可以直接读出来，让客户代入自己的组织现实。"
+              >
+                <div class="slide-kicker">Page 02 / Pain Points</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>很多企业不缺报表<br />真正缺的是一份能站得住的分析</h2>
+                    <p class="slide-subtitle">
+                      经营问题出现后，组织最常卡住的不是“看不到数据”，而是没人能足够快地把问题说清、把判断做稳、把动作接上。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card-grid">
+                  <article class="card">
+                    <h3>挑战 01｜分析站不住</h3>
+                    <p>异常看到了，但下钻路径是否合理、哪些是事实、哪些只是推测，组织里很难快速形成统一结论。</p>
+                    <ul>
+                      <li>业务自己点报表先得出一版结论</li>
+                      <li>一到经营会就被追问“为什么不是别的原因”</li>
+                    </ul>
+                  </article>
+                  <article class="card">
+                    <h3>挑战 02｜推进链路慢</h3>
+                    <p>业务、数据、IT 多轮接力，反复取数、核口径、补材料，分析周期经常拖过最佳处理窗口。</p>
+                    <ul>
+                      <li>问题先提出来，结论却迟迟成不了文</li>
+                      <li>来回几轮后，经营节奏已经被拖慢</li>
+                    </ul>
+                  </article>
+                  <article class="card">
+                    <h3>挑战 03｜结论难形成共识</h3>
+                    <p>同一问题，业务、区域、总部各讲一版，材料很多，但没有一份统一证据链能让大家继续核对。</p>
+                    <ul>
+                      <li>会上不断对数</li>
+                      <li>转发后容易失真，难以继续追问</li>
+                    </ul>
+                  </article>
+                  <article class="card">
+                    <h3>挑战 04｜报告停在解释</h3>
+                    <p>问题找到了，但没有责任角色、优先动作和跟进路径，经营分析停在“解释层”，没有真正进入执行。</p>
+                    <ul>
+                      <li>会上都认可方向</li>
+                      <li>复盘时同样问题再次出现</li>
+                    </ul>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section dataagent-framing-slide"
+                data-title="是什么，不是什么"
+                data-notes-title="Page 03"
+                data-notes="定位纠偏页。核心讲法：Data Agent 不是替代现有 BI 和数据平台，而是基于现有 BI 与数据平台提供的数据资产、指标口径和权限边界，像一个懂业务的专业商业分析师，完成完整的分析和决策建议。这里要把’基于现有平台’讲清楚，避免客户误解成重建 BI 或绕过数据治理。"
+              >
+                <div class="slide-kicker">Page 03 / Product Framing</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>基于现有 BI 和数据平台<br />做完整分析与决策建议</h2>
+                    <p class="slide-subtitle">
+                      Data Agent 不替代现有 BI 和数据平台；它基于既有数据资产、指标口径和权限边界，像一位懂业务的专业商业分析师，把问题拆开、证据拉齐、结论讲清，并给出决策建议。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="compare-grid dataagent-framing-grid">
+                  <article class="compare-card">
+                    <strong>现有 BI / 数据平台</strong>
+                    <p>提供稳定、可信、受治理的数据资产和分析基础。</p>
+                    <ul>
+                      <li>数据模型、指标口径、权限边界</li>
+                      <li>固定报表、趋势看板、常规查询</li>
+                      <li>解决“数据从哪里来、口径是否一致”</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card is-featured">
+                    <span class="compare-badge">Core Position</span>
+                    <strong>Data Agent</strong>
+                    <p>基于现有平台做完整分析，像懂业务的专业商业分析师一样给出判断和建议。</p>
+                    <ul>
+                      <li>拆解经营问题、组织证据链</li>
+                      <li>形成结构化分析报告</li>
+                      <li>输出决策建议与行动路径</li>
+                      <li>支持继续追问、复核和流转</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card">
+                    <strong>不是替代关系</strong>
+                    <p>不重建 BI，不绕过数据平台，也不替代既有治理体系。</p>
+                    <ul>
+                      <li>复用现有数据资产和指标口径</li>
+                      <li>遵守既有数据权限和安全边界</li>
+                      <li>把“数据可见”推进到“判断可用”</li>
+                    </ul>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="为什么更可信"
+                data-notes-title="Page 04"
+                data-notes="这里不要讲成‘AI 更聪明’，而要讲成‘更容易被核验’。关键句：关键数值走确定性执行链路，证据不足的只列为候选因素。承诺的是更容易证明对、不容易把不确定内容包装成确定结论。"
+              >
+                <div class="slide-kicker">Page 04 / Trust Mechanism</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>企业最终关心的不是系统会不会回答<br />而是这份分析能否被核验</h2>
+                    <p class="slide-subtitle">
+                      Data Agent 不把关键判断建立在黑盒口头推理上，而是把正确性做成一套更可复算、可追问、可治理的机制。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="split-grid">
+                  <article class="pipeline">
+                    <h3 class="panel-title">可信机制：从任务到结论的执行方式</h3>
+                    <div class="pipeline-rail">
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">01</div>
+                        <div>
+                          <strong>问题模板 + 规则约束</strong>
+                          <p>先明确问题边界、交付目标和分析范围，避免任务一开始就失焦。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">02</div>
+                        <div>
+                          <strong>已授权数据集</strong>
+                          <p>分析边界始终以已接入、已授权的数据为准，不绕开企业现有权限体系。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">03</div>
+                        <div>
+                          <strong>LLM 负责规划与表达</strong>
+                          <p>承担任务规划、分析决策支持和结果表达，而不是直接口头生成关键数值。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">04</div>
+                        <div>
+                          <strong>SQL / Python / 受控工具执行</strong>
+                          <p>关键指标、拆解和中间结果统一在确定性执行层完成，便于复算和核对。</p>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <div class="mini-grid">
+                    <article class="mini-card">
+                      <span class="mini-kicker">Principle</span>
+                      <strong>关键数值可复算</strong>
+                      <p>在相同数据快照与规则口径下，关键 KPI 与差异拆解可以被重新计算验证。</p>
+                    </article>
+                    <article class="mini-card">
+                      <span class="mini-kicker">Principle</span>
+                      <strong>分析过程可回放</strong>
+                      <p>维度展开、过滤条件、样本边界和中间结果全部留痕，继续追问时不需要从头重来。</p>
+                    </article>
+                    <article class="mini-card">
+                      <span class="mini-kicker">Principle</span>
+                      <strong>结论分层表达</strong>
+                      <p>系统区分数据事实、观察判断、候选原因和行动建议，不把证据不足的内容包装成根因。</p>
+                    </article>
+                    <article class="mini-card">
+                      <span class="mini-kicker">Boundary</span>
+                      <strong>边界纪律可守住</strong>
+                      <p>天气、政策、会展、竞品等外部因素若未接入，只会作为候选因素，不会冒充确定结论。</p>
+                    </article>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="最终交付"
+                data-notes-title="Page 05"
+                data-notes="把客户注意力从功能按钮拉回组织价值。真正买单的不是聊天，而是交付件能不能过会、转发、复核、落动作。这里建议强调：不是一个回答，而是一套正式交付。"
+              >
+                <div class="slide-kicker">Page 05 / Deliverables</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>企业最终拿到的不是一个回答<br />而是一套能在组织里流转的正式交付</h2>
+                    <p class="slide-subtitle">
+                      Data Agent 交付的是可复算的数据结论、差距拆解、可回放过程、结构化报告和行动推进方案。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="deliverable-grid">
+                  <article class="deliverable">
+                    <strong>可复算的数据结论</strong>
+                    <p>关键指标口径清晰，差距拆解和驱动判断可以在同一数据快照下核对。</p>
+                  </article>
+                  <article class="deliverable">
+                    <strong>差距拆解与综合归因</strong>
+                    <p>沿固定路径展开到关键维度，识别主要驱动与优先判断。</p>
+                  </article>
+                  <article class="deliverable">
+                    <strong>可回放、可审计的过程</strong>
+                    <p>工作流、关键节点、输入输出和中间产物全部保留，适合继续追问。</p>
+                  </article>
+                  <article class="deliverable">
+                    <strong>结构化分析报告</strong>
+                    <p>问题、结论、驱动项、证据和建议组成一份可汇报、可转发的正式材料。</p>
+                  </article>
+                  <article class="deliverable">
+                    <strong>行动推进方案</strong>
+                    <p>不仅说明做什么，也说明为什么做、由谁推进、怎么跟进与衡量效果。</p>
+                  </article>
+                </div>
+
+                <div class="impact-strip">
+                  <div class="impact-item"><strong>更容易过会和转发</strong><br />结论与证据链一起交付，减少“各讲一版”。</div>
+                  <div class="impact-item"><strong>减少反复对数与补材料</strong><br />口径、过程与中间结果一并沉淀，不必反复重做。</div>
+                  <div class="impact-item"><strong>报告直接延伸为动作</strong><br />从发现问题走到责任角色、节奏与复盘机制。</div>
+                  <div class="impact-item"><strong>高频分析形成 SOP</strong><br />持续使用中，模板和经验规则会越做越稳、越做越快。</div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="案例：问题到任务"
+                data-notes-title="Page 06"
+                data-notes="这一页不是展示聊天界面，而是说明任务边界如何被收敛。强调：入口长什么样不重要，重要的是业务问题有没有被收成可执行、可验收的分析任务。"
+              >
+                <div class="slide-kicker">Page 06 / Case Step 1</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>案例示意：先把业务问题收敛成一条可执行任务</h2>
+                    <p class="slide-subtitle">
+                      下面以单店月度综合 RevPAR 分析为例，展示一个经营问题如何被转成可执行、可复核的分析任务。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="case-layout">
+                  <div class="case-side">
+                    <figure class="screen-card screen-card--pc">
+                      <img src="assets/screens/running-tasks.png" alt="Data Agent 运行任务列表：execId · 查询 · 智能体 · 已运行" />
+                    </figure>
+                    <article class="quote-card">
+                      <p>“2026 年 4 月，0020001 酒店综合 RevPAR 为什么没达标？主要差距来自哪里？接下来优先做什么？”</p>
+                      <span>业务入口的价值不在聊天本身，而在于把问题收成可执行任务。</span>
+                    </article>
+                  </div>
+                  <div class="case-main">
+                    <div class="mini-grid">
+                      <article class="mini-card">
+                        <span class="mini-kicker">Task Scope</span>
+                        <strong>锁定对象与时间</strong>
+                        <p>酒店编号、分析月份、分析主题和输出目标先确定下来。</p>
+                      </article>
+                      <article class="mini-card">
+                        <span class="mini-kicker">Acceptance</span>
+                        <strong>明确交付与验收</strong>
+                        <p>常见输出是差距拆解、Top3 驱动、3 至 5 条行动建议，并要求关键数值可核对。</p>
+                      </article>
+                      <article class="mini-card">
+                        <span class="mini-kicker">Boundary</span>
+                        <strong>统一问题边界</strong>
+                        <p>对象范围、时间范围、样本边界先说清，后续关于“对不对”的讨论才有共同基准。</p>
+                      </article>
+                      <article class="mini-card">
+                        <span class="mini-kicker">Why It Matters</span>
+                        <strong>先收敛，再分析</strong>
+                        <p>任务收敛做不好，后面分析越复杂，结果越容易讲不清。</p>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="案例：任务到证据"
+                data-notes-title="Page 07"
+                data-notes="这页要讲‘不是黑盒’。给客户看的不是孤立答案，而是一条可以继续展开的证据链。可以强调继续追问时不需要从头重来，而是回到原来的链路继续往下。"
+              >
+                <div class="slide-kicker">Page 07 / Case Step 2</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>系统不会先给口头判断<br />而是先把证据链展开</h2>
+                    <p class="slide-subtitle">
+                      关键数值沿确定性执行链路生成，关键中间结果作为证据保留下来，便于复算、复盘和继续追问。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="split-grid" style="grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start;">
+                  <article class="pipeline">
+                    <h3 class="panel-title">证据沿确定性执行链路逐层展开</h3>
+                    <div class="pipeline-rail" style="grid-template-columns: 1fr;">
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">01</div>
+                        <div>
+                          <strong>目标差距</strong>
+                          <p>确认目标值、实际值、完成率是否在既定口径下对齐。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">02</div>
+                        <div>
+                          <strong>差异指标清单</strong>
+                          <p>把主要差异项、方向、贡献度显性化，明确优先追的驱动项。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">03</div>
+                        <div>
+                          <strong>维度下钻 · 驱动排序</strong>
+                          <p>围绕渠道、房型、价格带、日期等维度展开，识别最主要影响因素。</p>
+                        </div>
+                      </div>
+                      <div class="pipeline-step">
+                        <div class="pipeline-index">04</div>
+                        <div>
+                          <strong>候选原因与建议</strong>
+                          <p>证据强度足够时形成判断；不足时保持候选，避免过度推断。</p>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <figure class="screen-card screen-card--pc">
+                    <img src="assets/screens/running-tasks.png" alt="Data Agent 任务执行记录：execId / 查询 / 智能体 / 已运行" />
+                  </figure>
+                </div>
+
+                <div class="impact-strip">
+                  <div class="impact-item"><strong>任务规划</strong><br />把问题收敛成明确的分析链路。</div>
+                  <div class="impact-item"><strong>工具调用</strong><br />关键数值由 SQL / Python / 受控工具产生。</div>
+                  <div class="impact-item"><strong>中间结果</strong><br />差异指标、驱动排序、维度下钻可以留存。</div>
+                  <div class="impact-item"><strong>继续追问</strong><br />沿原证据链继续展开，而不是重新解释一遍。</div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="案例：证据到动作"
+                data-notes-title="Page 08"
+                data-notes="这页最落地，因为客户最终拿去用的是结构化报告和行动推进方案。建议强调：复杂问题最后要落成同一份材料，而不是靠不同人口头解释。"
+              >
+                <div class="slide-kicker">Page 08 / Case Step 3</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>真正交付给组织使用的<br />是“结论 + 证据 + 动作”的完整闭环</h2>
+                    <p class="slide-subtitle">
+                      结构化分析报告负责把复杂问题讲清楚，行动推进方案负责把“解释问题”转成“推进动作”。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="report-layout" style="grid-template-columns: minmax(0, 1fr) 240px 280px;">
+                  <article class="report-card">
+                    <h3 class="panel-title">本案例中可直接用于汇报的结论</h3>
+                    <div class="report-grid">
+                      <div class="mini-card">
+                        <span class="mini-kicker">Headline</span>
+                        <strong>RevPAR 完成率 53.81%</strong>
+                        <p>目标 356.61 元 · 实际 191.89 元，差距可复算。</p>
+                      </div>
+                      <div class="mini-card">
+                        <span class="mini-kicker">Drivers</span>
+                        <strong>差距不是单一原因</strong>
+                        <p>直销能力偏弱 + 高价房型动销不足共同影响。</p>
+                      </div>
+                      <div class="mini-card">
+                        <span class="mini-kicker">Evidence</span>
+                        <strong>关键驱动可继续下钻</strong>
+                        <p>官渠间夜偏低 · 单房售卡比偏低 · 高价房入住率缺口。</p>
+                      </div>
+                      <div class="mini-card">
+                        <span class="mini-kicker">Closure</span>
+                        <strong>不止停留在解释层</strong>
+                        <p>沉淀为行动推进方案，用于优化与后续复盘。</p>
+                      </div>
+                    </div>
+                  </article>
+
+                  <div class="placeholder is-doc" style="max-width: none; min-height: 100%;">
+                    <span class="placeholder-tag">Document · A4</span>
+                    <span class="placeholder-title">结构化分析报告封面</span>
+                    <span class="placeholder-desc">标题 · 关键结论 · 证据链入口 · 行动方案</span>
+                    <span class="placeholder-meta">脱敏 PDF 缩略</span>
+                  </div>
+
+                  <article class="report-card">
+                    <h3 class="panel-title">行动推进方案示意</h3>
+                    <div class="action-strip">
+                      <div class="action-item">
+                        <strong>动作 01｜先补直销能力短板</strong>
+                        <span>关注官渠投放、转化路径和促销节奏。</span>
+                      </div>
+                      <div class="action-item">
+                        <strong>动作 02｜集中提升高价房动销</strong>
+                        <span>聚焦价格带、房型组合与销售策略。</span>
+                      </div>
+                      <div class="action-item">
+                        <strong>动作 03｜明确责任人与跟进</strong>
+                        <span>责任角色 · 复盘节奏 · 效果衡量。</span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="接入与下一步"
+                data-notes-title="Page 09"
+                data-notes="这里负责收口。接入方式、部署形态、权限边界都讲清楚，但不要堆接口细节。收尾时把客户带向下一步：围绕一个明确经营问题做示例验证。"
+              >
+                <div class="slide-kicker">Page 09 / Integration & Next Step</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>接入、部署、安全与下一步<br />关键是边界清楚，再做验证</h2>
+                    <p class="slide-subtitle">
+                      不管是 SaaS 还是私有化，分析范围都以已接入且已授权的数据集为准；最推荐的下一步，是围绕一个明确场景做一次示例验证。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flow-grid">
+                  <article class="flow-card">
+                    <span class="accent-badge">Data Access</span>
+                    <strong>数据接入</strong>
+                    <p>支持 JDBC 对接 MySQL、PostgreSQL、SQL Server、Oracle、ClickHouse 等数据库，也支持接口型数据源。</p>
+                  </article>
+                  <article class="flow-card">
+                    <span class="accent-badge">Security</span>
+                    <strong>权限与输出</strong>
+                    <p>支持表级、列级、行级权限控制，可对接现有 SSO、组织映射与权限接口，支持报告预览、下载和证据包导出。</p>
+                  </article>
+                  <article class="flow-card">
+                    <span class="accent-badge">Deployment</span>
+                    <strong>部署边界</strong>
+                    <p>SaaS 更适合快速上线与标准化交付；私有化更适合数据不出域、审计留存和内网部署要求更高的场景。</p>
+                  </article>
+                  <article class="flow-card">
+                    <span class="accent-badge">Action</span>
+                    <strong>建议的下一步</strong>
+                    <p>先收集具体问题、时间范围、对象范围、核心指标、常看维度和参考报表，在同一数据快照下并跑一次。</p>
+                  </article>
+                </div>
+
+                <div class="quote-card">
+                  <p>“整个产品的价值，不在于多一个 AI 入口，而在于让关键经营分析更容易被核验、被追问、被执行。”</p>
+                  <span>推荐销售动作：别先讨论抽象能力，先锁一个强场景做示例验证。</span>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="产品界面截图"
+                data-notes-title="Page 10"
+                data-notes="这页使用 magicain-agent-ui 的真实前端页面截图。演示时先让客户看到产品已经有管理台，再继续讲后面的配置闭环、可信执行和治理运营优势。截图中的数据是为了销售演示模拟的样例数据。"
+              >
+                <div class="slide-kicker">Page 10 / Product Screenshots</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>产品界面截图：从创建配置<br />到成本运营的完整管理台</h2>
+                    <p class="slide-subtitle">
+                      以下截图来自 magicain-agent-ui：销售演示时可以直接说明，Data Agent 已经具备智能体管理、配置维护和点数用量运营能力。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="screen-showcase is-quad">
+                  <figure class="screen-card">
+                    <img src="assets/agent-ui-official-home.png" alt="Data Agent 门户首页截图" />
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="assets/agent-ui-agent-management.png" alt="Data Agent 智能体管理页面截图" />
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="assets/agent-ui-data-agent-config.png" alt="Data Agent 配置页面截图" />
+                  </figure>
+                  <figure class="screen-card">
+                    <img src="assets/agent-ui-billing-points.png" alt="点数用量页面截图" />
+                  </figure>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="产品特性：管理闭环"
+                data-notes-title="Page 11"
+                data-notes="这页来自 magicain-agent-ui 前端代码分析。销售表达时不要讲页面路径和接口名，而要讲清楚：Data Agent 不是一次性 Demo，而是有创建、配置、知识沉淀、运行监控和成本管理的产品闭环。"
+              >
+                <div class="slide-kicker">Page 11 / Product Feature 01</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>产品特性一：从创建到运营<br />已经形成管理闭环</h2>
+                    <p class="slide-subtitle">
+                      前端管理端覆盖 Data Agent 创建、数据集绑定、SOP 管理、经验沉淀、运行任务和点数账单，销售时可以把它讲成“可上线、可维护、可运营”的企业级能力。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="arch-layer is-emphasis" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+                  <span class="arch-layer-label">Admin Console · 管理闭环模块图</span>
+                  <div class="arch-row cols-5" style="flex: 1; align-items: stretch;">
+                    <div class="arch-node is-primary">
+                      <strong>智能体管理</strong>
+                      <span>按模板创建 Data Agent / ChatBI；编辑、访问、调试，从 PoC 平滑过渡正式上线。</span>
+                    </div>
+                    <div class="arch-node">
+                      <strong>数据集 · 语义资产</strong>
+                      <span>数据源 / 表 / 字段 / 维表 / DDL 导入，与企业已有数据资产对齐。</span>
+                    </div>
+                    <div class="arch-node">
+                      <strong>SOP · 经验沉淀</strong>
+                      <span>维护分析 SOP、业务标签、经验提示，把资深方法变可复用能力。</span>
+                    </div>
+                    <div class="arch-node">
+                      <strong>运行任务</strong>
+                      <span>运行中列表、可停止任务、execId 留痕，支撑上线后的日常运营。</span>
+                    </div>
+                    <div class="arch-node">
+                      <strong>点数账单</strong>
+                      <span>周期总览、每日趋势、场景消耗，AI 成本说投入产出。</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="impact-strip">
+                  <div class="impact-item"><strong>优势 01：</strong>交付后不是黑盒，客户能持续配置和维护。</div>
+                  <div class="impact-item"><strong>优势 02：</strong>企业经验不会只停留在人脑和文档里。</div>
+                  <div class="impact-item"><strong>优势 03：</strong>运行异常和成本变化可以被管理层看见。</div>
+                  <div class="impact-item"><strong>优势 04：</strong>销售 PoC 可从单场景自然扩展到多场景。</div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="产品特性：可信执行"
+                data-notes-title="Page 12"
+                data-notes="这页来自 magicain-cloud 的 dataagent 后端代码分析。重点讲受控工具链，而不是泛泛地说模型很聪明。客户担心幻觉时，强调 SQL、Python、SchemaGuard、资源文件、执行记录和最终报告。"
+              >
+                <div class="slide-kicker">Page 12 / Product Feature 02</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>产品特性二：关键分析链路<br />由受控工具执行，不靠模型口算</h2>
+                    <p class="slide-subtitle">
+                      后端 Data Agent 会把用户问题转成可追踪的执行任务，通过数据库查询、Python 分析、子任务拆解和报告生成完成交付；大模型负责规划与解释，关键数据处理交给受控工具。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="arch-diagram">
+                  <div class="arch-layer is-emphasis">
+                    <span class="arch-layer-label">Task Execution Architecture · 占位示意（待补真实架构图）</span>
+                    <div class="arch-row cols-4">
+                      <div class="arch-node is-primary">
+                        <strong>用户问题</strong>
+                        <span>问题模板 + 范围 + 验收项</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>LLM 规划</strong>
+                        <span>任务拆解 / 工具选择 / 表达</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>受控工具路由</strong>
+                        <span>SQL · Python · Web Search</span>
+                      </div>
+                      <div class="arch-node is-primary">
+                        <strong>结构化报告</strong>
+                        <span>结论 + 证据 + 行动方案</span>
+                      </div>
+                    </div>
+                    <div class="arch-arrow" aria-hidden="true">↓</div>
+                    <div class="arch-row cols-4">
+                      <div class="arch-node">
+                        <strong>SchemaGuard</strong>
+                        <span>未确认 Schema 阻断 SQL</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>资源文件 (CSV)</strong>
+                        <span>关键数据持久化 / 可复算</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>子任务并行</strong>
+                        <span>复杂问题拆 → 汇总</span>
+                      </div>
+                      <div class="arch-node">
+                        <strong>execId · trace 留痕</strong>
+                        <span>可停止 / 可回放 / 可审计</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="compare-grid">
+                  <article class="compare-card is-featured">
+                    <span class="compare-badge">Task Runtime</span>
+                    <h3>异步任务 · 过程回放</h3>
+                    <p>每次分析有 executionId / 可查询状态与资源产物 / 运行中可停止，避免失控长任务。</p>
+                  </article>
+                  <article class="compare-card">
+                    <span class="compare-badge">Trusted Data</span>
+                    <h3>取数前先确认 Schema</h3>
+                    <p>查询 Agent 先确认表 + 字段；SchemaGuard 拦未确认 SQL；结果存 CSV 可复算。</p>
+                  </article>
+                  <article class="compare-card">
+                    <span class="compare-badge">Analysis Tools</span>
+                    <h3>Python · 搜索 · 子任务</h3>
+                    <p>Python 处理计算图表；Web Search 按应用开关；复杂问题拆并行子分析再汇总。</p>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="产品优势：治理运营"
+                data-notes-title="Page 13"
+                data-notes="这页把代码能力翻译成购买理由。注意开放集成要谨慎表达：开放查询 API 已存在，MCP 通道已有接口雏形，但涉及 tenantToken 映射的生产化还需要在项目里确认。"
+              >
+                <div class="slide-kicker">Page 13 / Product Advantage</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>产品优势：不是单个 Agent<br />而是可治理、可集成、可运营的企业能力</h2>
+                    <p class="slide-subtitle">
+                      销售重点可以从“AI 会分析”升级为“企业能放心上线”：权限、租户、成本、开放 API 与可观测链路都有产品支撑。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="advantage-layout">
+                  <div class="placeholder is-pc is-tall">
+                    <span class="placeholder-tag">PC · 管理端</span>
+                    <span class="placeholder-title">执行链路 / Trace 视图</span>
+                    <span class="placeholder-desc">execId · 子任务时间线 · 资源产物 · 上下文 (app / tenant / user)</span>
+                    <span class="placeholder-meta">4:3 · magicain-agent-ui</span>
+                  </div>
+
+                  <div class="advantage-quadrant">
+                    <article class="qa-card">
+                      <em>Governance</em>
+                      <strong>权限边界对齐客户现状</strong>
+                      <p>数据集、字段、接口型数据源、鉴权方式都有管理入口，可与客户已有权限体系映射。</p>
+                    </article>
+                    <article class="qa-card">
+                      <em>Observability</em>
+                      <strong>过程可追踪，便于审计</strong>
+                      <p>执行链路记录 app、tenant、user、session、trace 等上下文，结合产物可回到过程。</p>
+                    </article>
+                    <article class="qa-card">
+                      <em>Cost Control</em>
+                      <strong>点数账单让 AI 成本可运营</strong>
+                      <p>后端预占 / 结算 / 释放，前端周期 / 趋势 / 场景消耗，便于给管理层说投入产出。</p>
+                    </article>
+                    <article class="qa-card">
+                      <em>Integration</em>
+                      <strong>开放能力嵌入业务系统</strong>
+                      <p>已有开放查询接口、H5 入口与 MCP 通道雏形，可围绕门户、驾驶舱、工作台做集成。</p>
+                    </article>
+                  </div>
+                </div>
+
+                <div class="impact-strip">
+                  <div class="impact-item"><strong>CIO：</strong>边界、审计、成本和集成都能说明白。</div>
+                  <div class="impact-item"><strong>业务：</strong>不只给答案，也给证据、报告和动作。</div>
+                  <div class="impact-item"><strong>数据团队：</strong>保留 Schema、SQL、CSV 和报告产物。</div>
+                  <div class="impact-item"><strong>销售：</strong>更容易从 PoC 过渡到正式采购。</div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="附录：定位答疑"
+                data-notes-title="Appendix A"
+                data-notes="附录用于被追问时展开。主线不要一次性讲太重，但客户如果问‘你们到底是什么、和 BI 或 Copilot 什么关系’，可以切到这页。"
+              >
+                <div class="slide-kicker">Appendix A / Positioning FAQ</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>附录：定位类高频问题</h2>
+                    <p class="slide-subtitle">
+                      适合在客户问到“你们到底是什么”“为什么不是直接用 BI / Copilot”时展开。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="qa-grid">
+                  <article class="qa-card">
+                    <em>Q1｜你们到底是什么？</em>
+                    <strong>不是 BI 替代品，而是基于现有 BI 和数据平台的专业商业分析师。</strong>
+                    <p>BI 和数据平台提供可信数据、口径和权限边界；Data Agent 基于这些资产完成完整分析和决策建议。</p>
+                  </article>
+                  <article class="qa-card">
+                    <em>Q2｜是不是聊天机器人？</em>
+                    <strong>聊天只是入口，交付才是价值本体。</strong>
+                    <p>真正价值在于把问题收敛成任务，再形成证据链、结构化报告和行动方案。</p>
+                  </article>
+                  <article class="qa-card">
+                    <em>Q3｜是不是在替代分析师？</em>
+                    <strong>更准确地说，是补位和标准化。</strong>
+                    <p>分析人力不足时补能力；成熟团队场景下，价值转向标准化沉淀、过程留痕和提速。</p>
+                  </article>
+                  <article class="qa-card">
+                    <em>Q4｜为什么不用通用大模型 + BI Copilot？</em>
+                    <strong>能力组件不等于企业级交付闭环。</strong>
+                    <p>企业真正买单的是任务收敛、授权边界、确定性执行、证据留痕、结构化交付与治理审计。</p>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="附录：可信与边界"
+                data-notes-title="Appendix B"
+                data-notes="客户如果追问可信度、幻觉、归因边界，可以切到这页。回答时不要做绝对承诺，始终把话题拉回可复算、可回放、边界清楚、并跑验证。"
+              >
+                <div class="slide-kicker">Appendix B / Trust & Boundary FAQ</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>附录：可信度与边界类问题</h2>
+                    <p class="slide-subtitle">
+                      回答重点不是“永远更对”，而是“更不容易错，也更容易被发现错并纠正”。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="qa-grid">
+                  <article class="qa-card">
+                    <em>Q5｜你怎么证明分析得更对？</em>
+                    <strong>靠机制，而不是靠口头承诺。</strong>
+                    <p>关键数值由 SQL / Python / 受控工具生成；证据不足的只列候选因素；最稳妥的验证方式是在同一份数据上并跑。</p>
+                  </article>
+                  <article class="qa-card">
+                    <em>Q7｜大模型会不会幻觉？</em>
+                    <strong>会，所以关键数值不交给大模型口头生成。</strong>
+                    <p>LLM 主要负责任务规划、语言组织和辅助表达，工程设计重点是降低幻觉对关键结论的影响。</p>
+                  </article>
+                  <article class="qa-card">
+                    <em>Q8｜为什么应该相信你们的归因？</em>
+                    <strong>归因是分层表达，不是绝对拍板。</strong>
+                    <p>系统区分数据事实、观察判断、候选原因和行动建议，让客户看到答案成立的条件与边界。</p>
+                  </article>
+                  <article class="qa-card">
+                    <em>Q11｜天气、政策、竞品活动也能知道吗？</em>
+                    <strong>只有外部数据已接入时，才能继续验证。</strong>
+                    <p>否则这些只能列为候选因素，不会被包装成最终结论。守住边界，反而更容易建立信任。</p>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="附录：PoC 落地"
+                data-notes-title="Appendix C"
+                data-notes="这一页给销售和售前收口用。客户问 PoC 怎么验收、要准备什么、为什么不建议一上来做大范围时，直接用这页回答。"
+              >
+                <div class="slide-kicker">Appendix C / Pilot FAQ</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>附录：项目落地与 PoC 验收</h2>
+                    <p class="slide-subtitle">
+                      中国 To B 场景里，PoC 最怕“感觉不错但无法验收”；最稳妥的做法是把准备项和验收项说具体。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="qa-grid">
+                  <article class="qa-card">
+                    <em>Q17｜首轮为什么不建议做大范围？</em>
+                    <strong>首轮目标不是证明所有场景都能做，而是先跑出一个强场景的价值。</strong>
+                    <p>数据源、口径和主题一旦过多，PoC 很容易失焦，结果既难验证也难形成共识。</p>
+                  </article>
+                  <article class="qa-card">
+                    <em>Q18｜PoC 到底怎么验收？</em>
+                    <strong>并跑一次，看五件事。</strong>
+                    <p>核心 KPI 是否对齐、一级拆解是否可复算、追问能否回到原证据链、边界纪律是否守住、能否形成正式材料。</p>
+                  </article>
+                  <article class="qa-card">
+                    <em>Q19｜客户需要准备什么？</em>
+                    <strong>至少准备最小可验证闭环。</strong>
+                    <p>具体问题、时间和对象范围、KPI 公式、常看维度、参考报表或截图、已授权数据范围和关键规则约束。</p>
+                  </article>
+                  <article class="qa-card">
+                    <em>Q20｜客户说没时间准备怎么办？</em>
+                    <strong>那就从最小闭环开始，不是降低标准，而是先收敛范围。</strong>
+                    <p>至少明确一个问题、一份参考报表、一个时间范围和一组核心指标，先跑通，再逐步补全。</p>
+                  </article>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <div class="footer">
+          <div class="footer-note">
+            <strong>使用方式：</strong>直接浏览器打开即可演示，点击打印/PDF 可导出。建议配合 Speaker Notes 做销售彩排。
+          </div>
+          <div class="pager" id="pager">1 / —</div>
+        </div>
+      </main>
+    </div>
+
+    <aside class="notes-panel" id="notes-panel">
+      <div class="slide-kicker">Speaker Notes</div>
+      <h3 id="notes-title">Page 01</h3>
+      <div id="notes-content"></div>
+    </aside>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const slidesRoot = document.getElementById("slides");
+      const navRoot = document.getElementById("deck-nav");
+      const pager = document.getElementById("pager");
+      const progressFill = document.getElementById("progress-fill");
+      const notesTitle = document.getElementById("notes-title");
+      const notesContent = document.getElementById("notes-content");
+      const prevButton = document.getElementById("prev-button");
+      const nextButton = document.getElementById("next-button");
+      const notesButton = document.getElementById("notes-button");
+      const overviewButton = document.getElementById("overview-button");
+      const printButton = document.getElementById("print-button");
+
+      let activeIndex = 0;
+
+      const navGroups = [
+        { title: "开场", start: 0, end: 0 },
+        { title: "产品矩阵", start: 1, end: 1 },
+        { title: "ChatBI", start: 2, end: 12 },
+        { title: "两类 Agent 协同", start: 13, end: 13 },
+        { title: "Data Agent", start: 14, end: 26 },
+        { title: "附录", start: 27, end: slides.length - 1 },
+      ]
+        .map((group) => ({
+          ...group,
+          end: Math.min(group.end, slides.length - 1),
+        }))
+        .filter((group) => group.start < slides.length && group.start <= group.end);
+
+      const navGroupEls = navGroups.map((group) => {
+        const element = document.createElement("div");
+        const startLabel = String(group.start + 1).padStart(2, "0");
+        const endLabel = String(group.end + 1).padStart(2, "0");
+        const rangeLabel = startLabel === endLabel ? startLabel : `${startLabel}-${endLabel}`;
+
+        element.className = "nav-section";
+        element.innerHTML = `
+          <div class="nav-section-heading">
+            <span>${group.title}</span>
+            <span class="nav-section-count">${rangeLabel}</span>
+          </div>
+        `;
+        navRoot.appendChild(element);
+        return { ...group, element };
+      });
+
+      function getNavGroup(index) {
+        return navGroupEls.find((group) => index >= group.start && index <= group.end);
+      }
+
+      const navButtons = slides.map((slide, index) => {
+        const button = document.createElement("button");
+        const group = getNavGroup(index);
+
+        button.type = "button";
+        button.className = "nav-button";
+        button.innerHTML = `
+          <span class="nav-index">${String(index + 1).padStart(2, "0")}</span>
+          <span class="nav-title">${slide.dataset.title}</span>
+        `;
+        button.addEventListener("click", () => setActiveSlide(index));
+        (group?.element || navRoot).appendChild(button);
+        return button;
+      });
+
+      function renderNotes(slide) {
+        notesTitle.textContent = slide.dataset.notesTitle || slide.dataset.title;
+        notesContent.innerHTML = `<p>${slide.dataset.notes.replaceAll("\n", "<br />")}</p>`;
+      }
+
+      function setActiveSlide(index) {
+        activeIndex = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle("is-active", slideIndex === activeIndex);
+        });
+
+        navButtons.forEach((button, buttonIndex) => {
+          button.classList.toggle("is-active", buttonIndex === activeIndex);
+        });
+
+        navGroupEls.forEach((group) => {
+          group.element.classList.toggle(
+            "is-active",
+            activeIndex >= group.start && activeIndex <= group.end
+          );
+        });
+
+        const slide = slides[activeIndex];
+        renderNotes(slide);
+        pager.textContent = `${activeIndex + 1} / ${slides.length}`;
+        progressFill.style.width = `${((activeIndex + 1) / slides.length) * 100}%`;
+      }
+
+      function toggleNotes() {
+        document.body.classList.toggle("notes-open");
+      }
+
+      function toggleOverview() {
+        document.body.classList.toggle("overview");
+      }
+
+      prevButton.addEventListener("click", () => setActiveSlide(activeIndex - 1));
+      nextButton.addEventListener("click", () => setActiveSlide(activeIndex + 1));
+      notesButton.addEventListener("click", toggleNotes);
+      overviewButton.addEventListener("click", toggleOverview);
+      printButton.addEventListener("click", () => window.print());
+
+      slidesRoot.addEventListener("click", (event) => {
+        if (!document.body.classList.contains("overview")) {
+          return;
+        }
+
+        const slide = event.target.closest(".slide");
+        if (!slide) {
+          return;
+        }
+
+        const nextIndex = slides.indexOf(slide);
+        if (nextIndex >= 0) {
+          setActiveSlide(nextIndex);
+          document.body.classList.remove("overview");
+        }
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight" || event.key === "PageDown") {
+          event.preventDefault();
+          setActiveSlide(activeIndex + 1);
+        } else if (event.key === "ArrowLeft" || event.key === "PageUp") {
+          event.preventDefault();
+          setActiveSlide(activeIndex - 1);
+        } else if (event.key === "Home") {
+          event.preventDefault();
+          setActiveSlide(0);
+        } else if (event.key === "End") {
+          event.preventDefault();
+          setActiveSlide(slides.length - 1);
+        } else if (event.key.toLowerCase() === "n") {
+          event.preventDefault();
+          toggleNotes();
+        } else if (event.key.toLowerCase() === "o") {
+          event.preventDefault();
+          toggleOverview();
+        } else if (event.key === "Escape") {
+          document.body.classList.remove("notes-open", "overview");
+        }
+      });
+
+      setActiveSlide(0);
+    </script>
+  </body>
+</html>

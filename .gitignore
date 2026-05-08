@@ -43,3 +43,4 @@ Thumbs.db
 
 # Local smoke env
 .env.smoke
+.collaborator
