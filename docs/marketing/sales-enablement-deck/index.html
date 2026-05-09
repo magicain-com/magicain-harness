@@ -1,0 +1,1181 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ChatBI + Data Agent 销售讲述包</title>
+    <style>
+      :root {
+        --bg: #f6f4ef;
+        --paper: #fffdf8;
+        --paper-strong: #ffffff;
+        --ink: #1d2430;
+        --muted: #626b77;
+        --soft: #ebe5d9;
+        --line: #ddd4c5;
+        --brand: #2f6f73;
+        --brand-dark: #1f4e52;
+        --blue: #4267b2;
+        --amber: #b56b2b;
+        --green: #3c7a4a;
+        --red: #a24d42;
+        --shadow: 0 20px 55px rgba(44, 45, 45, 0.12);
+        --radius: 8px;
+        --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+          "Microsoft YaHei", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(120deg, rgba(47, 111, 115, 0.08), transparent 32%),
+          linear-gradient(220deg, rgba(181, 107, 43, 0.08), transparent 36%),
+          var(--bg);
+        color: var(--ink);
+        font-family: var(--font);
+        letter-spacing: 0;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .deck-shell {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        min-height: 100vh;
+      }
+
+      .side {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        border-right: 1px solid var(--line);
+        padding: 24px 18px;
+        background: rgba(255, 253, 248, 0.78);
+        backdrop-filter: blur(14px);
+      }
+
+      .brand {
+        display: grid;
+        gap: 8px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: var(--brand);
+        color: #fff;
+        font-weight: 800;
+      }
+
+      .brand strong {
+        font-size: 18px;
+        line-height: 1.25;
+      }
+
+      .brand span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .nav {
+        display: grid;
+        gap: 8px;
+        overflow: auto;
+        padding-right: 2px;
+      }
+
+      .nav-group {
+        display: grid;
+        gap: 6px;
+        margin-bottom: 10px;
+      }
+
+      .nav-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 5px 4px;
+      }
+
+      .nav-button {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 8px;
+        align-items: center;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 10px 9px;
+        color: var(--muted);
+        background: transparent;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .nav-button:hover,
+      .nav-button.is-active {
+        border-color: rgba(47, 111, 115, 0.24);
+        background: rgba(47, 111, 115, 0.08);
+        color: var(--ink);
+      }
+
+      .nav-index {
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--brand);
+      }
+
+      .nav-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13px;
+      }
+
+      .side-actions {
+        margin-top: auto;
+        display: grid;
+        gap: 8px;
+      }
+
+      .side-actions button,
+      .pager button {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 10px 12px;
+        background: var(--paper-strong);
+        color: var(--ink);
+        cursor: pointer;
+      }
+
+      .side-actions button:hover,
+      .pager button:hover {
+        border-color: rgba(47, 111, 115, 0.4);
+      }
+
+      .stage {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        padding: 26px;
+      }
+
+      .slide-frame {
+        position: relative;
+        min-height: 0;
+      }
+
+      .s-slide {
+        position: absolute;
+        inset: 0;
+        display: none;
+        flex-direction: column;
+        gap: 22px;
+        min-height: calc(100vh - 104px);
+        padding: 44px;
+        border: 1px solid rgba(221, 212, 197, 0.9);
+        border-radius: 14px;
+        background: var(--paper);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .s-slide.is-active {
+        display: flex;
+      }
+
+      .s-slide::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 7px;
+        background: linear-gradient(90deg, var(--brand), var(--amber));
+      }
+
+      .kicker {
+        color: var(--brand);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .title-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: flex-start;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 900px;
+        font-size: 58px;
+        line-height: 1.05;
+      }
+
+      h2 {
+        max-width: 900px;
+        font-size: 42px;
+        line-height: 1.13;
+      }
+
+      .subtitle {
+        max-width: 900px;
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        border: 1px solid rgba(47, 111, 115, 0.2);
+        padding: 7px 11px;
+        background: rgba(47, 111, 115, 0.08);
+        color: var(--brand-dark);
+        font-size: 12px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        display: grid;
+        gap: 16px;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .card,
+      .talk-card,
+      .proof-card,
+      .qa-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper-strong);
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .card.is-strong {
+        border-color: rgba(47, 111, 115, 0.35);
+        background: #eef7f5;
+      }
+
+      .card h3,
+      .talk-card h3,
+      .proof-card h3,
+      .qa-card h3 {
+        font-size: 19px;
+        line-height: 1.35;
+      }
+
+      .card p,
+      .talk-card p,
+      .proof-card p,
+      .qa-card p,
+      li {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.62;
+      }
+
+      .card p,
+      .talk-card p,
+      .proof-card p,
+      .qa-card p {
+        margin-top: 10px;
+      }
+
+      ul {
+        margin: 12px 0 0;
+        padding-left: 18px;
+      }
+
+      .hero-metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: auto;
+      }
+
+      .metric {
+        border-top: 2px solid var(--brand);
+        padding: 14px 0 0;
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 24px;
+      }
+
+      .metric span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 10px;
+        align-items: stretch;
+      }
+
+      .flow-step {
+        position: relative;
+        min-height: 120px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper-strong);
+      }
+
+      .flow-step strong {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .flow-step span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .flow-step:not(:last-child)::after {
+        content: ">";
+        position: absolute;
+        right: -12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--brand);
+        font-weight: 900;
+      }
+
+      .talk-card {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        padding: 18px;
+        min-height: 176px;
+      }
+
+      .talk-label {
+        color: var(--amber);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .script {
+        border-left: 4px solid var(--brand);
+        padding: 18px 20px;
+        background: #eef7f5;
+        border-radius: 0 8px 8px 0;
+        color: var(--brand-dark);
+        font-size: 18px;
+        line-height: 1.65;
+      }
+
+      .proof-card {
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 14px;
+        padding: 16px;
+        align-items: start;
+      }
+
+      .proof-num {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: var(--brand);
+        color: #fff;
+        font-weight: 900;
+      }
+
+      .qa-card {
+        padding: 18px;
+      }
+
+      .qa-card em {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--blue);
+        font-style: normal;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .note-box {
+        margin-top: auto;
+        border: 1px solid rgba(181, 107, 43, 0.28);
+        border-radius: var(--radius);
+        background: #fff7ed;
+        padding: 16px 18px;
+        color: #744515;
+        line-height: 1.6;
+      }
+
+      .pager {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 4px 0;
+        color: var(--muted);
+      }
+
+      .pager-controls {
+        display: flex;
+        gap: 10px;
+      }
+
+      .notes-panel {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        width: 420px;
+        max-height: 56vh;
+        overflow: auto;
+        display: none;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--paper-strong);
+        box-shadow: var(--shadow);
+        z-index: 30;
+      }
+
+      body.show-notes .notes-panel {
+        display: block;
+      }
+
+      .notes-panel h3 {
+        margin-bottom: 10px;
+      }
+
+      .notes-panel p {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      body.overview .slide-frame {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        overflow: auto;
+      }
+
+      body.overview .s-slide {
+        position: relative;
+        display: flex;
+        min-height: 310px;
+        padding: 22px;
+        box-shadow: none;
+        cursor: pointer;
+      }
+
+      body.overview .s-slide:not(.is-active) {
+        opacity: 0.72;
+      }
+
+      body.overview h1 {
+        font-size: 30px;
+      }
+
+      body.overview h2 {
+        font-size: 24px;
+      }
+
+      body.overview .subtitle,
+      body.overview .grid-2,
+      body.overview .grid-3,
+      body.overview .grid-4,
+      body.overview .flow,
+      body.overview .hero-metrics,
+      body.overview .note-box,
+      body.overview .script {
+        display: none;
+      }
+
+      @media (max-width: 1100px) {
+        .deck-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .side {
+          display: none;
+        }
+
+        .stage {
+          padding: 12px;
+        }
+
+        .s-slide {
+          min-height: calc(100vh - 76px);
+          padding: 26px;
+        }
+
+        .grid-3,
+        .grid-4,
+        .flow,
+        .hero-metrics {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .deck-shell {
+          display: block;
+        }
+
+        .side,
+        .pager,
+        .notes-panel {
+          display: none;
+        }
+
+        .stage {
+          display: block;
+          padding: 0;
+        }
+
+        .slide-frame {
+          display: block;
+        }
+
+        .s-slide {
+          position: relative;
+          display: flex;
+          min-height: 100vh;
+          page-break-after: always;
+          box-shadow: none;
+          border-radius: 0;
+          border: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="deck-shell">
+      <aside class="side">
+        <div class="brand">
+          <div class="brand-mark">BI</div>
+          <strong>ChatBI + Data Agent<br />销售讲述包</strong>
+          <span>Internal Sales Enablement / 2026-05</span>
+        </div>
+        <nav class="nav" id="nav"></nav>
+        <div class="side-actions">
+          <button id="overview">概览模式</button>
+          <button id="notes">讲稿提示</button>
+          <button onclick="window.print()">打印 / 导出 PDF</button>
+        </div>
+      </aside>
+
+      <section class="stage">
+        <div class="slide-frame" id="slide-frame">
+          <section
+            class="s-slide is-active"
+            data-title="封面"
+            data-group="开场"
+            data-note="这份 deck 是给销售和售前看的内部讲述包，不是客户主线演示材料。目标是统一怎么讲、怎么答、怎么推进下一步。"
+          >
+            <div class="kicker">Internal Sales Enablement</div>
+            <div class="title-row">
+              <div>
+                <h1>ChatBI + Data Agent<br />销售讲述包</h1>
+                <p class="subtitle">
+                  面向销售、售前和渠道伙伴：把两个产品讲清楚，把客户痛点讲具体，把常见追问接住，把 PoC 和私有化推进路径说稳。
+                </p>
+              </div>
+              <span class="badge">Not Customer Handout</span>
+            </div>
+            <div class="hero-metrics">
+              <div class="metric"><strong>2</strong><span>两类 Agent 的统一讲法</span></div>
+              <div class="metric"><strong>3</strong><span>客户真实经营分析场景</span></div>
+              <div class="metric"><strong>5</strong><span>高频 objection 标准口径</span></div>
+              <div class="metric"><strong>1</strong><span>PoC 下一步推进动作</span></div>
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="总讲法"
+            data-group="开场"
+            data-note="销售第一句话不要先讲技术架构。先讲企业为什么需要两个 Agent：一个解决日常问数，一个解决正式分析交付。"
+          >
+            <div class="kicker">Sales Story</div>
+            <div class="title-row">
+              <div>
+                <h2>先讲客户经营问题<br />再讲两类 Agent 的分工</h2>
+                <p class="subtitle">
+                  客户通常已经有报表和数据平台，但还缺两件事：日常问题能随时问、关键分析能讲得住并推得动。
+                </p>
+              </div>
+              <span class="badge">Opening Script</span>
+            </div>
+            <div class="grid-2">
+              <article class="card is-strong">
+                <h3>ChatBI Agent</h3>
+                <p>解决“日常经营问数”：业务用自然语言问，系统按统一口径取数、解释和追问。</p>
+                <ul>
+                  <li>类比数字 BI 工程师</li>
+                  <li>高频、重复、长尾问数</li>
+                  <li>重点讲准确率、词汇表、口径和交付闭环</li>
+                </ul>
+              </article>
+              <article class="card is-strong">
+                <h3>Data Agent</h3>
+                <p>解决“正式经营分析”：从问题拆解、证据链到结构化报告和行动建议。</p>
+                <ul>
+                  <li>类比专业商业分析师</li>
+                  <li>目标差距、归因、复盘、专项优化</li>
+                  <li>重点讲证据、可核验、能过会和落动作</li>
+                </ul>
+              </article>
+            </div>
+            <div class="script">
+              建议开场：我们不是替代你现有 BI 和数据平台，而是在它们之上配两类 Agent。ChatBI 让每个岗位能问数，Data Agent 让关键分析能成文、能核验、能推进。
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="产品关系"
+            data-group="开场"
+            data-note="这一页用于销售内部理解。客户问两个产品有什么关系时，可以用这一页的话术，不一定展示完整页面。"
+          >
+            <div class="kicker">Product Relationship</div>
+            <div class="title-row">
+              <div>
+                <h2>两个产品不是替代关系<br />而是从问数到分析交付的连续能力</h2>
+                <p class="subtitle">
+                  ChatBI 把“问得到、取得准”做扎实；Data Agent 把“分析得透、推得动”做闭环。两者共享企业数据资产、口径、权限和业务语义。
+                </p>
+              </div>
+            </div>
+            <div class="flow">
+              <div class="flow-step"><strong>既有数据平台</strong><span>数据源、报表、指标、权限边界</span></div>
+              <div class="flow-step"><strong>共享语义资产</strong><span>词汇表、口径、SOP、业务经验</span></div>
+              <div class="flow-step"><strong>ChatBI</strong><span>自然语言问数、取数解释、连续追问</span></div>
+              <div class="flow-step"><strong>Data Agent</strong><span>问题拆解、证据链、报告和建议</span></div>
+              <div class="flow-step"><strong>组织动作</strong><span>过会、复盘、转发、责任人跟进</span></div>
+            </div>
+            <div class="note-box">
+              销售注意：客户如果担心“你们是不是重建 BI”，回答要立刻拉回“基于现有 BI 和数据平台，不绕过治理”。
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="ChatBI 怎么卖"
+            data-group="ChatBI"
+            data-note="ChatBI 的核心类比是数字 BI 工程师。不要只说聊天，要说日常经营问数的岗位化能力。"
+          >
+            <div class="kicker">ChatBI Talk Track</div>
+            <div class="title-row">
+              <div>
+                <h2>ChatBI 的一句话<br />日常经营问数的数字 BI 工程师</h2>
+                <p class="subtitle">
+                  管理层临时追问、业务岗位日常判断、经营复盘中的长尾取数，不再都排队等 BI 工程师临时查。
+                </p>
+              </div>
+              <span class="badge">Digital BI Engineer</span>
+            </div>
+            <div class="grid-3">
+              <article class="talk-card">
+                <span class="talk-label">用户视角</span>
+                <div>
+                  <h3>每个岗位都能随时问</h3>
+                  <p>传统报表没有覆盖的临时问题，可以用业务语言直接问，不需要记表名、字段名和 SQL。</p>
+                </div>
+              </article>
+              <article class="talk-card">
+                <span class="talk-label">组织视角</span>
+                <div>
+                  <h3>问数变成组织资产</h3>
+                  <p>高频问题、业务黑话、指标口径和同义词不断沉淀，越用越稳。</p>
+                </div>
+              </article>
+              <article class="talk-card">
+                <span class="talk-label">人效视角</span>
+                <div>
+                  <h3>BI 团队少做重复取数</h3>
+                  <p>把高频、重复、长尾问数交给 Agent，BI 团队回到建模、治理和高价值分析。</p>
+                </div>
+              </article>
+            </div>
+            <div class="script">
+              建议说法：ChatBI 不是“能聊天的报表”，而是把 BI 工程师的取数、口径理解和结果解释能力，放到业务每天都会发生的问数场景里。
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="ChatBI 证明点"
+            data-group="ChatBI"
+            data-note="客户问你们和 Demo 型 ChatBI 有什么不一样时，用这一页。重点不是炫模型，而是生产可用和交付闭环。"
+          >
+            <div class="kicker">ChatBI Proof Points</div>
+            <div class="title-row">
+              <div>
+                <h2>ChatBI 要卖“生产可用”<br />不是卖一次 Demo</h2>
+                <p class="subtitle">
+                  POC 做到能演示不难，难的是在真实企业里扛住多表、黑话、歧义、复杂口径和持续验收。
+                </p>
+              </div>
+            </div>
+            <div class="grid-3">
+              <article class="proof-card">
+                <div class="proof-num">01</div>
+                <div><h3>澄清反问</h3><p>模糊概念不盲猜，先给候选项让用户确认。</p></div>
+              </article>
+              <article class="proof-card">
+                <div class="proof-num">02</div>
+                <div><h3>词汇表和口径</h3><p>业务黑话、别名、复杂指标沉淀成资产。</p></div>
+              </article>
+              <article class="proof-card">
+                <div class="proof-num">03</div>
+                <div><h3>验收问题集</h3><p>用双方确认的问题集定义生产可用。</p></div>
+              </article>
+              <article class="proof-card">
+                <div class="proof-num">04</div>
+                <div><h3>回归测试</h3><p>badcase 分类修复，每轮调优后回归。</p></div>
+              </article>
+              <article class="proof-card">
+                <div class="proof-num">05</div>
+                <div><h3>交付 Agent Roadmap</h3><p>把客户业务、数据和问题集转成调优、评测和持续迭代能力。</p></div>
+              </article>
+              <article class="proof-card">
+                <div class="proof-num">06</div>
+                <div><h3>真实案例证据</h3><p>讲已完成生产或 POC 的脱敏材料，不靠脑补行业案例。</p></div>
+              </article>
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="Data Agent 怎么卖"
+            data-group="Data Agent"
+            data-note="Data Agent 的核心类比是专业商业分析师。边界要讲清：不承诺比所有 BI 分析师强，重点补位业务岗位缺少专业分析能力。"
+          >
+            <div class="kicker">Data Agent Talk Track</div>
+            <div class="title-row">
+              <div>
+                <h2>Data Agent 的一句话<br />懂业务的专业商业分析师</h2>
+                <p class="subtitle">
+                  它不是又一个聊天入口，而是把目标差距、异常归因、经营复盘和专项优化，做成可以核验、汇报和推进的正式分析交付。
+                </p>
+              </div>
+              <span class="badge">Business Analyst Agent</span>
+            </div>
+            <div class="grid-3">
+              <article class="card">
+                <h3>用户价值</h3>
+                <p>把问题讲圆、证据拉齐、材料成文、动作接上。业务负责人不用只靠经验点报表。</p>
+              </article>
+              <article class="card is-strong">
+                <h3>组织价值</h3>
+                <p>沉淀优秀经营经验，让总部、区域、门店、渠道都能复用同一套分析方法。</p>
+              </article>
+              <article class="card">
+                <h3>人效价值</h3>
+                <p>专业分析师成本高、数量少，Agent 让关键场景都能配上分析能力。</p>
+              </article>
+            </div>
+            <div class="note-box">
+              边界话术：我们不是替客户拍板，也不是承诺永远更懂业务；我们把商业分析、统计学方法和客户业务经验结合起来，让分析更容易被复核和迭代。
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="Data Agent 三类客户场景"
+            data-group="Data Agent"
+            data-note="会议里反复讨论过，抽象痛点不如真实场景好讲。销售先让客户对号入座，再讲产品。"
+          >
+            <div class="kicker">Buyer Reality</div>
+            <div class="title-row">
+              <div>
+                <h2>Data Agent 的痛点<br />要还原成“谁在做分析”</h2>
+                <p class="subtitle">
+                  很多企业不是没有报表，而是关键经营分析落在了没有专业分析能力的位置上。
+                </p>
+              </div>
+            </div>
+            <div class="grid-3">
+              <article class="card">
+                <h3>业务负责人自己点报表</h3>
+                <p>看到指标下滑后自己下钻几层，凭经验判断原因。会上被问“为什么不是别的原因”时，讲不圆。</p>
+              </article>
+              <article class="card is-strong">
+                <h3>总部有 SOP，一线执行不出来</h3>
+                <p>总部要求门店或区域写月度分析和下月计划，但真正能写好的人很少，很多报告只是照着模板填。</p>
+              </article>
+              <article class="card">
+                <h3>有经验，但不可复制</h3>
+                <p>老领导、资深运营知道怎么分析，但路径来源说不清。扩门店、换团队、换区域后能力断层。</p>
+              </article>
+            </div>
+            <div class="script">
+              建议问客户：你们现在关键经营分析是谁在做？业务负责人自己做，运营做，还是有专门分析师？这些分析最后会不会被追问口径、路径和动作？
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="痛点到证据"
+            data-group="Data Agent"
+            data-note="销售讲 demo 或案例时，不要只展示功能。每一屏都要说明解决哪个痛点。"
+          >
+            <div class="kicker">Pain to Proof</div>
+            <div class="title-row">
+              <div>
+                <h2>讲 Data Agent 时<br />每个功能都要闭环到一个痛点</h2>
+                <p class="subtitle">
+                  客户买的不是截图，而是“这份分析能不能过会、转发、复核、落动作”。
+                </p>
+              </div>
+            </div>
+            <div class="grid-4">
+              <article class="card">
+                <h3>分析站不住</h3>
+                <p>展示任务规划、维度下钻、事实与候选原因分层。</p>
+              </article>
+              <article class="card">
+                <h3>推进链路慢</h3>
+                <p>展示问题收敛成任务，直接输出报告和建议。</p>
+              </article>
+              <article class="card">
+                <h3>共识形成难</h3>
+                <p>展示口径、原始数据、计算过程和证据包。</p>
+              </article>
+              <article class="card">
+                <h3>动作接不上</h3>
+                <p>展示责任角色、优先动作、复盘节奏和衡量方式。</p>
+              </article>
+            </div>
+            <div class="script">
+              案例讲法固定顺序：客户痛点是什么，Agent 做了什么，证据在哪里，最终交付物是什么，下一步怎么让客户验证。
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="演示脚本"
+            data-group="Data Agent"
+            data-note="这页用于演示前预演。酒店案例只是一个样例，关键是讲解顺序。"
+          >
+            <div class="kicker">Demo Script</div>
+            <div class="title-row">
+              <div>
+                <h2>酒店月度经营分析案例<br />建议按三步讲</h2>
+                <p class="subtitle">
+                  不要从“系统页面有什么按钮”开始，要从客户的经营会场景开始。
+                </p>
+              </div>
+            </div>
+            <div class="flow">
+              <div class="flow-step"><strong>场景</strong><span>每月经营会前，店长要讲清目标完成率、差距来源和下月动作。</span></div>
+              <div class="flow-step"><strong>任务</strong><span>把“RevPAR 为什么没达标”收敛成可执行、可验收的分析任务。</span></div>
+              <div class="flow-step"><strong>证据</strong><span>目标、实际、完成率、渠道、房型、价格带逐层展开。</span></div>
+              <div class="flow-step"><strong>报告</strong><span>形成结论、证据链、原始数据入口和结构化材料。</span></div>
+              <div class="flow-step"><strong>动作</strong><span>输出优先动作、责任角色、跟进节奏和复盘指标。</span></div>
+            </div>
+            <div class="note-box">
+              真实案例优先。不要现场脑补没做过的行业案例，客户一旦追问行业细节，销售容易卡住。
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="周期报告"
+            data-group="Data Agent"
+            data-note="会议里提到客户明确需要定时报告和强触达。这是销售容易忽略，但客户很好理解的价值点。"
+          >
+            <div class="kicker">Scheduled Delivery</div>
+            <div class="title-row">
+              <div>
+                <h2>别只讲“业务来问”<br />还要讲周期报告和强触达</h2>
+                <p class="subtitle">
+                  对门店月报、区域周报、渠道复盘、目标完成率追踪这类固定需求，Data Agent 可以进入经营节奏，而不只是一次性问答。
+                </p>
+              </div>
+            </div>
+            <div class="flow">
+              <div class="flow-step"><strong>固定问题</strong><span>目标差距、月度复盘、门店计划、渠道分析</span></div>
+              <div class="flow-step"><strong>定时触发</strong><span>按周、按月、按经营会节奏执行</span></div>
+              <div class="flow-step"><strong>生成报告</strong><span>结论、证据、原始数据、行动建议</span></div>
+              <div class="flow-step"><strong>强触达</strong><span>推送给店长、区域、业务负责人</span></div>
+              <div class="flow-step"><strong>复盘迭代</strong><span>反馈进入 SOP 和下次分析</span></div>
+            </div>
+            <div class="script">
+              建议说法：报表发出去不代表有人分析。Data Agent 的价值是把关键经营分析变成组织节奏，到点生成、到人触达、结果可复盘。
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="高频追问"
+            data-group="销售 FAQ"
+            data-note="这一页是标准口径，销售可以直接照着答。"
+          >
+            <div class="kicker">Objection Handling</div>
+            <div class="title-row">
+              <div>
+                <h2>客户常问的问题<br />先用统一口径接住</h2>
+                <p class="subtitle">
+                  不要现场自由发挥。先把边界说稳，再引导客户做小范围并跑验证。
+                </p>
+              </div>
+            </div>
+            <div class="grid-2">
+              <article class="qa-card"><em>Q：准确率怎么保证？</em><h3>不承诺永远正确，承诺可验证、可纠正、可迭代。</h3><p>关键数值由 SQL / Python 产生，结论分层表达。PoC 用同一数据并跑验证。</p></article>
+              <article class="qa-card"><em>Q：大模型会不会幻觉？</em><h3>会，所以关键数据不交给模型口算。</h3><p>模型负责规划和表达，关键计算走受控工具，证据不足只列候选因素。</p></article>
+              <article class="qa-card"><em>Q：你怎么比客户更懂业务？</em><h3>不是替客户拍板，而是把专业方法和客户经验结合。</h3><p>客户提供业务规则和最终判断，系统提供分析框架、证据链和过程留痕。</p></article>
+              <article class="qa-card"><em>Q：为什么不直接招商业分析师？</em><h3>招人适合核心岗位，Agent 适合规模化覆盖场景。</h3><p>专业分析师成本高、数量少，Agent 更适合覆盖门店、区域、渠道、品类等大量场景。</p></article>
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="竞品与 ROI"
+            data-group="销售 FAQ"
+            data-note="销售会被客户问到火山、QuickBI、BI Copilot 或通用大模型。不要陷入单点功能对比，回到企业级交付闭环和 ROI。"
+          >
+            <div class="kicker">Competitive Talk Track</div>
+            <div class="title-row">
+              <div>
+                <h2>竞品不要只比功能<br />要比企业级交付闭环</h2>
+                <p class="subtitle">
+                  客户可能知道市场上也有类似产品。销售要能回答：我们好在哪里，为什么值得买，ROI 怎么算。
+                </p>
+              </div>
+            </div>
+            <div class="grid-3">
+              <article class="card">
+                <h3>不只比聊天入口</h3>
+                <p>聊天入口只是入口。真正价值在数据接入、权限、受控执行、证据留痕、报告和行动方案。</p>
+              </article>
+              <article class="card is-strong">
+                <h3>ROI 按人效讲</h3>
+                <p>ChatBI 对标数字 BI 工程师；Data Agent 对标专业商业分析师。核心是把专业能力覆盖到更多岗位。</p>
+              </article>
+              <article class="card">
+                <h3>价格不要打崩</h3>
+                <p>客户预算不足时，优先用版本、范围、场景和服务边界调整，而不是随意打折。</p>
+              </article>
+            </div>
+            <div class="note-box">
+              内部提醒：竞品和报价需要持续维护 FAQ。客户知道某个厂商时，销售至少要能回答“我们比的是哪一段能力”。
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="私有化部署"
+            data-group="交付与采购"
+            data-note="会议里讨论到私有化时，客户会问模型、硬件、一体机、线上模型为什么不直接 SaaS。销售要把边界讲清。"
+          >
+            <div class="kicker">Private Deployment</div>
+            <div class="title-row">
+              <div>
+                <h2>私有化不是只卖软件<br />模型、硬件和服务边界要说清</h2>
+                <p class="subtitle">
+                  客户进入采购阶段后，关心的是数据是否出域、模型部署方式、硬件资源、实施服务和后续运营责任。
+                </p>
+              </div>
+            </div>
+            <div class="grid-3">
+              <article class="card">
+                <h3>产品部署</h3>
+                <p>应用、数据连接、权限、配置、基础验证。通常作为软件交付和实施服务的一部分说明。</p>
+              </article>
+              <article class="card is-strong">
+                <h3>模型部署</h3>
+                <p>如果客户要求私有化模型，需要单独评估模型服务、GPU/一体机、推理成本和运维责任。</p>
+              </article>
+              <article class="card">
+                <h3>SaaS 还是私有化</h3>
+                <p>SaaS 更快，私有化主要服务数据不出域、内网、审计、集团权限和本地集成要求。</p>
+              </article>
+            </div>
+            <div class="script">
+              建议说法：主线先讲业务价值。到部署方案阶段，再拆产品部署、模型部署、硬件资源、培训带教和持续运营。
+            </div>
+          </section>
+
+          <section
+            class="s-slide"
+            data-title="PoC 下一步"
+            data-group="交付与采购"
+            data-note="销售收尾页。目标是把客户从泛泛讨论带到一个强场景并跑验证。"
+          >
+            <div class="kicker">Next Step</div>
+            <div class="title-row">
+              <div>
+                <h2>客户感兴趣后<br />不要泛泛约 Demo，要锁一个强场景</h2>
+                <p class="subtitle">
+                  PoC 最怕“感觉不错但无法验收”。最稳妥的做法是把问题、数据、口径和验收项说具体。
+                </p>
+              </div>
+            </div>
+            <div class="grid-2">
+              <article class="card is-strong">
+                <h3>下一步要拿到的信息</h3>
+                <ul>
+                  <li>一个具体经营问题</li>
+                  <li>时间范围、对象范围、核心 KPI</li>
+                  <li>常看维度和参考报表</li>
+                  <li>指标口径、权限和数据可用范围</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>PoC 验收看五件事</h3>
+                <ul>
+                  <li>核心 KPI 是否对齐</li>
+                  <li>一级拆解是否可复算</li>
+                  <li>追问能否回到原证据链</li>
+                  <li>边界纪律是否守住</li>
+                  <li>能否形成正式报告和行动建议</li>
+                </ul>
+              </article>
+            </div>
+            <div class="script">
+              收尾话术：我们建议不先做大范围，而是先选一个客户最熟悉、最痛、最容易验证的数据分析场景，并跑一次，把价值闭环跑出来。
+            </div>
+          </section>
+        </div>
+
+        <div class="pager">
+          <span id="page-label">1 / 14</span>
+          <div class="pager-controls">
+            <button id="prev">上一页</button>
+            <button id="next">下一页</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="notes-panel" id="notes-panel">
+      <h3 id="notes-title">讲稿提示</h3>
+      <p id="notes-copy"></p>
+    </aside>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll(".s-slide"));
+      const nav = document.getElementById("nav");
+      const pageLabel = document.getElementById("page-label");
+      const notesTitle = document.getElementById("notes-title");
+      const notesCopy = document.getElementById("notes-copy");
+      let active = 0;
+
+      const groups = [...new Set(slides.map((slide) => slide.dataset.group || "其他"))];
+      const groupEls = new Map();
+      groups.forEach((group) => {
+        const wrap = document.createElement("div");
+        wrap.className = "nav-group";
+        wrap.innerHTML = `<div class="nav-heading"><span>${group}</span><span></span></div>`;
+        nav.appendChild(wrap);
+        groupEls.set(group, wrap);
+      });
+
+      const buttons = slides.map((slide, index) => {
+        const button = document.createElement("button");
+        button.className = "nav-button";
+        button.type = "button";
+        button.innerHTML = `<span class="nav-index">${String(index + 1).padStart(2, "0")}</span><span class="nav-title">${slide.dataset.title}</span>`;
+        button.addEventListener("click", () => setSlide(index));
+        groupEls.get(slide.dataset.group || "其他").appendChild(button);
+        return button;
+      });
+
+      function renderNotes() {
+        const slide = slides[active];
+        notesTitle.textContent = slide.dataset.title || "讲稿提示";
+        notesCopy.textContent = slide.dataset.note || "";
+      }
+
+      function setSlide(index) {
+        active = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("is-active", i === active);
+        });
+        buttons.forEach((button, i) => {
+          button.classList.toggle("is-active", i === active);
+        });
+        pageLabel.textContent = `${active + 1} / ${slides.length}`;
+        renderNotes();
+      }
+
+      document.getElementById("prev").addEventListener("click", () => setSlide(active - 1));
+      document.getElementById("next").addEventListener("click", () => setSlide(active + 1));
+      document.getElementById("notes").addEventListener("click", () => {
+        document.body.classList.toggle("show-notes");
+      });
+      document.getElementById("overview").addEventListener("click", () => {
+        document.body.classList.toggle("overview");
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight" || event.key === " ") setSlide(active + 1);
+        if (event.key === "ArrowLeft") setSlide(active - 1);
+        if (event.key.toLowerCase() === "n") document.body.classList.toggle("show-notes");
+        if (event.key.toLowerCase() === "o") document.body.classList.toggle("overview");
+      });
+
+      slides.forEach((slide, index) => {
+        slide.addEventListener("click", () => {
+          if (document.body.classList.contains("overview")) {
+            document.body.classList.remove("overview");
+            setSlide(index);
+          }
+        });
+      });
+
+      setSlide(0);
+    </script>
+  </body>
+</html>

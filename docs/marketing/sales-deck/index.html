@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Agent 销售材料 Deck</title>
+    <title>ChatBI + Data Agent 客户演示 Deck</title>
     <style>
       :root {
         --bg: #07080d;
@@ -1634,7 +1634,13 @@
         height: 100%;
         object-fit: cover;
         object-position: top left;
+        cursor: zoom-in;
         transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .screen-card img:focus-visible {
+        outline: 3px solid var(--accent-2);
+        outline-offset: -6px;
       }
 
       .screen-card:hover img {
@@ -2374,6 +2380,75 @@
         text-align: right;
         font-size: 13px;
         color: var(--muted);
+      }
+
+      .image-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 34px;
+        background: rgba(3, 4, 8, 0.86);
+        backdrop-filter: blur(14px);
+      }
+
+      .image-lightbox.is-open {
+        display: flex;
+      }
+
+      .image-lightbox-frame {
+        position: relative;
+        margin: 0;
+        width: min(94vw, 1280px);
+        height: min(86vh, 820px);
+        display: grid;
+        place-items: center;
+      }
+
+      .image-lightbox-frame img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: var(--radius-lg);
+        background: #fff;
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.58);
+      }
+
+      .image-lightbox-caption {
+        position: absolute;
+        left: 0;
+        right: 56px;
+        bottom: -30px;
+        color: rgba(236, 237, 240, 0.74);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .image-lightbox-close {
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        z-index: 1;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--line-strong);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        font-size: 26px;
+        line-height: 1;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+      }
+
+      .image-lightbox-close:hover {
+        background: rgba(255, 255, 255, 0.14);
+        border-color: var(--accent-line);
+        transform: scale(1.04);
       }
 
       .notes-panel {
@@ -3640,7 +3715,8 @@
         .sidebar,
         .topbar,
         .footer,
-        .notes-panel {
+        .notes-panel,
+        .image-lightbox {
           display: none;
         }
 
@@ -3685,14 +3761,14 @@
     <div class="app-shell">
       <aside class="sidebar">
         <div class="brand">
-          <small>Web Sales Deck</small>
+          <small>Sales Deck</small>
           <strong>ChatBI + Data Agent</strong>
           <span>数据分析场景的两类 Agent / 从自助取数到正式分析交付</span>
         </div>
         <nav class="deck-nav" id="deck-nav"></nav>
         <div class="meta">
           <span class="meta-line">Source</span><br />
-          整合 ChatBI 产品介绍 + Data Agent 销售材料，作为数据分析场景的两类 Agent 联合呈现。<br />
+          整合 ChatBI 产品介绍 + Data Agent 产品能力，作为数据分析场景的两类 Agent 联合呈现。<br />
           演示：左右方向键翻页，N 打开讲稿，O 总览。
         </div>
       </aside>
@@ -3969,7 +4045,7 @@
                 class="slide is-section chatbi-differentiation-slide"
                 data-title="三个不一样"
                 data-notes-title="Page 05"
-                data-notes="销售对位关键页。客户问’你们和别家有什么不一样’时切到这页。三点：交付的是生产可用、专门解决复杂口语+多表、有真实生产证据。"
+                data-notes="客户问’你们和别家有什么不一样’时切到这页。三点：交付的是生产可用、专门解决复杂口语+多表、有真实生产证据。"
               >
                 <div class="slide-kicker">Page 05 / ChatBI · Differentiation</div>
                 <div class="slide-title-row">
@@ -4605,10 +4681,10 @@ target <span class="metric-sql-keyword">AS</span> (...)
               <section
                 class="slide chatbi-positioning-slide"
                 data-title="Data Agent 定位"
-                data-notes-title="Part 2 · Data Agent"
-                data-notes="定位页参考 ChatBI 定位页的讲法：不要把 Data Agent 讲成另一个聊天入口，而是讲成懂企业业务的专业商业分析师。三个价值视角：1) 用户角度——覆盖下一页的四类痛点：分析站不住、推进链路慢、结论难形成共识、报告停在解释。管理层和业务负责人需要的不只是查数，而是把问题讲圆、把证据拉齐、把材料成文、把动作接上；2) 组织角度——沉淀企业优秀的经营经验，把优秀管理者和分析师处理问题的方法变成可复制的问题模板、证据链、报告结构和行动建议；3) 人事角度——专业商业分析师成本很高，很难为每个业务场景都配置，现在可以通过 Data Agent 帮企业在各个业务场景都配备这样的专业商业分析师。"
+                data-notes-title="Page 01"
+                data-notes="定位页参考 ChatBI 定位页的讲法：不要把 Data Agent 讲成另一个聊天入口，而是讲成懂企业业务的专业商业分析师。讲述边界要清楚：不是承诺比所有专业 BI 分析师都强，而是把商业 common sense、统计学方法、经营分析框架和客户自己的业务经验结合起来，补上多数业务岗位缺少专业分析师的问题。三个价值视角：1) 用户角度——覆盖后面的真实场景和四类痛点：分析站不住、推进链路慢、结论难形成共识、报告停在解释。管理层和业务负责人需要的不只是查数，而是把问题讲圆、把证据拉齐、把材料成文、把动作接上；2) 组织角度——沉淀企业优秀的经营经验，把优秀管理者和分析师处理问题的方法变成可复制的问题模板、证据链、报告结构和行动建议；3) 人事角度——专业商业分析师成本很高，很难为每个业务场景都配置，现在可以通过 Data Agent 帮企业在各个业务场景都配备这样的专业商业分析师。"
               >
-                <div class="slide-kicker">Part 2 / Data Agent · Positioning</div>
+                <div class="slide-kicker">Page 01 / Data Agent · Positioning</div>
                 <div class="slide-title-row">
                   <div>
                     <h2>Data Agent<br />懂你的业务的专业商业分析师</h2>
@@ -4653,11 +4729,65 @@ target <span class="metric-sql-keyword">AS</span> (...)
 
               <section
                 class="slide is-section"
-                data-title="四类挑战"
+                data-title="真实场景痛点"
                 data-notes-title="Page 02"
+                data-notes="这一页把抽象痛点还原成客户真实组织里的三类人和三种场景。讲法：企业通常不是没有报表，而是大量关键经营分析发生在没有专业商业分析师的位置上。第一类是业务负责人自己点报表、凭经验归因；第二类是总部有 SOP，但一线店长或区域负责人执行不出来，月度分析和计划表质量参差不齐；第三类是有专业团队或老经验，但方法说不清、不可复制，换人或扩区域后效果掉下来。先让客户对号入座，再进入后面的四类挑战。"
+              >
+                <div class="slide-kicker">Page 02 / Data Agent · Buyer Reality</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>问题不是企业没有报表<br />而是关键分析常常没人专业地做</h2>
+                    <p class="slide-subtitle">
+                      很多组织已经有 BI 报表、目标看板和经营会议；真正断点在于，谁能把报表里的异常讲清楚、讲稳，并变成可以执行的判断。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="compare-grid">
+                  <article class="compare-card">
+                    <span class="compare-badge">场景 01 · 业务负责人自己分析</span>
+                    <strong>自己点报表<br />自己猜原因</strong>
+                    <p>负责人看到目标完成率、渠道、区域、门店等指标后，往往靠经验下钻几层，再把一个现象归因为某个渠道、品类或门店问题。</p>
+                    <ul>
+                      <li>有数据，但下钻路径是否合理说不清</li>
+                      <li>有结论，但被追问时难以证明</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card is-featured">
+                    <span class="compare-badge">场景 02 · 总部有 SOP</span>
+                    <strong>方法论写出来了<br />一线执行不出来</strong>
+                    <p>总部或事业部会要求门店、区域按固定模板写月度分析和下月计划，但真正能写得像样的人很少，很多报告还是照着 SOP 瞎填。</p>
+                    <ul>
+                      <li>优秀经验只在少数人身上</li>
+                      <li>月报、计划表和复盘质量不可控</li>
+                    </ul>
+                  </article>
+                  <article class="compare-card">
+                    <span class="compare-badge">场景 03 · 有经验但不可复制</span>
+                    <strong>老员工会做<br />组织复制不了</strong>
+                    <p>有些分析路径来自老领导、资深运营或历史经验，短期有效，但为什么这么分析、是否还能沿用、换场景怎么调整，经常说不清。</p>
+                    <ul>
+                      <li>经验来源不透明，传承靠人</li>
+                      <li>扩门店、扩区域、扩岗位时能力断层</li>
+                    </ul>
+                  </article>
+                </div>
+
+                <div class="impact-strip">
+                  <div class="impact-item"><strong>客户 OS</strong><br />我这个分析到底对不对？</div>
+                  <div class="impact-item"><strong>老板追问</strong><br />为什么不是别的原因？口径怎么算？</div>
+                  <div class="impact-item"><strong>组织现实</strong><br />专业分析师覆盖不了所有岗位。</div>
+                  <div class="impact-item"><strong>购买理由</strong><br />给关键岗位配一个专业分析 Agent。</div>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
+                data-title="四类挑战"
+                data-notes-title="Page 03"
                 data-notes="先打共鸣，不讲技术。按客户最熟悉的经营会场景来讲：讲不圆、推进慢、过不了会、动作接不上。典型场景可以直接读出来，让客户代入自己的组织现实。"
               >
-                <div class="slide-kicker">Page 02 / Pain Points</div>
+                <div class="slide-kicker">Page 03 / Data Agent · Pain Points</div>
                 <div class="slide-title-row">
                   <div>
                     <h2>很多企业不缺报表<br />真正缺的是一份能站得住的分析</h2>
@@ -4706,10 +4836,10 @@ target <span class="metric-sql-keyword">AS</span> (...)
               <section
                 class="slide is-section dataagent-framing-slide"
                 data-title="是什么，不是什么"
-                data-notes-title="Page 03"
+                data-notes-title="Page 04"
                 data-notes="定位纠偏页。核心讲法：Data Agent 不是替代现有 BI 和数据平台，而是基于现有 BI 与数据平台提供的数据资产、指标口径和权限边界，像一个懂业务的专业商业分析师，完成完整的分析和决策建议。这里要把’基于现有平台’讲清楚，避免客户误解成重建 BI 或绕过数据治理。"
               >
-                <div class="slide-kicker">Page 03 / Product Framing</div>
+                <div class="slide-kicker">Page 04 / Data Agent · Product Framing</div>
                 <div class="slide-title-row">
                   <div>
                     <h2>基于现有 BI 和数据平台<br />做完整分析与决策建议</h2>
@@ -4755,10 +4885,10 @@ target <span class="metric-sql-keyword">AS</span> (...)
               <section
                 class="slide is-section"
                 data-title="为什么更可信"
-                data-notes-title="Page 04"
+                data-notes-title="Page 05"
                 data-notes="这里不要讲成‘AI 更聪明’，而要讲成‘更容易被核验’。关键句：关键数值走确定性执行链路，证据不足的只列为候选因素。承诺的是更容易证明对、不容易把不确定内容包装成确定结论。"
               >
-                <div class="slide-kicker">Page 04 / Trust Mechanism</div>
+                <div class="slide-kicker">Page 05 / Data Agent · Trust Mechanism</div>
                 <div class="slide-title-row">
                   <div>
                     <h2>企业最终关心的不是系统会不会回答<br />而是这份分析能否被核验</h2>
@@ -4831,10 +4961,10 @@ target <span class="metric-sql-keyword">AS</span> (...)
               <section
                 class="slide is-section"
                 data-title="最终交付"
-                data-notes-title="Page 05"
+                data-notes-title="Page 06"
                 data-notes="把客户注意力从功能按钮拉回组织价值。真正买单的不是聊天，而是交付件能不能过会、转发、复核、落动作。这里建议强调：不是一个回答，而是一套正式交付。"
               >
-                <div class="slide-kicker">Page 05 / Deliverables</div>
+                <div class="slide-kicker">Page 06 / Data Agent · Deliverables</div>
                 <div class="slide-title-row">
                   <div>
                     <h2>企业最终拿到的不是一个回答<br />而是一套能在组织里流转的正式交付</h2>
@@ -4877,11 +5007,72 @@ target <span class="metric-sql-keyword">AS</span> (...)
 
               <section
                 class="slide is-section"
+                data-title="周期报告与强触达"
+                data-notes-title="Page 07"
+                data-notes="这一页补充会议里提到的客户明确需求：不是每次都等业务来问，而是按周、按月、按经营节奏生成分析报告，并推送给相关负责人。讲法要稳：Data Agent 可以支持周期性分析任务和强触达机制，核心价值是让关键经营分析进入组织节奏，而不是停在一次性问答。"
+              >
+                <div class="slide-kicker">Page 07 / Data Agent · Scheduled Delivery</div>
+                <div class="slide-title-row">
+                  <div>
+                    <h2>不只等业务来问<br />也能按经营节奏定时交付分析</h2>
+                    <p class="slide-subtitle">
+                      对门店月报、区域周报、渠道复盘、目标完成率追踪这类确定性需求，Data Agent 可以按周期生成报告，并强触达给对应负责人。
+                    </p>
+                  </div>
+                </div>
+
+                <div class="arch-layer is-emphasis">
+                  <span class="arch-layer-label">Scheduled Analysis Loop · 周期分析闭环</span>
+                  <div class="arch-row cols-5">
+                    <div class="arch-node is-primary">
+                      <strong>固定经营问题</strong>
+                      <span>月度目标差距 · 周度销售复盘 · 门店计划表</span>
+                    </div>
+                    <div class="arch-node">
+                      <strong>定时任务</strong>
+                      <span>按周 / 月 / 经营会节奏自动触发</span>
+                    </div>
+                    <div class="arch-node">
+                      <strong>分析报告</strong>
+                      <span>结论 · 证据 · 原始数据 · 行动建议</span>
+                    </div>
+                    <div class="arch-node">
+                      <strong>强触达</strong>
+                      <span>推送给业务负责人 / 店长 / 区域经理</span>
+                    </div>
+                    <div class="arch-node is-primary">
+                      <strong>复盘迭代</strong>
+                      <span>反馈进入 SOP、指标口径和下次分析</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="compare-grid">
+                  <article class="compare-card">
+                    <span class="compare-badge">传统做法</span>
+                    <strong>报表有人看<br />但不一定有人分析</strong>
+                    <p>报表已经发出，但业务负责人可能不看、看不懂，或者看完也没有形成可复盘的分析和行动。</p>
+                  </article>
+                  <article class="compare-card is-featured">
+                    <span class="compare-badge">Data Agent</span>
+                    <strong>把分析嵌入经营节奏</strong>
+                    <p>把固定问题配置为周期任务，到点生成可核验报告，并推送给必须处理这件事的人。</p>
+                  </article>
+                  <article class="compare-card">
+                    <span class="compare-badge">组织效果</span>
+                    <strong>从“会看报表”<br />到“按节奏复盘”</strong>
+                    <p>让门店、区域、渠道、品类等场景都有稳定的分析节奏，减少靠个人主动性驱动。</p>
+                  </article>
+                </div>
+              </section>
+
+              <section
+                class="slide is-section"
                 data-title="案例：问题到任务"
-                data-notes-title="案例第一步"
+                data-notes-title="Page 08"
                 data-notes="主案例开场。不要从‘总经理要求’硬切，先讲某连锁酒店集团的月度经营会场景：每家门店都要基于报表讲清目标完成率、差距来源、根因判断和下一步行动。然后再说产品价值：把这个管理要求收敛成可执行、可验收的分析任务。"
               >
-                <div class="slide-kicker">第 20 页 / 案例第一步</div>
+                <div class="slide-kicker">Page 08 / Data Agent · Case Step 1</div>
                 <div class="slide-title-row">
                   <div>
                     <h2>某连锁酒店集团月度经营会：<br />每家门店都要讲清目标完成率、根因与行动计划</h2>
@@ -4931,10 +5122,10 @@ target <span class="metric-sql-keyword">AS</span> (...)
               <section
                 class="slide is-section"
                 data-title="案例：任务到证据"
-                data-notes-title="案例第二步"
+                data-notes-title="Page 09"
                 data-notes="这页要讲‘不是黑盒’。给客户看的不是孤立答案，而是一条可以继续展开的证据链。可以强调继续追问时不需要从头重来，而是回到原来的链路继续往下。"
               >
-                <div class="slide-kicker">第 21 页 / 案例第二步</div>
+                <div class="slide-kicker">Page 09 / Data Agent · Case Step 2</div>
                 <div class="slide-title-row">
                   <div>
                     <h2>店长不是只拿到一个回答<br />而是拿到可追问的证据链</h2>
@@ -4996,10 +5187,10 @@ target <span class="metric-sql-keyword">AS</span> (...)
               <section
                 class="slide is-section"
                 data-title="案例：证据到动作"
-                data-notes-title="案例第三步"
+                data-notes-title="Page 10"
                 data-notes="这页最落地，因为客户最终拿去用的是结构化报告和行动推进方案。建议强调：复杂问题最后要落成同一份材料，而不是靠不同人口头解释。"
               >
-                <div class="slide-kicker">第 22 页 / 案例第三步</div>
+                <div class="slide-kicker">Page 10 / Data Agent · Case Step 3</div>
                 <div class="slide-title-row">
                   <div>
                     <h2>最后交付给门店和集团管理层的<br />是报告与下一步行动计划</h2>
@@ -5052,10 +5243,10 @@ target <span class="metric-sql-keyword">AS</span> (...)
               <section
                 class="slide is-section"
                 data-title="接入与下一步"
-                data-notes-title="Page 09"
+                data-notes-title="Page 11"
                 data-notes="这里负责收口。接入方式、部署形态、权限边界都讲清楚，但不要堆接口细节。收尾时把客户带向下一步：围绕一个明确经营问题做示例验证。"
               >
-                <div class="slide-kicker">Page 09 / Integration & Next Step</div>
+                <div class="slide-kicker">Page 11 / Data Agent · Integration & Next Step</div>
                 <div class="slide-title-row">
                   <div>
                     <h2>接入、部署、安全与下一步<br />关键是边界清楚，再做验证</h2>
@@ -5090,352 +5281,23 @@ target <span class="metric-sql-keyword">AS</span> (...)
 
                 <div class="quote-card">
                   <p>“整个产品的价值，不在于多一个 AI 入口，而在于让关键经营分析更容易被核验、被追问、被执行。”</p>
-                  <span>推荐销售动作：别先讨论抽象能力，先锁一个强场景做示例验证。</span>
+                  <span>推荐推进动作：别先讨论抽象能力，先锁一个强场景做示例验证。</span>
                 </div>
               </section>
 
-              <section
-                class="slide is-section"
-                data-title="产品界面截图"
-                data-notes-title="Page 10"
-                data-notes="这页使用 magicain-agent-ui 的真实前端页面截图。演示时先让客户看到产品已经有管理台，再继续讲后面的配置闭环、可信执行和治理运营优势。截图中的数据是为了销售演示模拟的样例数据。"
-              >
-                <div class="slide-kicker">Page 10 / Product Screenshots</div>
-                <div class="slide-title-row">
-                  <div>
-                    <h2>产品界面截图：从创建配置<br />到成本运营的完整管理台</h2>
-                    <p class="slide-subtitle">
-                      以下截图来自 magicain-agent-ui：销售演示时可以直接说明，Data Agent 已经具备智能体管理、配置维护和点数用量运营能力。
-                    </p>
-                  </div>
-                </div>
 
-                <div class="screen-showcase is-quad">
-                  <figure class="screen-card">
-                    <img src="assets/agent-ui-official-home.png" alt="Data Agent 门户首页截图" />
-                  </figure>
-                  <figure class="screen-card">
-                    <img src="assets/agent-ui-agent-management.png" alt="Data Agent 智能体管理页面截图" />
-                  </figure>
-                  <figure class="screen-card">
-                    <img src="assets/agent-ui-data-agent-config.png" alt="Data Agent 配置页面截图" />
-                  </figure>
-                  <figure class="screen-card">
-                    <img src="assets/agent-ui-billing-points.png" alt="点数用量页面截图" />
-                  </figure>
-                </div>
-              </section>
 
-              <section
-                class="slide is-section"
-                data-title="产品特性：管理闭环"
-                data-notes-title="Page 11"
-                data-notes="这页来自 magicain-agent-ui 前端代码分析。销售表达时不要讲页面路径和接口名，而要讲清楚：Data Agent 不是一次性 Demo，而是有创建、配置、知识沉淀、运行监控和成本管理的产品闭环。"
-              >
-                <div class="slide-kicker">Page 11 / Product Feature 01</div>
-                <div class="slide-title-row">
-                  <div>
-                    <h2>产品特性一：从创建到运营<br />已经形成管理闭环</h2>
-                    <p class="slide-subtitle">
-                      前端管理端覆盖 Data Agent 创建、数据集绑定、SOP 管理、经验沉淀、运行任务和点数账单，销售时可以把它讲成“可上线、可维护、可运营”的企业级能力。
-                    </p>
-                  </div>
-                </div>
 
-                <div class="arch-layer is-emphasis" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
-                  <span class="arch-layer-label">Admin Console · 管理闭环模块图</span>
-                  <div class="arch-row cols-5" style="flex: 1; align-items: stretch;">
-                    <div class="arch-node is-primary">
-                      <strong>智能体管理</strong>
-                      <span>按模板创建 Data Agent / ChatBI；编辑、访问、调试，从 PoC 平滑过渡正式上线。</span>
-                    </div>
-                    <div class="arch-node">
-                      <strong>数据集 · 语义资产</strong>
-                      <span>数据源 / 表 / 字段 / 维表 / DDL 导入，与企业已有数据资产对齐。</span>
-                    </div>
-                    <div class="arch-node">
-                      <strong>SOP · 经验沉淀</strong>
-                      <span>维护分析 SOP、业务标签、经验提示，把资深方法变可复用能力。</span>
-                    </div>
-                    <div class="arch-node">
-                      <strong>运行任务</strong>
-                      <span>运行中列表、可停止任务、execId 留痕，支撑上线后的日常运营。</span>
-                    </div>
-                    <div class="arch-node">
-                      <strong>点数账单</strong>
-                      <span>周期总览、每日趋势、场景消耗，AI 成本说投入产出。</span>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="impact-strip">
-                  <div class="impact-item"><strong>优势 01：</strong>交付后不是黑盒，客户能持续配置和维护。</div>
-                  <div class="impact-item"><strong>优势 02：</strong>企业经验不会只停留在人脑和文档里。</div>
-                  <div class="impact-item"><strong>优势 03：</strong>运行异常和成本变化可以被管理层看见。</div>
-                  <div class="impact-item"><strong>优势 04：</strong>销售 PoC 可从单场景自然扩展到多场景。</div>
-                </div>
-              </section>
 
-              <section
-                class="slide is-section"
-                data-title="产品特性：可信执行"
-                data-notes-title="Page 12"
-                data-notes="这页来自 magicain-cloud 的 dataagent 后端代码分析。重点讲受控工具链，而不是泛泛地说模型很聪明。客户担心幻觉时，强调 SQL、Python、SchemaGuard、资源文件、执行记录和最终报告。"
-              >
-                <div class="slide-kicker">Page 12 / Product Feature 02</div>
-                <div class="slide-title-row">
-                  <div>
-                    <h2>产品特性二：关键分析链路<br />由受控工具执行，不靠模型口算</h2>
-                    <p class="slide-subtitle">
-                      后端 Data Agent 会把用户问题转成可追踪的执行任务，通过数据库查询、Python 分析、子任务拆解和报告生成完成交付；大模型负责规划与解释，关键数据处理交给受控工具。
-                    </p>
-                  </div>
-                </div>
 
-                <div class="arch-diagram">
-                  <div class="arch-layer is-emphasis">
-                    <span class="arch-layer-label">Task Execution Architecture · 占位示意（待补真实架构图）</span>
-                    <div class="arch-row cols-4">
-                      <div class="arch-node is-primary">
-                        <strong>用户问题</strong>
-                        <span>问题模板 + 范围 + 验收项</span>
-                      </div>
-                      <div class="arch-node">
-                        <strong>LLM 规划</strong>
-                        <span>任务拆解 / 工具选择 / 表达</span>
-                      </div>
-                      <div class="arch-node">
-                        <strong>受控工具路由</strong>
-                        <span>SQL · Python · Web Search</span>
-                      </div>
-                      <div class="arch-node is-primary">
-                        <strong>结构化报告</strong>
-                        <span>结论 + 证据 + 行动方案</span>
-                      </div>
-                    </div>
-                    <div class="arch-arrow" aria-hidden="true">↓</div>
-                    <div class="arch-row cols-4">
-                      <div class="arch-node">
-                        <strong>SchemaGuard</strong>
-                        <span>未确认 Schema 阻断 SQL</span>
-                      </div>
-                      <div class="arch-node">
-                        <strong>资源文件 (CSV)</strong>
-                        <span>关键数据持久化 / 可复算</span>
-                      </div>
-                      <div class="arch-node">
-                        <strong>子任务并行</strong>
-                        <span>复杂问题拆 → 汇总</span>
-                      </div>
-                      <div class="arch-node">
-                        <strong>execId · trace 留痕</strong>
-                        <span>可停止 / 可回放 / 可审计</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="compare-grid">
-                  <article class="compare-card is-featured">
-                    <span class="compare-badge">Task Runtime</span>
-                    <h3>异步任务 · 过程回放</h3>
-                    <p>每次分析有 executionId / 可查询状态与资源产物 / 运行中可停止，避免失控长任务。</p>
-                  </article>
-                  <article class="compare-card">
-                    <span class="compare-badge">Trusted Data</span>
-                    <h3>取数前先确认 Schema</h3>
-                    <p>查询 Agent 先确认表 + 字段；SchemaGuard 拦未确认 SQL；结果存 CSV 可复算。</p>
-                  </article>
-                  <article class="compare-card">
-                    <span class="compare-badge">Analysis Tools</span>
-                    <h3>Python · 搜索 · 子任务</h3>
-                    <p>Python 处理计算图表；Web Search 按应用开关；复杂问题拆并行子分析再汇总。</p>
-                  </article>
-                </div>
-              </section>
-
-              <section
-                class="slide is-section"
-                data-title="产品优势：治理运营"
-                data-notes-title="Page 13"
-                data-notes="这页把代码能力翻译成购买理由。注意开放集成要谨慎表达：开放查询 API 已存在，MCP 通道已有接口雏形，但涉及 tenantToken 映射的生产化还需要在项目里确认。"
-              >
-                <div class="slide-kicker">Page 13 / Product Advantage</div>
-                <div class="slide-title-row">
-                  <div>
-                    <h2>产品优势：不是单个 Agent<br />而是可治理、可集成、可运营的企业能力</h2>
-                    <p class="slide-subtitle">
-                      销售重点可以从“AI 会分析”升级为“企业能放心上线”：权限、租户、成本、开放 API 与可观测链路都有产品支撑。
-                    </p>
-                  </div>
-                </div>
-
-                <div class="advantage-layout">
-                  <div class="placeholder is-pc is-tall">
-                    <span class="placeholder-tag">PC · 管理端</span>
-                    <span class="placeholder-title">执行链路 / Trace 视图</span>
-                    <span class="placeholder-desc">execId · 子任务时间线 · 资源产物 · 上下文 (app / tenant / user)</span>
-                    <span class="placeholder-meta">4:3 · magicain-agent-ui</span>
-                  </div>
-
-                  <div class="advantage-quadrant">
-                    <article class="qa-card">
-                      <em>Governance</em>
-                      <strong>权限边界对齐客户现状</strong>
-                      <p>数据集、字段、接口型数据源、鉴权方式都有管理入口，可与客户已有权限体系映射。</p>
-                    </article>
-                    <article class="qa-card">
-                      <em>Observability</em>
-                      <strong>过程可追踪，便于审计</strong>
-                      <p>执行链路记录 app、tenant、user、session、trace 等上下文，结合产物可回到过程。</p>
-                    </article>
-                    <article class="qa-card">
-                      <em>Cost Control</em>
-                      <strong>点数账单让 AI 成本可运营</strong>
-                      <p>后端预占 / 结算 / 释放，前端周期 / 趋势 / 场景消耗，便于给管理层说投入产出。</p>
-                    </article>
-                    <article class="qa-card">
-                      <em>Integration</em>
-                      <strong>开放能力嵌入业务系统</strong>
-                      <p>已有开放查询接口、H5 入口与 MCP 通道雏形，可围绕门户、驾驶舱、工作台做集成。</p>
-                    </article>
-                  </div>
-                </div>
-
-                <div class="impact-strip">
-                  <div class="impact-item"><strong>CIO：</strong>边界、审计、成本和集成都能说明白。</div>
-                  <div class="impact-item"><strong>业务：</strong>不只给答案，也给证据、报告和动作。</div>
-                  <div class="impact-item"><strong>数据团队：</strong>保留 Schema、SQL、CSV 和报告产物。</div>
-                  <div class="impact-item"><strong>销售：</strong>更容易从 PoC 过渡到正式采购。</div>
-                </div>
-              </section>
-
-              <section
-                class="slide is-section"
-                data-title="附录：定位答疑"
-                data-notes-title="Appendix A"
-                data-notes="附录用于被追问时展开。主线不要一次性讲太重，但客户如果问‘你们到底是什么、和 BI 或 Copilot 什么关系’，可以切到这页。"
-              >
-                <div class="slide-kicker">Appendix A / Positioning FAQ</div>
-                <div class="slide-title-row">
-                  <div>
-                    <h2>附录：定位类高频问题</h2>
-                    <p class="slide-subtitle">
-                      适合在客户问到“你们到底是什么”“为什么不是直接用 BI / Copilot”时展开。
-                    </p>
-                  </div>
-                </div>
-
-                <div class="qa-grid">
-                  <article class="qa-card">
-                    <em>Q1｜你们到底是什么？</em>
-                    <strong>不是 BI 替代品，而是基于现有 BI 和数据平台的专业商业分析师。</strong>
-                    <p>BI 和数据平台提供可信数据、口径和权限边界；Data Agent 基于这些资产完成完整分析和决策建议。</p>
-                  </article>
-                  <article class="qa-card">
-                    <em>Q2｜是不是聊天机器人？</em>
-                    <strong>聊天只是入口，交付才是价值本体。</strong>
-                    <p>真正价值在于把问题收敛成任务，再形成证据链、结构化报告和行动方案。</p>
-                  </article>
-                  <article class="qa-card">
-                    <em>Q3｜是不是在替代分析师？</em>
-                    <strong>更准确地说，是补位和标准化。</strong>
-                    <p>分析人力不足时补能力；成熟团队场景下，价值转向标准化沉淀、过程留痕和提速。</p>
-                  </article>
-                  <article class="qa-card">
-                    <em>Q4｜为什么不用通用大模型 + BI Copilot？</em>
-                    <strong>能力组件不等于企业级交付闭环。</strong>
-                    <p>企业真正买单的是任务收敛、授权边界、确定性执行、证据留痕、结构化交付与治理审计。</p>
-                  </article>
-                </div>
-              </section>
-
-              <section
-                class="slide is-section"
-                data-title="附录：可信与边界"
-                data-notes-title="Appendix B"
-                data-notes="客户如果追问可信度、幻觉、归因边界，可以切到这页。回答时不要做绝对承诺，始终把话题拉回可复算、可回放、边界清楚、并跑验证。"
-              >
-                <div class="slide-kicker">Appendix B / Trust & Boundary FAQ</div>
-                <div class="slide-title-row">
-                  <div>
-                    <h2>附录：可信度与边界类问题</h2>
-                    <p class="slide-subtitle">
-                      回答重点不是“永远更对”，而是“更不容易错，也更容易被发现错并纠正”。
-                    </p>
-                  </div>
-                </div>
-
-                <div class="qa-grid">
-                  <article class="qa-card">
-                    <em>Q5｜你怎么证明分析得更对？</em>
-                    <strong>靠机制，而不是靠口头承诺。</strong>
-                    <p>关键数值由 SQL / Python / 受控工具生成；证据不足的只列候选因素；最稳妥的验证方式是在同一份数据上并跑。</p>
-                  </article>
-                  <article class="qa-card">
-                    <em>Q7｜大模型会不会幻觉？</em>
-                    <strong>会，所以关键数值不交给大模型口头生成。</strong>
-                    <p>LLM 主要负责任务规划、语言组织和辅助表达，工程设计重点是降低幻觉对关键结论的影响。</p>
-                  </article>
-                  <article class="qa-card">
-                    <em>Q8｜为什么应该相信你们的归因？</em>
-                    <strong>归因是分层表达，不是绝对拍板。</strong>
-                    <p>系统区分数据事实、观察判断、候选原因和行动建议，让客户看到答案成立的条件与边界。</p>
-                  </article>
-                  <article class="qa-card">
-                    <em>Q11｜天气、政策、竞品活动也能知道吗？</em>
-                    <strong>只有外部数据已接入时，才能继续验证。</strong>
-                    <p>否则这些只能列为候选因素，不会被包装成最终结论。守住边界，反而更容易建立信任。</p>
-                  </article>
-                </div>
-              </section>
-
-              <section
-                class="slide is-section"
-                data-title="附录：PoC 落地"
-                data-notes-title="Appendix C"
-                data-notes="这一页给销售和售前收口用。客户问 PoC 怎么验收、要准备什么、为什么不建议一上来做大范围时，直接用这页回答。"
-              >
-                <div class="slide-kicker">Appendix C / Pilot FAQ</div>
-                <div class="slide-title-row">
-                  <div>
-                    <h2>附录：项目落地与 PoC 验收</h2>
-                    <p class="slide-subtitle">
-                      中国 To B 场景里，PoC 最怕“感觉不错但无法验收”；最稳妥的做法是把准备项和验收项说具体。
-                    </p>
-                  </div>
-                </div>
-
-                <div class="qa-grid">
-                  <article class="qa-card">
-                    <em>Q17｜首轮为什么不建议做大范围？</em>
-                    <strong>首轮目标不是证明所有场景都能做，而是先跑出一个强场景的价值。</strong>
-                    <p>数据源、口径和主题一旦过多，PoC 很容易失焦，结果既难验证也难形成共识。</p>
-                  </article>
-                  <article class="qa-card">
-                    <em>Q18｜PoC 到底怎么验收？</em>
-                    <strong>并跑一次，看五件事。</strong>
-                    <p>核心 KPI 是否对齐、一级拆解是否可复算、追问能否回到原证据链、边界纪律是否守住、能否形成正式材料。</p>
-                  </article>
-                  <article class="qa-card">
-                    <em>Q19｜客户需要准备什么？</em>
-                    <strong>至少准备最小可验证闭环。</strong>
-                    <p>具体问题、时间和对象范围、KPI 公式、常看维度、参考报表或截图、已授权数据范围和关键规则约束。</p>
-                  </article>
-                  <article class="qa-card">
-                    <em>Q20｜客户说没时间准备怎么办？</em>
-                    <strong>那就从最小闭环开始，不是降低标准，而是先收敛范围。</strong>
-                    <p>至少明确一个问题、一份参考报表、一个时间范围和一组核心指标，先跑通，再逐步补全。</p>
-                  </article>
-                </div>
-              </section>
             </div>
           </div>
         </section>
 
         <div class="footer">
           <div class="footer-note">
-            <strong>使用方式：</strong>直接浏览器打开即可演示，点击打印/PDF 可导出。建议配合 Speaker Notes 做销售彩排。
+            <strong>使用方式：</strong>直接浏览器打开即可演示，点击打印/PDF 可导出。建议配合 Speaker Notes 做演示彩排。
           </div>
           <div class="pager" id="pager">1 / —</div>
         </div>
@@ -5447,6 +5309,14 @@ target <span class="metric-sql-keyword">AS</span> (...)
       <h3 id="notes-title">Page 01</h3>
       <div id="notes-content"></div>
     </aside>
+
+    <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+      <button class="image-lightbox-close" type="button" id="image-lightbox-close" aria-label="关闭图片预览">×</button>
+      <figure class="image-lightbox-frame">
+        <img id="image-lightbox-img" src="" alt="" />
+        <figcaption class="image-lightbox-caption" id="image-lightbox-caption"></figcaption>
+      </figure>
+    </div>
 
     <script>
       const slides = Array.from(document.querySelectorAll(".slide"));
@@ -5461,6 +5331,11 @@ target <span class="metric-sql-keyword">AS</span> (...)
       const notesButton = document.getElementById("notes-button");
       const overviewButton = document.getElementById("overview-button");
       const printButton = document.getElementById("print-button");
+      const zoomableImages = Array.from(document.querySelectorAll(".screen-card img"));
+      const imageLightbox = document.getElementById("image-lightbox");
+      const imageLightboxImg = document.getElementById("image-lightbox-img");
+      const imageLightboxCaption = document.getElementById("image-lightbox-caption");
+      const imageLightboxClose = document.getElementById("image-lightbox-close");
 
       let activeIndex = 0;
 
@@ -5469,8 +5344,7 @@ target <span class="metric-sql-keyword">AS</span> (...)
         { title: "产品矩阵", start: 1, end: 1 },
         { title: "ChatBI", start: 2, end: 12 },
         { title: "两类 Agent 协同", start: 13, end: 13 },
-        { title: "Data Agent", start: 14, end: 26 },
-        { title: "附录", start: 27, end: slides.length - 1 },
+        { title: "Data Agent", start: 14, end: slides.length - 1 },
       ]
         .map((group) => ({
           ...group,
@@ -5551,11 +5425,58 @@ target <span class="metric-sql-keyword">AS</span> (...)
         document.body.classList.toggle("overview");
       }
 
+      function openImageLightbox(image) {
+        if (document.body.classList.contains("overview")) {
+          return;
+        }
+
+        const imageUrl = image.currentSrc || image.src;
+        const caption = image.alt || "产品截图";
+
+        imageLightboxImg.src = imageUrl;
+        imageLightboxImg.alt = caption;
+        imageLightboxCaption.textContent = caption;
+        imageLightbox.classList.add("is-open");
+        imageLightbox.setAttribute("aria-hidden", "false");
+        document.body.classList.add("image-zoom-open");
+        imageLightboxClose.focus({ preventScroll: true });
+      }
+
+      function closeImageLightbox() {
+        imageLightbox.classList.remove("is-open");
+        imageLightbox.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("image-zoom-open");
+        imageLightboxImg.removeAttribute("src");
+      }
+
       prevButton.addEventListener("click", () => setActiveSlide(activeIndex - 1));
       nextButton.addEventListener("click", () => setActiveSlide(activeIndex + 1));
       notesButton.addEventListener("click", toggleNotes);
       overviewButton.addEventListener("click", toggleOverview);
       printButton.addEventListener("click", () => window.print());
+
+      zoomableImages.forEach((image) => {
+        image.tabIndex = 0;
+        image.setAttribute("role", "button");
+        image.setAttribute("aria-label", `放大查看：${image.alt || "产品截图"}`);
+        image.addEventListener("click", (event) => {
+          event.stopPropagation();
+          openImageLightbox(image);
+        });
+        image.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openImageLightbox(image);
+          }
+        });
+      });
+
+      imageLightboxClose.addEventListener("click", closeImageLightbox);
+      imageLightbox.addEventListener("click", (event) => {
+        if (event.target === imageLightbox) {
+          closeImageLightbox();
+        }
+      });
 
       slidesRoot.addEventListener("click", (event) => {
         if (!document.body.classList.contains("overview")) {
@@ -5575,6 +5496,14 @@ target <span class="metric-sql-keyword">AS</span> (...)
       });
 
       window.addEventListener("keydown", (event) => {
+        if (document.body.classList.contains("image-zoom-open")) {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            closeImageLightbox();
+          }
+          return;
+        }
+
         if (event.key === "ArrowRight" || event.key === "PageDown") {
           event.preventDefault();
           setActiveSlide(activeIndex + 1);
