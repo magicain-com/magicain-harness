@@ -24,7 +24,7 @@
 - 中间件依赖云端，包括DB，Redis，ES
 - 通过SaaS的租户隔离构建测试环境，方便留存测试数据
 - 本地测试是通过 [scripts/start-local.sh](scripts/start-local.sh) 用这个Nginx代理各个服务。统一在 http://localshot:7070/admin/ 登录，用户端 http://localshot:7070/c/?appId=x 来访问某个 appId 的应用
-- 本地测试登录租户为"胖橘源码"，用户名是"admin"，密码是"admin123"
+- 本地测试登录租户为"演示"（tenantId=128），用户名是"yanshiadmin"，密码是"123456"
 
 ## 参考文档
 
