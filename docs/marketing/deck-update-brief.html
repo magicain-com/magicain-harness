@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ChatBI + Data Agent Deck 本版更新说明</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #080a12;
+        --panel: #141824;
+        --panel-soft: #1b2030;
+        --text: #f4f2ff;
+        --muted: #a9adba;
+        --line: rgba(255, 255, 255, 0.14);
+        --accent: #6fd9ff;
+        --accent-2: #9c7cff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          Inter, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC",
+          Arial, sans-serif;
+      }
+
+      .page {
+        width: min(100vw, 1280px);
+        min-height: min(100vh, 720px);
+        margin: 0 auto;
+        padding: 44px 52px 36px;
+        display: grid;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
+        gap: 18px;
+        page-break-after: always;
+        background:
+          radial-gradient(720px 360px at 100% 0%, rgba(156, 124, 255, 0.1), transparent 58%),
+          radial-gradient(560px 300px at 0% 100%, rgba(111, 217, 255, 0.08), transparent 62%),
+          linear-gradient(180deg, #141827 0%, #080a12 100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      .kicker::before {
+        content: "";
+        width: 34px;
+        height: 1px;
+        background: linear-gradient(90deg, var(--accent-2), var(--accent));
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 960px;
+        font-size: 38px;
+        line-height: 1.14;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 1020px;
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.62;
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: 320px minmax(0, 1fr);
+        gap: 24px;
+        align-items: stretch;
+        min-height: 0;
+      }
+
+      .notes {
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+
+      .note {
+        padding: 16px 18px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid var(--line);
+      }
+
+      .note strong {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 15px;
+      }
+
+      .note p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      figure {
+        margin: 0;
+        min-height: 0;
+        display: grid;
+        align-content: center;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 12px;
+      }
+
+      @media print {
+        @page {
+          size: 16in 9in;
+          margin: 0;
+        }
+
+        body {
+          background: #080a12;
+        }
+
+        .page {
+          width: 16in;
+          min-height: 9in;
+          border: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="page">
+      <div class="kicker">更新 01 / ChatBI 第 08 页</div>
+      <header>
+        <h1>澄清反问页替换为候选确认场景</h1>
+        <p class="lead">从普通问数结果截图，替换为用户端“候选确认”截图，突出业务词汇歧义如何被一次确认并沉淀为别名资产。</p>
+      </header>
+      <main class="content">
+        <div class="notes">
+          <div class="note"><strong>解决的问题</strong><p>原图像普通结果页，不能说明“为什么需要澄清反问”。</p></div>
+          <div class="note"><strong>本版处理</strong><p>保留流程卡片，主图展示候选项、一键确认和系统提示。</p></div>
+          <div class="note"><strong>对外表达</strong><p>先澄清、再确认，确认结果进入组织词汇资产。</p></div>
+        </div>
+        <figure>
+          <img src="assets/update-brief/page-08-chatbi-disambiguation.png" alt="ChatBI 澄清反问页截图" />
+        </figure>
+      </main>
+      <footer><span>ChatBI + Data Agent Deck 更新说明</span><span>01 / 05</span></footer>
+    </section>
+
+    <section class="page">
+      <div class="kicker">更新 02 / ChatBI 第 09 页</div>
+      <header>
+        <h1>复杂指标页改成“经验调优配置”</h1>
+        <p class="lead">不再只放配置入口截图，而是直接说明：普通指标可直接回答，复杂组合指标通过经验配置提升准确率。</p>
+      </header>
+      <main class="content">
+        <div class="notes">
+          <div class="note"><strong>解决的问题</strong><p>“收入完成率”这类跨表指标，不能让模型每次临场猜口径。</p></div>
+          <div class="note"><strong>本版处理</strong><p>把经验描述、标签命中、口径召回和可复算查询放到一页里讲清。</p></div>
+          <div class="note"><strong>对外表达</strong><p>复杂指标不是不可问，而是需要把口径经验工程化。</p></div>
+        </div>
+        <figure>
+          <img src="assets/update-brief/page-09-metric-engineering.png" alt="ChatBI 复杂指标经验配置页截图" />
+        </figure>
+      </main>
+      <footer><span>ChatBI + Data Agent Deck 更新说明</span><span>02 / 05</span></footer>
+    </section>
+
+    <section class="page">
+      <div class="kicker">更新 03 / Data Agent 第 20 页</div>
+      <header>
+        <h1>案例开场改成匿名客户经营场景</h1>
+        <p class="lead">用“某连锁酒店集团月度经营会”进入案例，避免一上来就是总经理要求，更像真实交付过的客户案例。</p>
+      </header>
+      <main class="content">
+        <div class="notes">
+          <div class="note"><strong>解决的问题</strong><p>原开头太像内部拆解，不够自然，也不够像对外客户故事。</p></div>
+          <div class="note"><strong>本版处理</strong><p>先讲经营会要求，再讲系统如何收敛为可执行分析任务。</p></div>
+          <div class="note"><strong>对外表达</strong><p>不是从聊天问题开始，而是从真实管理要求开始。</p></div>
+        </div>
+        <figure>
+          <img src="assets/update-brief/page-20-data-agent-task.png" alt="Data Agent 问题到任务页截图" />
+        </figure>
+      </main>
+      <footer><span>ChatBI + Data Agent Deck 更新说明</span><span>03 / 05</span></footer>
+    </section>
+
+    <section class="page">
+      <div class="kicker">更新 04 / Data Agent 第 21 页</div>
+      <header>
+        <h1>任务执行页突出“可追问证据链”</h1>
+        <p class="lead">把主案例的分析链路素材放进来，说明系统给出的不是孤立答案，而是可以继续下钻和复核的证据链。</p>
+      </header>
+      <main class="content">
+        <div class="notes">
+          <div class="note"><strong>解决的问题</strong><p>原先复用任务列表图，和“任务到证据”的页面主题不够匹配。</p></div>
+          <div class="note"><strong>本版处理</strong><p>左侧讲目标差距、差异指标、维度下钻和候选原因。</p></div>
+          <div class="note"><strong>对外表达</strong><p>继续追问不是重来一遍，而是沿原证据链继续展开。</p></div>
+        </div>
+        <figure>
+          <img src="assets/update-brief/page-21-data-agent-evidence.png" alt="Data Agent 任务到证据页截图" />
+        </figure>
+      </main>
+      <footer><span>ChatBI + Data Agent Deck 更新说明</span><span>04 / 05</span></footer>
+    </section>
+
+    <section class="page">
+      <div class="kicker">更新 05 / Data Agent 第 22 页</div>
+      <header>
+        <h1>最终交付页补上报告与行动方案</h1>
+        <p class="lead">用结构化报告和行动推进方案收口，让案例从“分析解释”走到“门店可执行、管理层可追踪”。</p>
+      </header>
+      <main class="content">
+        <div class="notes">
+          <div class="note"><strong>解决的问题</strong><p>原页更像占位图，缺少可见的正式交付物。</p></div>
+          <div class="note"><strong>本版处理</strong><p>补入报告与行动卡片截图，并把英文标签统一改成中文。</p></div>
+          <div class="note"><strong>对外表达</strong><p>最终价值是“结论、证据、动作”的完整闭环。</p></div>
+        </div>
+        <figure>
+          <img src="assets/update-brief/page-22-data-agent-action.png" alt="Data Agent 证据到动作页截图" />
+        </figure>
+      </main>
+      <footer><span>ChatBI + Data Agent Deck 更新说明</span><span>05 / 05</span></footer>
+    </section>
+  </body>
+</html>

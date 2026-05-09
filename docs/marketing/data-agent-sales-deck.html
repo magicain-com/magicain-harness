@@ -1394,6 +1394,16 @@
         font-weight: 600;
       }
 
+      .case-impact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .case-impact-grid .impact-item {
+        padding: 10px 12px;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
       .startup-grid {
         grid-template-columns: 1fr 1fr;
         flex: 1;
@@ -1526,6 +1536,7 @@
       }
 
       .action-item span {
+        display: block;
         color: var(--muted);
         font-size: 13.5px;
         line-height: 1.55;
@@ -1646,6 +1657,19 @@
         background: var(--bg-strong);
       }
 
+      .case-wide-screen {
+        aspect-ratio: 1170 / 440;
+        width: 100%;
+        align-self: center;
+        justify-self: center;
+      }
+
+      .case-wide-screen img {
+        object-fit: contain;
+        object-position: center;
+        background: #fff;
+      }
+
       /* 手机端截图卡：保持 9:16 竖屏 */
       .screen-card--mobile {
         aspect-ratio: 9 / 16;
@@ -1686,6 +1710,645 @@
         font-size: 13px;
         color: #fff;
         font-weight: 600;
+      }
+
+      .disambiguation-layout {
+        grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+        align-items: center;
+        gap: 16px;
+      }
+
+      .disambiguation-proof {
+        display: grid;
+        align-content: center;
+        min-height: 0;
+      }
+
+      .disambiguation-screen {
+        width: 100%;
+        aspect-ratio: 852 / 290;
+        align-self: center;
+        justify-self: stretch;
+        background: #f8fafc;
+        border-color: rgba(255, 210, 130, 0.45);
+      }
+
+      .disambiguation-screen img {
+        object-fit: contain;
+        object-position: center;
+        background: #f8fafc;
+      }
+
+      .metric-engineering-slide {
+        padding: 30px 44px 28px;
+        gap: 14px;
+      }
+
+      .metric-ppt-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.94fr) minmax(300px, 0.42fr);
+        gap: 24px;
+        align-items: end;
+      }
+
+      .metric-ppt-kicker {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 7px;
+        color: #8eb7ff;
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .metric-ppt-kicker::before {
+        content: "";
+        width: 32px;
+        height: 1px;
+        background: var(--gradient-accent);
+      }
+
+      .metric-ppt-title {
+        margin: 0;
+        font-size: 34px;
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      .metric-ppt-subtitle {
+        margin: 9px 0 0;
+        max-width: 760px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.45;
+        font-weight: 650;
+      }
+
+      .metric-ppt-quote {
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line);
+        color: #dbeafe;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .metric-ppt-content {
+        flex: 1;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1.55fr) minmax(330px, 0.82fr);
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .metric-product-shot {
+        overflow: hidden;
+        min-height: 0;
+        border-radius: 20px;
+        background: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 22px 54px rgba(0, 0, 0, 0.34);
+      }
+
+      .metric-product-top {
+        height: 44px;
+        padding: 0 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #172033;
+        background: #fff;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .metric-product-brand {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 15px;
+        font-weight: 850;
+      }
+
+      .metric-brand-mark {
+        width: 26px;
+        height: 26px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        color: #fff;
+        background: linear-gradient(135deg, #326bff, #8b6dff);
+        font-size: 13px;
+        box-shadow: 0 8px 18px rgba(50, 107, 255, 0.24);
+      }
+
+      .metric-product-user {
+        color: #627087;
+        font-size: 12px;
+        font-weight: 750;
+      }
+
+      .metric-product-body {
+        height: calc(100% - 44px);
+        display: grid;
+        grid-template-columns: 122px 1fr;
+        background: #f6f8fc;
+      }
+
+      .metric-product-nav {
+        padding: 13px 11px;
+        background: #fff;
+        border-right: 1px solid #e2e8f0;
+      }
+
+      .metric-nav-title {
+        margin: 11px 0 6px;
+        color: #8a96a8;
+        font-size: 11px;
+        font-weight: 850;
+      }
+
+      .metric-nav-title:first-child {
+        margin-top: 0;
+      }
+
+      .metric-nav-item {
+        height: 26px;
+        display: flex;
+        align-items: center;
+        padding: 0 9px;
+        border-radius: 9px;
+        color: #607088;
+        font-size: 12px;
+        font-weight: 760;
+      }
+
+      .metric-nav-item.is-active {
+        color: #2f63e9;
+        background: #eaf1ff;
+      }
+
+      .metric-config-page {
+        min-width: 0;
+        padding: 12px 14px;
+        color: #172033;
+      }
+
+      .metric-crumb {
+        color: #66758b;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .metric-config-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 8px 0 8px;
+      }
+
+      .metric-config-header h3 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: 0;
+      }
+
+      .metric-enabled {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        color: #0f9f6e;
+        background: #e7f8f1;
+        font-size: 12px;
+        font-weight: 850;
+      }
+
+      .metric-enabled::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      .metric-tabs {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .metric-tab {
+        padding: 6px 11px;
+        border-radius: 999px;
+        color: #607088;
+        background: #fff;
+        border: 1px solid #dbe3f0;
+        font-size: 12px;
+        font-weight: 820;
+      }
+
+      .metric-tab.is-active {
+        color: #2f63e9;
+        background: #eaf1ff;
+        border-color: #cbdcff;
+      }
+
+      .metric-config-form {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        gap: 9px;
+      }
+
+      .metric-field,
+      .metric-textarea,
+      .metric-test-box {
+        border-radius: 14px;
+        background: #fff;
+        border: 1px solid #dbe3f0;
+      }
+
+      .metric-field {
+        min-height: 55px;
+        padding: 8px 10px;
+      }
+
+      .metric-textarea,
+      .metric-test-box {
+        grid-column: 1 / -1;
+      }
+
+      .metric-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        color: #8a96a8;
+        font-size: 11px;
+        font-weight: 850;
+      }
+
+      .metric-value {
+        font-size: 14px;
+        font-weight: 850;
+      }
+
+      .metric-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .metric-tag {
+        padding: 5px 8px;
+        border-radius: 999px;
+        color: #265bd9;
+        background: #eef4ff;
+        border: 1px solid #d7e3ff;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .metric-tag.is-add {
+        color: #6b7280;
+        background: #f8fafc;
+        border-style: dashed;
+      }
+
+      .metric-textarea {
+        padding: 9px 10px;
+      }
+
+      .metric-editor {
+        min-height: 112px;
+        padding: 10px;
+        border-radius: 12px;
+        background: #fbfdff;
+        border: 1px solid #d8e2f0;
+        color: #1f2a3d;
+        font-size: 12px;
+        line-height: 1.46;
+        white-space: pre-wrap;
+      }
+
+      .metric-test-box {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 12px;
+        padding: 8px 10px;
+        align-items: center;
+      }
+
+      .metric-question {
+        padding: 8px 10px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #fff, #f5f8ff);
+        border: 1px solid #d0dcf7;
+        font-size: 14px;
+        font-weight: 850;
+      }
+
+      .metric-hit {
+        display: grid;
+        gap: 4px;
+        color: #40516b;
+        font-size: 12px;
+        line-height: 1.42;
+      }
+
+      .metric-hit strong {
+        color: #0f9f6e;
+        font-size: 13px;
+      }
+
+      .metric-runtime-side {
+        min-height: 0;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap: 12px;
+      }
+
+      .metric-logic,
+      .metric-sql {
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: rgba(17, 24, 39, 0.88);
+        box-shadow: 0 20px 44px rgba(0, 0, 0, 0.24);
+      }
+
+      .metric-logic {
+        padding: 15px;
+      }
+
+      .metric-logic h3,
+      .metric-sql h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+      }
+
+      .metric-logic-step {
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .metric-logic-step:last-child {
+        margin-bottom: 0;
+      }
+
+      .metric-num {
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        border-radius: 9px;
+        color: #fff;
+        background: var(--gradient-accent);
+        font-size: 12px;
+        font-weight: 950;
+      }
+
+      .metric-logic-step strong {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 14px;
+      }
+
+      .metric-logic-step p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .metric-sql {
+        min-height: 0;
+        padding: 14px;
+      }
+
+      .metric-sql pre {
+        margin: 0;
+        color: #dbe7ff;
+        font-size: 11.4px;
+        line-height: 1.42;
+        font-family: "Cascadia Mono", Consolas, monospace;
+        white-space: pre-wrap;
+      }
+
+      .metric-sql-keyword {
+        color: #7dd3fc;
+      }
+
+      .metric-sql-highlight {
+        color: #fbbf24;
+      }
+
+      @media (max-height: 850px) {
+        .metric-engineering-slide {
+          padding: 24px 44px 24px;
+          gap: 10px;
+        }
+
+        .metric-ppt-head {
+          gap: 22px;
+          align-items: center;
+        }
+
+        .metric-ppt-kicker {
+          margin-bottom: 5px;
+          font-size: 12px;
+        }
+
+        .metric-ppt-title {
+          font-size: 30px;
+        }
+
+        .metric-ppt-subtitle {
+          margin-top: 7px;
+          max-width: 700px;
+          font-size: 13px;
+          line-height: 1.35;
+        }
+
+        .metric-ppt-quote {
+          padding: 10px 12px;
+          font-size: 12.5px;
+          line-height: 1.38;
+        }
+
+        .metric-ppt-content {
+          gap: 16px;
+          grid-template-columns: minmax(0, 1.5fr) minmax(318px, 0.82fr);
+        }
+
+        .metric-product-top {
+          height: 38px;
+          padding: 0 16px;
+        }
+
+        .metric-product-brand {
+          font-size: 14px;
+        }
+
+        .metric-brand-mark {
+          width: 24px;
+          height: 24px;
+          font-size: 12px;
+        }
+
+        .metric-product-body {
+          height: calc(100% - 38px);
+          grid-template-columns: 112px 1fr;
+        }
+
+        .metric-product-nav {
+          padding: 10px 9px;
+        }
+
+        .metric-nav-title {
+          margin: 9px 0 4px;
+          font-size: 10px;
+        }
+
+        .metric-nav-item {
+          height: 23px;
+          padding: 0 8px;
+          font-size: 11px;
+        }
+
+        .metric-config-page {
+          padding: 9px 11px;
+        }
+
+        .metric-crumb {
+          font-size: 10.5px;
+        }
+
+        .metric-config-header {
+          margin: 5px 0;
+        }
+
+        .metric-config-header h3 {
+          font-size: 18px;
+        }
+
+        .metric-enabled {
+          padding: 5px 8px;
+          font-size: 11px;
+        }
+
+        .metric-tabs {
+          gap: 6px;
+          margin-bottom: 6px;
+        }
+
+        .metric-tab {
+          padding: 5px 9px;
+          font-size: 11px;
+        }
+
+        .metric-config-form {
+          gap: 6px;
+        }
+
+        .metric-field {
+          min-height: 47px;
+          padding: 7px 8px;
+        }
+
+        .metric-label {
+          margin-bottom: 3px;
+          font-size: 10px;
+        }
+
+        .metric-value {
+          font-size: 12.5px;
+        }
+
+        .metric-tags {
+          gap: 5px;
+        }
+
+        .metric-tag {
+          padding: 4px 7px;
+          font-size: 11px;
+        }
+
+        .metric-textarea {
+          padding: 7px;
+        }
+
+        .metric-editor {
+          min-height: 86px;
+          padding: 8px;
+          font-size: 10.5px;
+          line-height: 1.35;
+        }
+
+        .metric-test-box {
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 8px;
+          padding: 6px 8px;
+        }
+
+        .metric-question {
+          padding: 6px 8px;
+          font-size: 12px;
+        }
+
+        .metric-hit {
+          font-size: 10.5px;
+          line-height: 1.35;
+        }
+
+        .metric-hit strong {
+          font-size: 12px;
+        }
+
+        .metric-logic {
+          padding: 12px;
+        }
+
+        .metric-logic h3,
+        .metric-sql h3 {
+          margin-bottom: 8px;
+          font-size: 16px;
+        }
+
+        .metric-logic-step {
+          grid-template-columns: 26px 1fr;
+          gap: 8px;
+          margin-bottom: 7px;
+        }
+
+        .metric-num {
+          width: 26px;
+          height: 26px;
+          font-size: 11px;
+        }
+
+        .metric-logic-step strong {
+          font-size: 12.5px;
+        }
+
+        .metric-logic-step p {
+          font-size: 10.5px;
+          line-height: 1.35;
+        }
+
+        .metric-sql {
+          padding: 11px;
+        }
+
+        .metric-sql pre {
+          font-size: 9.6px;
+          line-height: 1.33;
+        }
       }
 
       .footer {
@@ -3444,7 +4107,7 @@
               </section>
 
               <section
-                class="slide is-section"
+                class="slide is-section disambiguation-slide"
                 data-title="澄清反问 + 词汇表"
                 data-notes-title="Page 07"
                 data-notes="这页讲’澄清不是麻烦，而是资产化的关键步骤’。一次反问换一次确认，确认结果直接进词汇表，下次别人问同一个词就不再反问。强调：用户用得越久，准确率越稳。"
@@ -3452,14 +4115,14 @@
                 <div class="slide-kicker">Page 07 / ChatBI · Disambiguation</div>
                 <div class="slide-title-row">
                   <div>
-                    <h2>不盲猜 / 让一次反问<br />把“业务语言”沉淀进系统</h2>
+                    <h2>澄清反问 + 词汇表：<br />把业务语言沉淀成可复用资产</h2>
                     <p class="slide-subtitle">
                       一个词可能对应多个实体或字段时，系统不直接执行取数，而是给候选项让用户一键确认，确认结果沉淀为别名资产。
                     </p>
                   </div>
                 </div>
 
-                <div class="split-grid">
+                <div class="split-grid disambiguation-layout">
                   <article class="pipeline">
                     <h3 class="panel-title">澄清反问的执行流程</h3>
                     <div class="pipeline-rail">
@@ -3467,36 +4130,38 @@
                         <div class="pipeline-index">01</div>
                         <div>
                           <strong>识别歧义</strong>
-                          <p>检测一个词对应多个实体 / 字段或多个候选维度值。</p>
+                          <p>检测多实体 / 字段候选。</p>
                         </div>
                       </div>
                       <div class="pipeline-step">
                         <div class="pipeline-index">02</div>
                         <div>
                           <strong>给候选项</strong>
-                          <p>按业务关键词、别名、字段注释相关度排序候选项。</p>
+                          <p>按业务关键词与别名排序。</p>
                         </div>
                       </div>
                       <div class="pipeline-step">
                         <div class="pipeline-index">03</div>
                         <div>
                           <strong>用户一键确认</strong>
-                          <p>不需要业务记 SQL 与字段，只需在候选里点一下。</p>
+                          <p>用户只需点选真实含义。</p>
                         </div>
                       </div>
                       <div class="pipeline-step">
                         <div class="pipeline-index">04</div>
                         <div>
                           <strong>沉淀为别名资产</strong>
-                          <p>下次别人问同一个词，命中率直接提升。</p>
+                          <p>别名关系沉淀复用。</p>
                         </div>
                       </div>
                     </div>
                   </article>
 
-                  <figure class="screen-card screen-card--mobile">
-                    <img src="assets/screens/h5/chatbi-overview.png" alt="ChatBI 用户端：区域营收柱状图 + 经营总结" />
-                  </figure>
+                  <div class="disambiguation-proof">
+                    <figure class="screen-card disambiguation-screen">
+                      <img src="assets/screens/chatbi-disambiguation-confirmation.png" alt="ChatBI 澄清反问：一部的销量候选部门确认" />
+                    </figure>
+                  </div>
                 </div>
 
                 <div class="impact-strip">
@@ -3508,64 +4173,128 @@
               </section>
 
               <section
-                class="slide is-section"
+                class="slide is-section metric-engineering-slide"
                 data-title="复杂指标口径"
                 data-notes-title="Page 08"
-                data-notes="生产环境的高频难题。重点表达：复杂指标不是让模型每次现写 SQL，而是把口径配置化，运行时生成可解释 SQL。口径变更只改配置 + 跑回归。讲解时可以把左侧 4 步框架顺一遍，右侧两张 PC 截图就是这个框架在管理端的真实样子。"
+                data-notes="生产环境的高频难题。重点表达：普通指标不需要调优经验也能直接回答，真正需要工程化的是收入完成率这类复杂组合指标。复杂指标不是让模型每次现写 SQL，而是通过自然语言转 SQL 的调优经验把口径配置好，运行时按经验召回并生成可解释 SQL。讲解时可以强调：用户不需要描述分子、分母、目标表和关联方式，只问‘收入完成率’也能跨表计算；口径变更只改经验配置 + 跑回归。"
               >
-                <div class="slide-kicker">Page 08 / ChatBI · Metric Engineering</div>
-                <div class="slide-title-row">
+                <section class="metric-ppt-head">
                   <div>
-                    <h2>把“目标完成率”这类组合指标做成配置<br />不是每次让模型现写</h2>
-                    <p class="slide-subtitle">
-                      生产环境中大量关键指标是“口径定义 + 多表关联 + 聚合计算”的组合——把它们做成配置，运行时拼装出可解释 SQL。
+                    <div class="metric-ppt-kicker">Page 08 / ChatBI · Metric Engineering</div>
+                    <h2 class="metric-ppt-title">复杂指标可通过经验调优<br />做到高准确率</h2>
+                    <p class="metric-ppt-subtitle">
+                      普通指标可直接问答；但像“收入完成率”这类涉及分子分母、目标表关联和聚合口径的复杂指标，需要把经验沉淀进配置。
                     </p>
                   </div>
-                </div>
+                  <div class="metric-ppt-quote">边界很清楚：普通指标直接回答；但复杂口径进入经验配置，标签命中后召回口径、生成 SQL、结果可复算。</div>
+                </section>
 
-                <div class="split-grid" style="grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: stretch;">
-                  <article class="pipeline">
-                    <h3 class="panel-title">指标口径工程化的 4 个动作</h3>
-                    <div class="pipeline-rail" style="grid-template-columns: 1fr;">
-                      <div class="pipeline-step">
-                        <div class="pipeline-index">01</div>
-                        <div>
-                          <strong>分子 / 分母</strong>
-                          <p>明确指标的两个核心数值，各自来自哪张表、哪个字段。</p>
+                <div class="metric-ppt-content">
+                  <article class="metric-product-shot" aria-label="自然语言转 SQL 经验配置产品截图示意">
+                    <div class="metric-product-top">
+                      <div class="metric-product-brand"><span class="metric-brand-mark">AI</span> 智能问数平台</div>
+                      <div class="metric-product-user">管理员用户</div>
+                    </div>
+                    <div class="metric-product-body">
+                      <nav class="metric-product-nav">
+                        <div class="metric-nav-title">主要功能</div>
+                        <div class="metric-nav-item">智能体</div>
+                        <div class="metric-nav-item is-active">调优配置</div>
+                        <div class="metric-nav-item">运行任务</div>
+                        <div class="metric-nav-title">数据资产</div>
+                        <div class="metric-nav-item">数据集</div>
+                        <div class="metric-nav-item">表选择</div>
+                        <div class="metric-nav-item">字段语义</div>
+                        <div class="metric-nav-title">能力配置</div>
+                        <div class="metric-nav-item is-active">自然语言转 SQL</div>
+                      </nav>
+
+                      <section class="metric-config-page">
+                        <div class="metric-crumb">ChatBI智能体配置 / 记忆配置 / 自然语言转 SQL 经验</div>
+                        <div class="metric-config-header">
+                          <h3>经验配置</h3>
+                          <span class="metric-enabled">已启用</span>
                         </div>
-                      </div>
-                      <div class="pipeline-step">
-                        <div class="pipeline-index">02</div>
-                        <div>
-                          <strong>过滤条件 + 时间窗</strong>
-                          <p>口径下样本范围与时间窗固化进配置，可版本化管理。</p>
+                        <div class="metric-tabs">
+                          <span class="metric-tab is-active">经验内容</span>
+                          <span class="metric-tab">命中测试</span>
+                          <span class="metric-tab">版本记录</span>
                         </div>
-                      </div>
-                      <div class="pipeline-step">
-                        <div class="pipeline-index">03</div>
-                        <div>
-                          <strong>维度粒度</strong>
-                          <p>到店 / 区域 / 集团粒度按需展开，统一聚合规则。</p>
+
+                        <div class="metric-config-form">
+                          <div class="metric-field">
+                            <div class="metric-label">经验名称</div>
+                            <div class="metric-value">复杂指标口径-收入完成率</div>
+                          </div>
+                          <div class="metric-field">
+                            <div class="metric-label">可打标签</div>
+                            <div class="metric-tags">
+                              <span class="metric-tag">收入完成率</span>
+                              <span class="metric-tag">营收达成率</span>
+                              <span class="metric-tag">收入达成</span>
+                              <span class="metric-tag is-add">+ 添加标签</span>
+                            </div>
+                          </div>
+
+                          <div class="metric-textarea">
+                            <div class="metric-label">
+                              <span>经验描述</span>
+                              <span>用于自然语言转 SQL 时召回</span>
+                            </div>
+                            <div class="metric-editor">适用范围：复杂组合指标；普通单表指标可直接回答，无需配置。
+
+当用户询问“收入完成率 / 营收达成率 / 收入达成”时：
+1. 收入完成率 = 实际收入 / 目标收入 * 100%，结果保留两位小数；
+2. 实际收入取 total_revenue，目标收入取 revenue_target；
+3. 按 hotel_id + biz_year_month 关联，月度查询先聚合实际收入；
+4. 输出月份、实际收入、目标收入、收入完成率，并按月份升序。</div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="pipeline-step">
-                        <div class="pipeline-index">04</div>
-                        <div>
-                          <strong>运行时生成 SQL</strong>
-                          <p>SQL 由配置自动拼装，可解释 / 可追溯 / 可复算。</p>
-                        </div>
-                      </div>
+                      </section>
                     </div>
                   </article>
 
-                  <figure class="screen-card screen-card--pc">
-                    <img src="assets/screens/chatbi-memory.png" alt="ChatBI 记忆配置：数据集 + 表选择 + 词汇表 + 查询重写" />
-                  </figure>
-                </div>
+                  <aside class="metric-runtime-side">
+                    <article class="metric-logic">
+                      <h3>运行时命中链路</h3>
+                      <div class="metric-logic-step">
+                        <div class="metric-num">01</div>
+                        <div>
+                          <strong>识别复杂指标</strong>
+                          <p>判断它不是普通字段查询，而是跨表组合口径。</p>
+                        </div>
+                      </div>
+                      <div class="metric-logic-step">
+                        <div class="metric-num">02</div>
+                        <div>
+                          <strong>召回调优经验</strong>
+                          <p>带出分子、分母、join key、时间粒度和输出字段。</p>
+                        </div>
+                      </div>
+                      <div class="metric-logic-step">
+                        <div class="metric-num">03</div>
+                        <div>
+                          <strong>生成可复算 SQL</strong>
+                          <p>关键数据处理交给确定性 SQL，避免临场猜口径。</p>
+                        </div>
+                      </div>
+                    </article>
 
-                <div class="quote-card compact-quote">
-                  <p>“口径变更只改配置 + 跑回归即可稳定上线 / 不需要重写代码、不需要发版。”</p>
-                  <span>对客户来说，口径治理从一次性工程变成可持续运营资产。</span>
+                    <article class="metric-sql">
+                      <h3>生成 SQL 片段</h3>
+                      <pre><span class="metric-sql-keyword">WITH</span> actual <span class="metric-sql-keyword">AS</span> (...),
+target <span class="metric-sql-keyword">AS</span> (...)
+<span class="metric-sql-keyword">SELECT</span>
+  biz_year_month,
+  actual_revenue,
+  target_revenue,
+  <span class="metric-sql-highlight">actual_revenue / NULLIF(target_revenue, 0)
+    * 100 AS income_completion_rate</span>
+<span class="metric-sql-keyword">FROM</span> actual
+<span class="metric-sql-keyword">JOIN</span> target
+  <span class="metric-sql-keyword">USING</span> (hotel_id, biz_year_month);</pre>
+                    </article>
+                  </aside>
                 </div>
               </section>
 
@@ -4149,50 +4878,50 @@
               <section
                 class="slide is-section"
                 data-title="案例：问题到任务"
-                data-notes-title="Page 06"
-                data-notes="这一页不是展示聊天界面，而是说明任务边界如何被收敛。强调：入口长什么样不重要，重要的是业务问题有没有被收成可执行、可验收的分析任务。"
+                data-notes-title="案例第一步"
+                data-notes="主案例开场。不要从‘总经理要求’硬切，先讲某连锁酒店集团的月度经营会场景：每家门店都要基于报表讲清目标完成率、差距来源、根因判断和下一步行动。然后再说产品价值：把这个管理要求收敛成可执行、可验收的分析任务。"
               >
-                <div class="slide-kicker">Page 06 / Case Step 1</div>
+                <div class="slide-kicker">第 20 页 / 案例第一步</div>
                 <div class="slide-title-row">
                   <div>
-                    <h2>案例示意：先把业务问题收敛成一条可执行任务</h2>
+                    <h2>某连锁酒店集团月度经营会：<br />每家门店都要讲清目标完成率、根因与行动计划</h2>
                     <p class="slide-subtitle">
-                      下面以单店月度综合 RevPAR 分析为例，展示一个经营问题如何被转成可执行、可复核的分析任务。
+                      这个案例来自酒店集团常见经营管理场景：每月经营会前，店长要基于既有报表说明本月目标完成情况、差距来源和下月动作；系统把这类管理要求收敛成一条可执行、可复核的分析任务。
                     </p>
                   </div>
                 </div>
 
-                <div class="case-layout">
+                <div class="split-grid" style="grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); align-items: start;">
                   <div class="case-side">
-                    <figure class="screen-card screen-card--pc">
-                      <img src="assets/screens/running-tasks.png" alt="Data Agent 运行任务列表：execId · 查询 · 智能体 · 已运行" />
+                    <figure class="screen-card case-wide-screen">
+                      <img src="assets/data-agent-case/task_entry.png" alt="业务入口发起单店月度经营分析任务" />
                     </figure>
                     <article class="quote-card">
-                      <p>“2026 年 4 月，0020001 酒店综合 RevPAR 为什么没达标？主要差距来自哪里？接下来优先做什么？”</p>
-                      <span>业务入口的价值不在聊天本身，而在于把问题收成可执行任务。</span>
+                      <p>“每月会前，不只是交一张表，而是要讲清完成了多少、为什么没完成、下个月准备怎么改。”</p>
+                      <span>案例从一条真实经营管理要求展开，而不是从一个孤立的聊天问题开始。</span>
                     </article>
                   </div>
                   <div class="case-main">
                     <div class="mini-grid">
                       <article class="mini-card">
-                        <span class="mini-kicker">Task Scope</span>
-                        <strong>锁定对象与时间</strong>
-                        <p>酒店编号、分析月份、分析主题和输出目标先确定下来。</p>
+                        <span class="mini-kicker">业务背景</span>
+                        <strong>匿名客户案例</strong>
+                        <p>某连锁酒店集团希望各门店用同一套口径复盘月度经营差距。</p>
                       </article>
                       <article class="mini-card">
-                        <span class="mini-kicker">Acceptance</span>
-                        <strong>明确交付与验收</strong>
-                        <p>常见输出是差距拆解、Top3 驱动、3 至 5 条行动建议，并要求关键数值可核对。</p>
+                        <span class="mini-kicker">任务收敛</span>
+                        <strong>边界先被明确</strong>
+                        <p>锁定门店、月份、核心经营指标、目标完成率和期望输出。</p>
                       </article>
                       <article class="mini-card">
-                        <span class="mini-kicker">Boundary</span>
-                        <strong>统一问题边界</strong>
-                        <p>对象范围、时间范围、样本边界先说清，后续关于“对不对”的讨论才有共同基准。</p>
+                        <span class="mini-kicker">验收口径</span>
+                        <strong>结果要能复核</strong>
+                        <p>交付差距拆解、主要驱动和行动建议，关键数值能回到报表复核。</p>
                       </article>
                       <article class="mini-card">
-                        <span class="mini-kicker">Why It Matters</span>
-                        <strong>先收敛，再分析</strong>
-                        <p>任务收敛做不好，后面分析越复杂，结果越容易讲不清。</p>
+                        <span class="mini-kicker">产品价值</span>
+                        <strong>先定边界，再执行</strong>
+                        <p>入口价值不在普通问答，而在于把管理要求变成受控执行链路。</p>
                       </article>
                     </div>
                   </div>
@@ -4202,15 +4931,15 @@
               <section
                 class="slide is-section"
                 data-title="案例：任务到证据"
-                data-notes-title="Page 07"
+                data-notes-title="案例第二步"
                 data-notes="这页要讲‘不是黑盒’。给客户看的不是孤立答案，而是一条可以继续展开的证据链。可以强调继续追问时不需要从头重来，而是回到原来的链路继续往下。"
               >
-                <div class="slide-kicker">Page 07 / Case Step 2</div>
+                <div class="slide-kicker">第 21 页 / 案例第二步</div>
                 <div class="slide-title-row">
                   <div>
-                    <h2>系统不会先给口头判断<br />而是先把证据链展开</h2>
+                    <h2>店长不是只拿到一个回答<br />而是拿到可追问的证据链</h2>
                     <p class="slide-subtitle">
-                      关键数值沿确定性执行链路生成，关键中间结果作为证据保留下来，便于复算、复盘和继续追问。
+                      任务发起后，系统先展开目标差距、差异指标、维度下钻和候选根因；关键数值沿确定性执行链路生成，便于总经理继续追问。
                     </p>
                   </div>
                 </div>
@@ -4222,8 +4951,8 @@
                       <div class="pipeline-step">
                         <div class="pipeline-index">01</div>
                         <div>
-                          <strong>目标差距</strong>
-                          <p>确认目标值、实际值、完成率是否在既定口径下对齐。</p>
+                          <strong>目标完成率</strong>
+                          <p>先确认目标值、实际值、完成率是否与月度报表口径对齐。</p>
                         </div>
                       </div>
                       <div class="pipeline-step">
@@ -4237,7 +4966,7 @@
                         <div class="pipeline-index">03</div>
                         <div>
                           <strong>维度下钻 · 驱动排序</strong>
-                          <p>围绕渠道、房型、价格带、日期等维度展开，识别最主要影响因素。</p>
+                          <p>围绕渠道、房型、价格带、日期等维度展开，识别主要影响因素。</p>
                         </div>
                       </div>
                       <div class="pipeline-step">
@@ -4250,84 +4979,71 @@
                     </div>
                   </article>
 
-                  <figure class="screen-card screen-card--pc">
-                    <img src="assets/screens/running-tasks.png" alt="Data Agent 任务执行记录：execId / 查询 / 智能体 / 已运行" />
-                  </figure>
-                </div>
-
-                <div class="impact-strip">
-                  <div class="impact-item"><strong>任务规划</strong><br />把问题收敛成明确的分析链路。</div>
-                  <div class="impact-item"><strong>工具调用</strong><br />关键数值由 SQL / Python / 受控工具产生。</div>
-                  <div class="impact-item"><strong>中间结果</strong><br />差异指标、驱动排序、维度下钻可以留存。</div>
-                  <div class="impact-item"><strong>继续追问</strong><br />沿原证据链继续展开，而不是重新解释一遍。</div>
+                  <div class="case-main">
+                    <figure class="screen-card case-wide-screen">
+                      <img src="assets/data-agent-case/analysis_chain.png" alt="分析链路与差异指标证据清单" />
+                    </figure>
+                    <div class="impact-strip case-impact-grid">
+                      <div class="impact-item"><strong>任务规划</strong><br />把问题收敛成明确链路。</div>
+                      <div class="impact-item"><strong>工具调用</strong><br />关键数值由受控工具产生。</div>
+                      <div class="impact-item"><strong>中间结果</strong><br />差异、排序、下钻可留存。</div>
+                      <div class="impact-item"><strong>继续追问</strong><br />沿原证据链继续展开。</div>
+                    </div>
+                  </div>
                 </div>
               </section>
 
               <section
                 class="slide is-section"
                 data-title="案例：证据到动作"
-                data-notes-title="Page 08"
+                data-notes-title="案例第三步"
                 data-notes="这页最落地，因为客户最终拿去用的是结构化报告和行动推进方案。建议强调：复杂问题最后要落成同一份材料，而不是靠不同人口头解释。"
               >
-                <div class="slide-kicker">Page 08 / Case Step 3</div>
+                <div class="slide-kicker">第 22 页 / 案例第三步</div>
                 <div class="slide-title-row">
                   <div>
-                    <h2>真正交付给组织使用的<br />是“结论 + 证据 + 动作”的完整闭环</h2>
+                    <h2>最后交付给门店和集团管理层的<br />是报告与下一步行动计划</h2>
                     <p class="slide-subtitle">
-                      结构化分析报告负责把复杂问题讲清楚，行动推进方案负责把“解释问题”转成“推进动作”。
+                      结构化报告把目标完成率、根因链路和证据讲清楚；行动推进方案把“解释问题”转成“下个月怎么做”。
                     </p>
                   </div>
                 </div>
 
-                <div class="report-layout" style="grid-template-columns: minmax(0, 1fr) 240px 280px;">
+                <div class="report-layout" style="grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);">
                   <article class="report-card">
                     <h3 class="panel-title">本案例中可直接用于汇报的结论</h3>
                     <div class="report-grid">
                       <div class="mini-card">
-                        <span class="mini-kicker">Headline</span>
-                        <strong>RevPAR 完成率 53.81%</strong>
+                        <span class="mini-kicker">核心结论</span>
+                        <strong>综合房收完成率 53.81%</strong>
                         <p>目标 356.61 元 · 实际 191.89 元，差距可复算。</p>
                       </div>
                       <div class="mini-card">
-                        <span class="mini-kicker">Drivers</span>
+                        <span class="mini-kicker">影响因素</span>
                         <strong>差距不是单一原因</strong>
                         <p>直销能力偏弱 + 高价房型动销不足共同影响。</p>
                       </div>
                       <div class="mini-card">
-                        <span class="mini-kicker">Evidence</span>
+                        <span class="mini-kicker">证据链路</span>
                         <strong>关键驱动可继续下钻</strong>
                         <p>官渠间夜偏低 · 单房售卡比偏低 · 高价房入住率缺口。</p>
                       </div>
                       <div class="mini-card">
-                        <span class="mini-kicker">Closure</span>
+                        <span class="mini-kicker">行动落地</span>
                         <strong>不止停留在解释层</strong>
                         <p>沉淀为行动推进方案，用于优化与后续复盘。</p>
                       </div>
                     </div>
                   </article>
 
-                  <div class="placeholder is-doc" style="max-width: none; min-height: 100%;">
-                    <span class="placeholder-tag">Document · A4</span>
-                    <span class="placeholder-title">结构化分析报告封面</span>
-                    <span class="placeholder-desc">标题 · 关键结论 · 证据链入口 · 行动方案</span>
-                    <span class="placeholder-meta">脱敏 PDF 缩略</span>
-                  </div>
-
                   <article class="report-card">
-                    <h3 class="panel-title">行动推进方案示意</h3>
-                    <div class="action-strip">
-                      <div class="action-item">
-                        <strong>动作 01｜先补直销能力短板</strong>
-                        <span>关注官渠投放、转化路径和促销节奏。</span>
-                      </div>
-                      <div class="action-item">
-                        <strong>动作 02｜集中提升高价房动销</strong>
-                        <span>聚焦价格带、房型组合与销售策略。</span>
-                      </div>
-                      <div class="action-item">
-                        <strong>动作 03｜明确责任人与跟进</strong>
-                        <span>责任角色 · 复盘节奏 · 效果衡量。</span>
-                      </div>
+                    <h3 class="panel-title">结构化报告 + 行动推进方案</h3>
+                    <figure class="screen-card case-wide-screen" style="margin-bottom: 12px;">
+                      <img src="assets/data-agent-case/report_plan.png" alt="结构化分析报告与行动推进方案示例" />
+                    </figure>
+                    <div class="action-strip" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+                      <div class="action-item"><strong>店长可执行</strong><span>先补直销能力短板，再集中提升高价房动销。</span></div>
+                      <div class="action-item"><strong>总经理可追踪</strong><span>责任角色、复盘节奏、效果衡量进入后续经营会。</span></div>
                     </div>
                   </article>
                 </div>
