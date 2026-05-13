@@ -76,3 +76,15 @@
 - 对于 `standalone` 私有化全量初始化脚本，上述内容已合并到 `3-init-update.sql`
 - 对于已存在的私有化 PostgreSQL 环境，升级包统一执行 `standalone/upgrade/general/20260320/sql/20260320-llm-billing-pg.sql`
 - 本次未单独提供“星网”目录版本，统一使用上述通用 PG 升级脚本
+
+## 当前 ChatBI 智能体使用权限改造说明
+
+本次 ChatBI 智能体使用权限 PostgreSQL 表结构参考开发侧：
+
+- `cloud/sql/patch/20260512-aibi-app-access-policy-pg.sql`
+
+当前约定如下：
+
+- 对于 `standalone` 私有化全量初始化脚本，本次内容已合并到 `3-init-update.sql`
+- `standalone` 口径为私有化本地化全新部署，仅合并建表、索引、序列和注释
+- 历史智能体兼容回填不合并到 `standalone` 初始化脚本；如需处理存量环境，应另行制定明确的升级脚本

@@ -323,3 +323,64 @@ ALTER TABLE agent_llm_billing_cycle
 
 CREATE INDEX IF NOT EXISTS idx_agent_billing_cycle_tenant_date
     ON agent_llm_billing_cycle(tenant_id, start_date, end_date);
+
+-- ChatBI 智能体使用权限
+
+CREATE TABLE IF NOT EXISTS aibi_app_access_policy (
+    id BIGINT NOT NULL PRIMARY KEY,
+    create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    update_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    creator VARCHAR(64) DEFAULT '',
+    updater VARCHAR(64) DEFAULT '',
+    deleted SMALLINT NOT NULL DEFAULT 0,
+    tenant_id BIGINT NOT NULL,
+    app_id BIGINT NOT NULL,
+    access_mode VARCHAR(32) NOT NULL DEFAULT 'ALL',
+    status SMALLINT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS aibi_app_access_subject (
+    id BIGINT NOT NULL PRIMARY KEY,
+    create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    update_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    creator VARCHAR(64) DEFAULT '',
+    updater VARCHAR(64) DEFAULT '',
+    deleted SMALLINT NOT NULL DEFAULT 0,
+    tenant_id BIGINT NOT NULL,
+    app_id BIGINT NOT NULL,
+    subject_type VARCHAR(32) NOT NULL,
+    subject_id BIGINT NOT NULL,
+    permission_type VARCHAR(32) NOT NULL DEFAULT 'USE',
+    include_children BOOLEAN NOT NULL DEFAULT FALSE,
+    status SMALLINT NOT NULL DEFAULT 0
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS uk_aibi_app_access_policy_app
+    ON aibi_app_access_policy (tenant_id, app_id)
+    WHERE deleted = 0;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uk_aibi_app_access_subject
+    ON aibi_app_access_subject (tenant_id, app_id, subject_type, subject_id, permission_type)
+    WHERE deleted = 0;
+
+CREATE INDEX IF NOT EXISTS idx_aibi_app_access_subject_lookup
+    ON aibi_app_access_subject (tenant_id, app_id, permission_type, status)
+    WHERE deleted = 0;
+
+CREATE SEQUENCE IF NOT EXISTS aibi_app_access_policy_seq START 1;
+CREATE SEQUENCE IF NOT EXISTS aibi_app_access_subject_seq START 1;
+
+COMMENT ON TABLE aibi_app_access_policy IS 'ChatBI 智能体使用权限策略表';
+COMMENT ON COLUMN aibi_app_access_policy.tenant_id IS '租户ID';
+COMMENT ON COLUMN aibi_app_access_policy.app_id IS '智能体ID';
+COMMENT ON COLUMN aibi_app_access_policy.access_mode IS '访问模式：ALL 全员可用，SPECIFIED 指定范围可用';
+COMMENT ON COLUMN aibi_app_access_policy.status IS '状态：0 开启，1 关闭';
+
+COMMENT ON TABLE aibi_app_access_subject IS 'ChatBI 智能体使用权限主体表';
+COMMENT ON COLUMN aibi_app_access_subject.tenant_id IS '租户ID';
+COMMENT ON COLUMN aibi_app_access_subject.app_id IS '智能体ID';
+COMMENT ON COLUMN aibi_app_access_subject.subject_type IS '主体类型：USER / DEPT / ROLE';
+COMMENT ON COLUMN aibi_app_access_subject.subject_id IS '主体ID';
+COMMENT ON COLUMN aibi_app_access_subject.permission_type IS '权限类型：USE';
+COMMENT ON COLUMN aibi_app_access_subject.include_children IS '部门授权是否包含子部门';
+COMMENT ON COLUMN aibi_app_access_subject.status IS '状态：0 开启，1 关闭';
