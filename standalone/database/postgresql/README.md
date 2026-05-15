@@ -88,3 +88,15 @@
 - 对于 `standalone` 私有化全量初始化脚本，本次内容已合并到 `3-init-update.sql`
 - `standalone` 口径为私有化本地化全新部署，仅合并建表、索引、序列和注释
 - 历史智能体兼容回填不合并到 `standalone` 初始化脚本；如需处理存量环境，应另行制定明确的升级脚本
+
+## 当前 ChatBI 主题数据集质量评审改造说明
+
+本次 ChatBI 主题数据集质量评审 PostgreSQL 表结构参考开发侧：
+
+- `cloud/sql/patch/20260514-aibi-dataset-quality-review-pg.sql`
+
+当前约定如下：
+
+- 对于 `standalone` 私有化全量初始化脚本，本次内容已合并到 `3-init-update.sql`
+- 对于已存在的 PostgreSQL 环境，升级包统一执行 `standalone/upgrade/general/20260515/sql/20260515-aibi-dataset-quality-review-pg.sql`
+- 本次只新增质量评审留档表、序列、索引和注释，不需要历史数据回填
