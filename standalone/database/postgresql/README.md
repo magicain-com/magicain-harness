@@ -76,3 +76,16 @@
 - 对于 `standalone` 私有化全量初始化脚本，上述内容已合并到 `3-init-update.sql`
 - 对于已存在的私有化 PostgreSQL 环境，升级包统一执行 `standalone/upgrade/general/20260320/sql/20260320-llm-billing-pg.sql`
 - 本次未单独提供“星网”目录版本，统一使用上述通用 PG 升级脚本
+
+## 当前 Data Agent SOP 可见范围改造说明
+
+本次 Data Agent SOP 个性化改造增加 PostgreSQL 字段：
+
+- `agent_plan_sop.sop_scope`
+
+当前约定如下：
+
+- `PUBLIC` 表示公共 SOP，当前 Data Agent 下所有用户可见
+- `PERSONAL` 表示个人 SOP，仅创建人个人可见
+- 对于 `standalone` 私有化全量初始化脚本，该字段已合并到 `3-init.sql`
+- 对于已存在的私有化 PostgreSQL 环境，升级包统一执行 `standalone/upgrade/general/20260517/sql/20260517-dataagent-sop-scope-pg.sql`
