@@ -100,3 +100,16 @@
 - 对于 `standalone` 私有化全量初始化脚本，本次内容已合并到 `3-init-update.sql`
 - 对于已存在的 PostgreSQL 环境，升级包统一执行 `standalone/upgrade/general/20260515/sql/20260515-aibi-dataset-quality-review-pg.sql`
 - 本次只新增质量评审留档表、序列、索引和注释，不需要历史数据回填
+
+## 当前 Data Agent SOP 可见范围改造说明
+
+本次 Data Agent SOP 个性化改造增加 PostgreSQL 字段：
+
+- `agent_plan_sop.sop_scope`
+
+当前约定如下：
+
+- `PUBLIC` 表示公共 SOP，当前 Data Agent 下所有用户可见
+- `PERSONAL` 表示个人 SOP，仅创建人个人可见
+- 对于 `standalone` 私有化全量初始化脚本，该字段已合并到 `3-init.sql`
+- 对于已存在的私有化 PostgreSQL 环境，升级包统一执行 `standalone/upgrade/general/20260517/sql/20260517-dataagent-sop-scope-pg.sql`
