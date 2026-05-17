@@ -1,4 +1,0 @@
-ALTER TABLE agent_plan_sop
-    ADD COLUMN IF NOT EXISTS sop_scope VARCHAR(20) NOT NULL DEFAULT 'PUBLIC';
-
-COMMENT ON COLUMN agent_plan_sop.sop_scope IS 'SOP 可见范围：PUBLIC 公共 SOP，PERSONAL 个人 SOP';

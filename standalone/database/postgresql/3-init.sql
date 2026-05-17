@@ -1411,7 +1411,6 @@ CREATE TABLE agent_plan_sop (
                                 sop_name        VARCHAR(64), -- sop的名字
                                 sop_desc        VARCHAR(512), -- sop的描述
                                 sop_tags        VARCHAR(256), -- sop的业务标签
-                                sop_scope       VARCHAR(20) NOT NULL DEFAULT 'PUBLIC', -- SOP 可见范围：PUBLIC 公共 SOP，PERSONAL 个人 SOP
                                 content         TEXT -- sop内容 (PostgreSQL 中 TEXT 没有长度限制，相当于 MySQL 的 LONGTEXT)
 );
 
@@ -1428,7 +1427,6 @@ COMMENT ON COLUMN agent_plan_sop.agent_id IS '归属的agent, 确定作用的sco
 COMMENT ON COLUMN agent_plan_sop.sop_name IS 'sop的名字';
 COMMENT ON COLUMN agent_plan_sop.sop_desc IS 'sop的描述';
 COMMENT ON COLUMN agent_plan_sop.sop_tags IS 'sop的业务标签';
-COMMENT ON COLUMN agent_plan_sop.sop_scope IS 'SOP 可见范围：PUBLIC 公共 SOP，PERSONAL 个人 SOP';
 COMMENT ON COLUMN agent_plan_sop.content IS 'sop内容';
 
 

@@ -19,10 +19,6 @@ ADD COLUMN IF NOT EXISTS trace_id VARCHAR(256);
 ALTER TABLE agent_plan_sop
 ADD COLUMN IF NOT EXISTS sop_tags VARCHAR(256);
 
-ALTER TABLE agent_plan_sop
-ADD COLUMN IF NOT EXISTS sop_scope VARCHAR(20) NOT NULL DEFAULT 'PUBLIC';
-
-COMMENT ON COLUMN agent_plan_sop.sop_scope IS 'SOP 可见范围：PUBLIC 公共 SOP，PERSONAL 个人 SOP';
 
 -- Table structure for system_source_identity_mapping
 CREATE TABLE system_source_identity_mapping
