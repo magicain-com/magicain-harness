@@ -21,6 +21,7 @@ This repo also acts as the top-level system-documentation and orchestration repo
 
 - System guide: [AGENTS.md](AGENTS.md)
 - Architecture map: [ARCHITECTURE.md](ARCHITECTURE.md)
+- Current production deployment: [docs/current-production-deployment.md](docs/current-production-deployment.md)
 - Repo responsibilities: [docs/references/repo-map.md](docs/references/repo-map.md)
 - PR readiness: [docs/process/pull-request-readiness.md](docs/process/pull-request-readiness.md)
 - System docs: [docs/systems/](docs/systems/)
@@ -129,6 +130,7 @@ To match production resource planning, the stack is now broken into smaller Comp
 - ClickHouse 在拆分方案中暂不部署，如需开启可在单独服务器沿用旧配置。
 - 阿里云 ECS 机器与 compose 的映射记录在 `docs/ecs-server-reference.md`，可用于多人协同参考。
 - GitHub Actions 的四套对应 CD 脚本详见 `docs/github-actions-cd.md`。
+- 当前生产部署链路、镜像构建与独立服务扩展入口详见 `docs/current-production-deployment.md`。
 - `config/spring/application-prod.yml` 会被挂载到 cloud 容器的 `/config/application-prod.yml`，通过 `.env` 中的 `POSTGRES_HOST`、`ELASTICSEARCH_HOST` 等变量来注入跨机器的 IP/端口。
 
 示例启动方式：

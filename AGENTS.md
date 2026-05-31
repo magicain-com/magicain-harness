@@ -29,9 +29,18 @@
 ## 参考文档
 
 - System map: [ARCHITECTURE.md](ARCHITECTURE.md)
+- Current production deployment: [docs/current-production-deployment.md](docs/current-production-deployment.md)
 - Repo map: [docs/references/repo-map.md](docs/references/repo-map.md)
 - System docs: [docs/systems/](docs/systems/)
 - API/smoke context: [docs/testing/api-smoke-harness.md](docs/testing/api-smoke-harness.md)
 - PR readiness: [docs/process/pull-request-readiness.md](docs/process/pull-request-readiness.md)
 - Feature plan: [docs/exec-plans/feature-plan-template.md](docs/exec-plans/feature-plan-template.md)
 - Release gates: [docs/quality/release-gates.md](docs/quality/release-gates.md)
+
+## 部署架构入口
+
+当问题涉及当前生产部署方式、GitHub Actions CD、Docker Compose 拆分、镜像构建、Nginx 入口路由、ECS 机器职责或独立后端服务扩展时，先阅读：
+
+- `docs/current-production-deployment.md`
+
+该文档记录当前真实部署链路。不要仅凭记忆判断 tag 后会发生什么、哪个仓库负责部署、或生产环境是否已经包含某个独立服务。
